@@ -1,9 +1,16 @@
 "use server"
 import prisma from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 
-export async function completePracticeSession(userId, chunkResults) {
+
+export async function completePracticeSession(clientUserId, chunkResults) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return { success: false, error: "Unauthorized" };
+    const userId = session.user.id;
+    // chunkResults: Array of { chunkId, status: 'mastered' | 'learning' }
     // chunkResults: Array of { chunkId, status: 'mastered' | 'learning' }
     
     const results = await Promise.all(chunkResults.map(async (res) => {
@@ -48,8 +55,12 @@ export async function completePracticeSession(userId, chunkResults) {
   }
 }
 
-export async function updateUserProfile(userId, data) {
+export async function updateUserProfile(clientUserId, data) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return { success: false, error: "Unauthorized" };
+    const userId = session.user.id;
+
     const user = await prisma.user.update({
       where: { id: userId },
       data: {
@@ -69,8 +80,12 @@ export async function updateUserProfile(userId, data) {
   }
 }
 
-export async function toggleFavorite(userId, chunkId) {
+export async function toggleFavorite(clientUserId, chunkId) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return { success: false, error: "Unauthorized" };
+    const userId = session.user.id;
+
     const progress = await prisma.userChunkProgress.findUnique({
       where: { userId_chunkId: { userId, chunkId } }
     });
@@ -100,8 +115,46 @@ export async function toggleFavorite(userId, chunkId) {
   }
 }
 
-export async function claimActivityReward(userId, xp) {
+export async function markChunkAsMastered(clientUserId, chunkId) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return { success: false, error: "Unauthorized" };
+    const userId = session.user.id;
+
+    await prisma.userChunkProgress.upsert({
+      where: {
+        userId_chunkId: {
+          userId,
+          chunkId
+        }
+      },
+      update: {
+        status: 'mastered',
+        lastReviewed: new Date(),
+        timesReviewed: { increment: 1 }
+      },
+      create: {
+        userId,
+        chunkId,
+        status: 'mastered'
+      }
+    });
+
+    revalidatePath('/dictionary');
+    revalidatePath('/');
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to mark chunk mastered:", error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function claimActivityReward(clientUserId, xp) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return { success: false, error: "Unauthorized" };
+    const userId = session.user.id;
+
     console.log(`User ${userId} claimed ${xp} XP`);
     // Logic to increment User.totalXP if we add it to the schema later
     revalidatePath('/')

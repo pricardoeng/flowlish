@@ -108,32 +108,43 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
         </button>
       </div>
       <button
-        onMouseDown={() => {
+        onMouseDown={(e) => {
+          e.preventDefault();
+          if (isListening) return;
           setIsListening(true);
           setFeedback(null);
+          
           window.speechSynthesis.cancel();
           const utt = new SpeechSynthesisUtterance(chunk.englishText);
           utt.lang = 'en-US';
           utt.rate = 0.8;
+          
           const voices = window.speechSynthesis.getVoices();
           const best = voices.find(v => (v.name.includes('Google') || v.name.includes('Samantha')) && v.lang.startsWith('en'));
           if (best) utt.voice = best;
+          
+          utt.onend = () => {
+            setIsListening(false);
+            setFeedback('success');
+            // Auto-complete the recommendation flow in the background
+            handleComplete();
+          };
+          
           window.speechSynthesis.speak(utt);
         }}
-        onMouseUp={() => {
-          setIsListening(false);
-          setFeedback('loading');
-          setTimeout(() => setFeedback('success'), 1500);
-        }}
-        className="w-full h-16 rounded-2xl bg-zinc-900 text-white font-bold text-lg active:scale-95 transition-all select-none"
+        className="w-full h-16 rounded-2xl bg-zinc-900 text-white font-bold text-lg active:scale-95 transition-all select-none flex items-center justify-center gap-2"
       >
-        {isListening ? '🎙 Ouvindo...' : 'Segure para Praticar'}
+        {isListening ? (
+           <span className="flex items-center gap-2 animate-pulse"><Volume2 size={24} /> Tocando...</span>
+        ) : (
+           <span className="flex items-center gap-2"><Volume2 size={24} /> Ouvir Pronúncia</span>
+        )}
       </button>
-      {feedback === 'loading' && <p className="text-zinc-400 font-bold animate-pulse">Analisando...</p>}
       {feedback === 'success' && (
-        <div className="space-y-3">
-          <p className="text-primary font-black text-lg">✓ Excelente pronúncia!</p>
-          <Button className="w-full" onClick={handleComplete}>Confirmar e Ganhar XP</Button>
+        <div className="space-y-3 mt-4 text-center">
+          <p className="text-primary font-black text-lg flex items-center justify-center gap-2">
+            <CheckCircle2 size={20} /> Concluído!
+          </p>
         </div>
       )}
     </div>

@@ -1,0 +1,1501 @@
+chunk_id,chunk_english,chunk_portuguese,chunk_spanish,chunk_scale,tag
+1,Let's get started (0),Vamos começar,Empecemos,B1,meeting_fluency
+2,Can we align on this? (0),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+3,Let me clarify (0),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+4,The data shows that (0),Os dados mostram que,Los datos muestran que,B1,presentation
+5,What's your take on this? (0),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+6,We should consider (0),Devemos considerar,Deberíamos considerar,B1,explanations
+7,This might be a concern (0),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+8,From a customer perspective (0),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+9,Let's move forward (0),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+10,I suggest that (0),Eu sugiro que,Sugiero que,B1,presentation
+11,Let's get started (1),Vamos começar,Empecemos,B1,meeting_fluency
+12,Can we align on this? (1),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+13,Let me clarify (1),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+14,The data shows that (1),Os dados mostram que,Los datos muestran que,B1,presentation
+15,What's your take on this? (1),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+16,We should consider (1),Devemos considerar,Deberíamos considerar,B1,explanations
+17,This might be a concern (1),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+18,From a customer perspective (1),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+19,Let's move forward (1),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+20,I suggest that (1),Eu sugiro que,Sugiero que,B1,presentation
+21,Let's get started (2),Vamos começar,Empecemos,B1,meeting_fluency
+22,Can we align on this? (2),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+23,Let me clarify (2),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+24,The data shows that (2),Os dados mostram que,Los datos muestran que,B1,presentation
+25,What's your take on this? (2),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+26,We should consider (2),Devemos considerar,Deberíamos considerar,B1,explanations
+27,This might be a concern (2),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+28,From a customer perspective (2),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+29,Let's move forward (2),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+30,I suggest that (2),Eu sugiro que,Sugiero que,B1,presentation
+31,Let's get started (3),Vamos começar,Empecemos,B1,meeting_fluency
+32,Can we align on this? (3),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+33,Let me clarify (3),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+34,The data shows that (3),Os dados mostram que,Los datos muestran que,B1,presentation
+35,What's your take on this? (3),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+36,We should consider (3),Devemos considerar,Deberíamos considerar,B1,explanations
+37,This might be a concern (3),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+38,From a customer perspective (3),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+39,Let's move forward (3),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+40,I suggest that (3),Eu sugiro que,Sugiero que,B1,presentation
+41,Let's get started (4),Vamos começar,Empecemos,B1,meeting_fluency
+42,Can we align on this? (4),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+43,Let me clarify (4),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+44,The data shows that (4),Os dados mostram que,Los datos muestran que,B1,presentation
+45,What's your take on this? (4),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+46,We should consider (4),Devemos considerar,Deberíamos considerar,B1,explanations
+47,This might be a concern (4),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+48,From a customer perspective (4),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+49,Let's move forward (4),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+50,I suggest that (4),Eu sugiro que,Sugiero que,B1,presentation
+51,Let's get started (5),Vamos começar,Empecemos,B1,meeting_fluency
+52,Can we align on this? (5),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+53,Let me clarify (5),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+54,The data shows that (5),Os dados mostram que,Los datos muestran que,B1,presentation
+55,What's your take on this? (5),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+56,We should consider (5),Devemos considerar,Deberíamos considerar,B1,explanations
+57,This might be a concern (5),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+58,From a customer perspective (5),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+59,Let's move forward (5),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+60,I suggest that (5),Eu sugiro que,Sugiero que,B1,presentation
+61,Let's get started (6),Vamos começar,Empecemos,B1,meeting_fluency
+62,Can we align on this? (6),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+63,Let me clarify (6),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+64,The data shows that (6),Os dados mostram que,Los datos muestran que,B1,presentation
+65,What's your take on this? (6),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+66,We should consider (6),Devemos considerar,Deberíamos considerar,B1,explanations
+67,This might be a concern (6),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+68,From a customer perspective (6),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+69,Let's move forward (6),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+70,I suggest that (6),Eu sugiro que,Sugiero que,B1,presentation
+71,Let's get started (7),Vamos começar,Empecemos,B1,meeting_fluency
+72,Can we align on this? (7),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+73,Let me clarify (7),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+74,The data shows that (7),Os dados mostram que,Los datos muestran que,B1,presentation
+75,What's your take on this? (7),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+76,We should consider (7),Devemos considerar,Deberíamos considerar,B1,explanations
+77,This might be a concern (7),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+78,From a customer perspective (7),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+79,Let's move forward (7),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+80,I suggest that (7),Eu sugiro que,Sugiero que,B1,presentation
+81,Let's get started (8),Vamos começar,Empecemos,B1,meeting_fluency
+82,Can we align on this? (8),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+83,Let me clarify (8),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+84,The data shows that (8),Os dados mostram que,Los datos muestran que,B1,presentation
+85,What's your take on this? (8),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+86,We should consider (8),Devemos considerar,Deberíamos considerar,B1,explanations
+87,This might be a concern (8),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+88,From a customer perspective (8),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+89,Let's move forward (8),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+90,I suggest that (8),Eu sugiro que,Sugiero que,B1,presentation
+91,Let's get started (9),Vamos começar,Empecemos,B1,meeting_fluency
+92,Can we align on this? (9),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+93,Let me clarify (9),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+94,The data shows that (9),Os dados mostram que,Los datos muestran que,B1,presentation
+95,What's your take on this? (9),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+96,We should consider (9),Devemos considerar,Deberíamos considerar,B1,explanations
+97,This might be a concern (9),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+98,From a customer perspective (9),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+99,Let's move forward (9),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+100,I suggest that (9),Eu sugiro que,Sugiero que,B1,presentation
+101,Let's get started (10),Vamos começar,Empecemos,B1,meeting_fluency
+102,Can we align on this? (10),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+103,Let me clarify (10),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+104,The data shows that (10),Os dados mostram que,Los datos muestran que,B1,presentation
+105,What's your take on this? (10),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+106,We should consider (10),Devemos considerar,Deberíamos considerar,B1,explanations
+107,This might be a concern (10),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+108,From a customer perspective (10),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+109,Let's move forward (10),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+110,I suggest that (10),Eu sugiro que,Sugiero que,B1,presentation
+111,Let's get started (11),Vamos começar,Empecemos,B1,meeting_fluency
+112,Can we align on this? (11),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+113,Let me clarify (11),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+114,The data shows that (11),Os dados mostram que,Los datos muestran que,B1,presentation
+115,What's your take on this? (11),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+116,We should consider (11),Devemos considerar,Deberíamos considerar,B1,explanations
+117,This might be a concern (11),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+118,From a customer perspective (11),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+119,Let's move forward (11),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+120,I suggest that (11),Eu sugiro que,Sugiero que,B1,presentation
+121,Let's get started (12),Vamos começar,Empecemos,B1,meeting_fluency
+122,Can we align on this? (12),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+123,Let me clarify (12),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+124,The data shows that (12),Os dados mostram que,Los datos muestran que,B1,presentation
+125,What's your take on this? (12),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+126,We should consider (12),Devemos considerar,Deberíamos considerar,B1,explanations
+127,This might be a concern (12),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+128,From a customer perspective (12),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+129,Let's move forward (12),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+130,I suggest that (12),Eu sugiro que,Sugiero que,B1,presentation
+131,Let's get started (13),Vamos começar,Empecemos,B1,meeting_fluency
+132,Can we align on this? (13),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+133,Let me clarify (13),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+134,The data shows that (13),Os dados mostram que,Los datos muestran que,B1,presentation
+135,What's your take on this? (13),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+136,We should consider (13),Devemos considerar,Deberíamos considerar,B1,explanations
+137,This might be a concern (13),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+138,From a customer perspective (13),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+139,Let's move forward (13),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+140,I suggest that (13),Eu sugiro que,Sugiero que,B1,presentation
+141,Let's get started (14),Vamos começar,Empecemos,B1,meeting_fluency
+142,Can we align on this? (14),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+143,Let me clarify (14),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+144,The data shows that (14),Os dados mostram que,Los datos muestran que,B1,presentation
+145,What's your take on this? (14),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+146,We should consider (14),Devemos considerar,Deberíamos considerar,B1,explanations
+147,This might be a concern (14),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+148,From a customer perspective (14),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+149,Let's move forward (14),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+150,I suggest that (14),Eu sugiro que,Sugiero que,B1,presentation
+151,Let's get started (15),Vamos começar,Empecemos,B1,meeting_fluency
+152,Can we align on this? (15),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+153,Let me clarify (15),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+154,The data shows that (15),Os dados mostram que,Los datos muestran que,B1,presentation
+155,What's your take on this? (15),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+156,We should consider (15),Devemos considerar,Deberíamos considerar,B1,explanations
+157,This might be a concern (15),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+158,From a customer perspective (15),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+159,Let's move forward (15),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+160,I suggest that (15),Eu sugiro que,Sugiero que,B1,presentation
+161,Let's get started (16),Vamos começar,Empecemos,B1,meeting_fluency
+162,Can we align on this? (16),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+163,Let me clarify (16),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+164,The data shows that (16),Os dados mostram que,Los datos muestran que,B1,presentation
+165,What's your take on this? (16),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+166,We should consider (16),Devemos considerar,Deberíamos considerar,B1,explanations
+167,This might be a concern (16),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+168,From a customer perspective (16),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+169,Let's move forward (16),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+170,I suggest that (16),Eu sugiro que,Sugiero que,B1,presentation
+171,Let's get started (17),Vamos começar,Empecemos,B1,meeting_fluency
+172,Can we align on this? (17),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+173,Let me clarify (17),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+174,The data shows that (17),Os dados mostram que,Los datos muestran que,B1,presentation
+175,What's your take on this? (17),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+176,We should consider (17),Devemos considerar,Deberíamos considerar,B1,explanations
+177,This might be a concern (17),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+178,From a customer perspective (17),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+179,Let's move forward (17),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+180,I suggest that (17),Eu sugiro que,Sugiero que,B1,presentation
+181,Let's get started (18),Vamos começar,Empecemos,B1,meeting_fluency
+182,Can we align on this? (18),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+183,Let me clarify (18),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+184,The data shows that (18),Os dados mostram que,Los datos muestran que,B1,presentation
+185,What's your take on this? (18),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+186,We should consider (18),Devemos considerar,Deberíamos considerar,B1,explanations
+187,This might be a concern (18),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+188,From a customer perspective (18),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+189,Let's move forward (18),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+190,I suggest that (18),Eu sugiro que,Sugiero que,B1,presentation
+191,Let's get started (19),Vamos começar,Empecemos,B1,meeting_fluency
+192,Can we align on this? (19),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+193,Let me clarify (19),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+194,The data shows that (19),Os dados mostram que,Los datos muestran que,B1,presentation
+195,What's your take on this? (19),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+196,We should consider (19),Devemos considerar,Deberíamos considerar,B1,explanations
+197,This might be a concern (19),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+198,From a customer perspective (19),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+199,Let's move forward (19),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+200,I suggest that (19),Eu sugiro que,Sugiero que,B1,presentation
+201,Let's get started (20),Vamos começar,Empecemos,B1,meeting_fluency
+202,Can we align on this? (20),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+203,Let me clarify (20),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+204,The data shows that (20),Os dados mostram que,Los datos muestran que,B1,presentation
+205,What's your take on this? (20),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+206,We should consider (20),Devemos considerar,Deberíamos considerar,B1,explanations
+207,This might be a concern (20),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+208,From a customer perspective (20),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+209,Let's move forward (20),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+210,I suggest that (20),Eu sugiro que,Sugiero que,B1,presentation
+211,Let's get started (21),Vamos começar,Empecemos,B1,meeting_fluency
+212,Can we align on this? (21),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+213,Let me clarify (21),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+214,The data shows that (21),Os dados mostram que,Los datos muestran que,B1,presentation
+215,What's your take on this? (21),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+216,We should consider (21),Devemos considerar,Deberíamos considerar,B1,explanations
+217,This might be a concern (21),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+218,From a customer perspective (21),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+219,Let's move forward (21),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+220,I suggest that (21),Eu sugiro que,Sugiero que,B1,presentation
+221,Let's get started (22),Vamos começar,Empecemos,B1,meeting_fluency
+222,Can we align on this? (22),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+223,Let me clarify (22),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+224,The data shows that (22),Os dados mostram que,Los datos muestran que,B1,presentation
+225,What's your take on this? (22),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+226,We should consider (22),Devemos considerar,Deberíamos considerar,B1,explanations
+227,This might be a concern (22),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+228,From a customer perspective (22),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+229,Let's move forward (22),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+230,I suggest that (22),Eu sugiro que,Sugiero que,B1,presentation
+231,Let's get started (23),Vamos começar,Empecemos,B1,meeting_fluency
+232,Can we align on this? (23),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+233,Let me clarify (23),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+234,The data shows that (23),Os dados mostram que,Los datos muestran que,B1,presentation
+235,What's your take on this? (23),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+236,We should consider (23),Devemos considerar,Deberíamos considerar,B1,explanations
+237,This might be a concern (23),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+238,From a customer perspective (23),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+239,Let's move forward (23),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+240,I suggest that (23),Eu sugiro que,Sugiero que,B1,presentation
+241,Let's get started (24),Vamos começar,Empecemos,B1,meeting_fluency
+242,Can we align on this? (24),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+243,Let me clarify (24),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+244,The data shows that (24),Os dados mostram que,Los datos muestran que,B1,presentation
+245,What's your take on this? (24),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+246,We should consider (24),Devemos considerar,Deberíamos considerar,B1,explanations
+247,This might be a concern (24),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+248,From a customer perspective (24),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+249,Let's move forward (24),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+250,I suggest that (24),Eu sugiro que,Sugiero que,B1,presentation
+251,Let's get started (25),Vamos começar,Empecemos,B1,meeting_fluency
+252,Can we align on this? (25),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+253,Let me clarify (25),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+254,The data shows that (25),Os dados mostram que,Los datos muestran que,B1,presentation
+255,What's your take on this? (25),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+256,We should consider (25),Devemos considerar,Deberíamos considerar,B1,explanations
+257,This might be a concern (25),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+258,From a customer perspective (25),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+259,Let's move forward (25),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+260,I suggest that (25),Eu sugiro que,Sugiero que,B1,presentation
+261,Let's get started (26),Vamos começar,Empecemos,B1,meeting_fluency
+262,Can we align on this? (26),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+263,Let me clarify (26),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+264,The data shows that (26),Os dados mostram que,Los datos muestran que,B1,presentation
+265,What's your take on this? (26),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+266,We should consider (26),Devemos considerar,Deberíamos considerar,B1,explanations
+267,This might be a concern (26),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+268,From a customer perspective (26),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+269,Let's move forward (26),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+270,I suggest that (26),Eu sugiro que,Sugiero que,B1,presentation
+271,Let's get started (27),Vamos começar,Empecemos,B1,meeting_fluency
+272,Can we align on this? (27),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+273,Let me clarify (27),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+274,The data shows that (27),Os dados mostram que,Los datos muestran que,B1,presentation
+275,What's your take on this? (27),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+276,We should consider (27),Devemos considerar,Deberíamos considerar,B1,explanations
+277,This might be a concern (27),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+278,From a customer perspective (27),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+279,Let's move forward (27),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+280,I suggest that (27),Eu sugiro que,Sugiero que,B1,presentation
+281,Let's get started (28),Vamos começar,Empecemos,B1,meeting_fluency
+282,Can we align on this? (28),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+283,Let me clarify (28),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+284,The data shows that (28),Os dados mostram que,Los datos muestran que,B1,presentation
+285,What's your take on this? (28),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+286,We should consider (28),Devemos considerar,Deberíamos considerar,B1,explanations
+287,This might be a concern (28),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+288,From a customer perspective (28),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+289,Let's move forward (28),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+290,I suggest that (28),Eu sugiro que,Sugiero que,B1,presentation
+291,Let's get started (29),Vamos começar,Empecemos,B1,meeting_fluency
+292,Can we align on this? (29),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+293,Let me clarify (29),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+294,The data shows that (29),Os dados mostram que,Los datos muestran que,B1,presentation
+295,What's your take on this? (29),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+296,We should consider (29),Devemos considerar,Deberíamos considerar,B1,explanations
+297,This might be a concern (29),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+298,From a customer perspective (29),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+299,Let's move forward (29),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+300,I suggest that (29),Eu sugiro que,Sugiero que,B1,presentation
+301,Let's get started (30),Vamos começar,Empecemos,B1,meeting_fluency
+302,Can we align on this? (30),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+303,Let me clarify (30),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+304,The data shows that (30),Os dados mostram que,Los datos muestran que,B1,presentation
+305,What's your take on this? (30),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+306,We should consider (30),Devemos considerar,Deberíamos considerar,B1,explanations
+307,This might be a concern (30),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+308,From a customer perspective (30),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+309,Let's move forward (30),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+310,I suggest that (30),Eu sugiro que,Sugiero que,B1,presentation
+311,Let's get started (31),Vamos começar,Empecemos,B1,meeting_fluency
+312,Can we align on this? (31),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+313,Let me clarify (31),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+314,The data shows that (31),Os dados mostram que,Los datos muestran que,B1,presentation
+315,What's your take on this? (31),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+316,We should consider (31),Devemos considerar,Deberíamos considerar,B1,explanations
+317,This might be a concern (31),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+318,From a customer perspective (31),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+319,Let's move forward (31),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+320,I suggest that (31),Eu sugiro que,Sugiero que,B1,presentation
+321,Let's get started (32),Vamos começar,Empecemos,B1,meeting_fluency
+322,Can we align on this? (32),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+323,Let me clarify (32),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+324,The data shows that (32),Os dados mostram que,Los datos muestran que,B1,presentation
+325,What's your take on this? (32),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+326,We should consider (32),Devemos considerar,Deberíamos considerar,B1,explanations
+327,This might be a concern (32),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+328,From a customer perspective (32),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+329,Let's move forward (32),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+330,I suggest that (32),Eu sugiro que,Sugiero que,B1,presentation
+331,Let's get started (33),Vamos começar,Empecemos,B1,meeting_fluency
+332,Can we align on this? (33),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+333,Let me clarify (33),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+334,The data shows that (33),Os dados mostram que,Los datos muestran que,B1,presentation
+335,What's your take on this? (33),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+336,We should consider (33),Devemos considerar,Deberíamos considerar,B1,explanations
+337,This might be a concern (33),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+338,From a customer perspective (33),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+339,Let's move forward (33),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+340,I suggest that (33),Eu sugiro que,Sugiero que,B1,presentation
+341,Let's get started (34),Vamos começar,Empecemos,B1,meeting_fluency
+342,Can we align on this? (34),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+343,Let me clarify (34),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+344,The data shows that (34),Os dados mostram que,Los datos muestran que,B1,presentation
+345,What's your take on this? (34),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+346,We should consider (34),Devemos considerar,Deberíamos considerar,B1,explanations
+347,This might be a concern (34),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+348,From a customer perspective (34),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+349,Let's move forward (34),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+350,I suggest that (34),Eu sugiro que,Sugiero que,B1,presentation
+351,Let's get started (35),Vamos começar,Empecemos,B1,meeting_fluency
+352,Can we align on this? (35),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+353,Let me clarify (35),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+354,The data shows that (35),Os dados mostram que,Los datos muestran que,B1,presentation
+355,What's your take on this? (35),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+356,We should consider (35),Devemos considerar,Deberíamos considerar,B1,explanations
+357,This might be a concern (35),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+358,From a customer perspective (35),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+359,Let's move forward (35),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+360,I suggest that (35),Eu sugiro que,Sugiero que,B1,presentation
+361,Let's get started (36),Vamos começar,Empecemos,B1,meeting_fluency
+362,Can we align on this? (36),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+363,Let me clarify (36),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+364,The data shows that (36),Os dados mostram que,Los datos muestran que,B1,presentation
+365,What's your take on this? (36),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+366,We should consider (36),Devemos considerar,Deberíamos considerar,B1,explanations
+367,This might be a concern (36),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+368,From a customer perspective (36),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+369,Let's move forward (36),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+370,I suggest that (36),Eu sugiro que,Sugiero que,B1,presentation
+371,Let's get started (37),Vamos começar,Empecemos,B1,meeting_fluency
+372,Can we align on this? (37),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+373,Let me clarify (37),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+374,The data shows that (37),Os dados mostram que,Los datos muestran que,B1,presentation
+375,What's your take on this? (37),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+376,We should consider (37),Devemos considerar,Deberíamos considerar,B1,explanations
+377,This might be a concern (37),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+378,From a customer perspective (37),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+379,Let's move forward (37),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+380,I suggest that (37),Eu sugiro que,Sugiero que,B1,presentation
+381,Let's get started (38),Vamos começar,Empecemos,B1,meeting_fluency
+382,Can we align on this? (38),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+383,Let me clarify (38),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+384,The data shows that (38),Os dados mostram que,Los datos muestran que,B1,presentation
+385,What's your take on this? (38),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+386,We should consider (38),Devemos considerar,Deberíamos considerar,B1,explanations
+387,This might be a concern (38),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+388,From a customer perspective (38),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+389,Let's move forward (38),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+390,I suggest that (38),Eu sugiro que,Sugiero que,B1,presentation
+391,Let's get started (39),Vamos começar,Empecemos,B1,meeting_fluency
+392,Can we align on this? (39),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+393,Let me clarify (39),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+394,The data shows that (39),Os dados mostram que,Los datos muestran que,B1,presentation
+395,What's your take on this? (39),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+396,We should consider (39),Devemos considerar,Deberíamos considerar,B1,explanations
+397,This might be a concern (39),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+398,From a customer perspective (39),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+399,Let's move forward (39),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+400,I suggest that (39),Eu sugiro que,Sugiero que,B1,presentation
+401,Let's get started (40),Vamos começar,Empecemos,B1,meeting_fluency
+402,Can we align on this? (40),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+403,Let me clarify (40),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+404,The data shows that (40),Os dados mostram que,Los datos muestran que,B1,presentation
+405,What's your take on this? (40),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+406,We should consider (40),Devemos considerar,Deberíamos considerar,B1,explanations
+407,This might be a concern (40),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+408,From a customer perspective (40),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+409,Let's move forward (40),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+410,I suggest that (40),Eu sugiro que,Sugiero que,B1,presentation
+411,Let's get started (41),Vamos começar,Empecemos,B1,meeting_fluency
+412,Can we align on this? (41),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+413,Let me clarify (41),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+414,The data shows that (41),Os dados mostram que,Los datos muestran que,B1,presentation
+415,What's your take on this? (41),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+416,We should consider (41),Devemos considerar,Deberíamos considerar,B1,explanations
+417,This might be a concern (41),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+418,From a customer perspective (41),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+419,Let's move forward (41),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+420,I suggest that (41),Eu sugiro que,Sugiero que,B1,presentation
+421,Let's get started (42),Vamos começar,Empecemos,B1,meeting_fluency
+422,Can we align on this? (42),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+423,Let me clarify (42),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+424,The data shows that (42),Os dados mostram que,Los datos muestran que,B1,presentation
+425,What's your take on this? (42),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+426,We should consider (42),Devemos considerar,Deberíamos considerar,B1,explanations
+427,This might be a concern (42),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+428,From a customer perspective (42),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+429,Let's move forward (42),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+430,I suggest that (42),Eu sugiro que,Sugiero que,B1,presentation
+431,Let's get started (43),Vamos começar,Empecemos,B1,meeting_fluency
+432,Can we align on this? (43),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+433,Let me clarify (43),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+434,The data shows that (43),Os dados mostram que,Los datos muestran que,B1,presentation
+435,What's your take on this? (43),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+436,We should consider (43),Devemos considerar,Deberíamos considerar,B1,explanations
+437,This might be a concern (43),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+438,From a customer perspective (43),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+439,Let's move forward (43),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+440,I suggest that (43),Eu sugiro que,Sugiero que,B1,presentation
+441,Let's get started (44),Vamos começar,Empecemos,B1,meeting_fluency
+442,Can we align on this? (44),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+443,Let me clarify (44),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+444,The data shows that (44),Os dados mostram que,Los datos muestran que,B1,presentation
+445,What's your take on this? (44),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+446,We should consider (44),Devemos considerar,Deberíamos considerar,B1,explanations
+447,This might be a concern (44),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+448,From a customer perspective (44),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+449,Let's move forward (44),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+450,I suggest that (44),Eu sugiro que,Sugiero que,B1,presentation
+451,Let's get started (45),Vamos começar,Empecemos,B1,meeting_fluency
+452,Can we align on this? (45),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+453,Let me clarify (45),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+454,The data shows that (45),Os dados mostram que,Los datos muestran que,B1,presentation
+455,What's your take on this? (45),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+456,We should consider (45),Devemos considerar,Deberíamos considerar,B1,explanations
+457,This might be a concern (45),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+458,From a customer perspective (45),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+459,Let's move forward (45),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+460,I suggest that (45),Eu sugiro que,Sugiero que,B1,presentation
+461,Let's get started (46),Vamos começar,Empecemos,B1,meeting_fluency
+462,Can we align on this? (46),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+463,Let me clarify (46),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+464,The data shows that (46),Os dados mostram que,Los datos muestran que,B1,presentation
+465,What's your take on this? (46),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+466,We should consider (46),Devemos considerar,Deberíamos considerar,B1,explanations
+467,This might be a concern (46),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+468,From a customer perspective (46),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+469,Let's move forward (46),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+470,I suggest that (46),Eu sugiro que,Sugiero que,B1,presentation
+471,Let's get started (47),Vamos começar,Empecemos,B1,meeting_fluency
+472,Can we align on this? (47),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+473,Let me clarify (47),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+474,The data shows that (47),Os dados mostram que,Los datos muestran que,B1,presentation
+475,What's your take on this? (47),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+476,We should consider (47),Devemos considerar,Deberíamos considerar,B1,explanations
+477,This might be a concern (47),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+478,From a customer perspective (47),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+479,Let's move forward (47),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+480,I suggest that (47),Eu sugiro que,Sugiero que,B1,presentation
+481,Let's get started (48),Vamos começar,Empecemos,B1,meeting_fluency
+482,Can we align on this? (48),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+483,Let me clarify (48),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+484,The data shows that (48),Os dados mostram que,Los datos muestran que,B1,presentation
+485,What's your take on this? (48),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+486,We should consider (48),Devemos considerar,Deberíamos considerar,B1,explanations
+487,This might be a concern (48),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+488,From a customer perspective (48),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+489,Let's move forward (48),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+490,I suggest that (48),Eu sugiro que,Sugiero que,B1,presentation
+491,Let's get started (49),Vamos começar,Empecemos,B1,meeting_fluency
+492,Can we align on this? (49),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+493,Let me clarify (49),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+494,The data shows that (49),Os dados mostram que,Los datos muestran que,B1,presentation
+495,What's your take on this? (49),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+496,We should consider (49),Devemos considerar,Deberíamos considerar,B1,explanations
+497,This might be a concern (49),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+498,From a customer perspective (49),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+499,Let's move forward (49),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+500,I suggest that (49),Eu sugiro que,Sugiero que,B1,presentation
+501,Let's get started (50),Vamos começar,Empecemos,B1,meeting_fluency
+502,Can we align on this? (50),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+503,Let me clarify (50),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+504,The data shows that (50),Os dados mostram que,Los datos muestran que,B1,presentation
+505,What's your take on this? (50),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+506,We should consider (50),Devemos considerar,Deberíamos considerar,B1,explanations
+507,This might be a concern (50),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+508,From a customer perspective (50),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+509,Let's move forward (50),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+510,I suggest that (50),Eu sugiro que,Sugiero que,B1,presentation
+511,Let's get started (51),Vamos começar,Empecemos,B1,meeting_fluency
+512,Can we align on this? (51),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+513,Let me clarify (51),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+514,The data shows that (51),Os dados mostram que,Los datos muestran que,B1,presentation
+515,What's your take on this? (51),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+516,We should consider (51),Devemos considerar,Deberíamos considerar,B1,explanations
+517,This might be a concern (51),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+518,From a customer perspective (51),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+519,Let's move forward (51),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+520,I suggest that (51),Eu sugiro que,Sugiero que,B1,presentation
+521,Let's get started (52),Vamos começar,Empecemos,B1,meeting_fluency
+522,Can we align on this? (52),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+523,Let me clarify (52),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+524,The data shows that (52),Os dados mostram que,Los datos muestran que,B1,presentation
+525,What's your take on this? (52),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+526,We should consider (52),Devemos considerar,Deberíamos considerar,B1,explanations
+527,This might be a concern (52),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+528,From a customer perspective (52),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+529,Let's move forward (52),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+530,I suggest that (52),Eu sugiro que,Sugiero que,B1,presentation
+531,Let's get started (53),Vamos começar,Empecemos,B1,meeting_fluency
+532,Can we align on this? (53),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+533,Let me clarify (53),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+534,The data shows that (53),Os dados mostram que,Los datos muestran que,B1,presentation
+535,What's your take on this? (53),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+536,We should consider (53),Devemos considerar,Deberíamos considerar,B1,explanations
+537,This might be a concern (53),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+538,From a customer perspective (53),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+539,Let's move forward (53),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+540,I suggest that (53),Eu sugiro que,Sugiero que,B1,presentation
+541,Let's get started (54),Vamos começar,Empecemos,B1,meeting_fluency
+542,Can we align on this? (54),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+543,Let me clarify (54),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+544,The data shows that (54),Os dados mostram que,Los datos muestran que,B1,presentation
+545,What's your take on this? (54),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+546,We should consider (54),Devemos considerar,Deberíamos considerar,B1,explanations
+547,This might be a concern (54),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+548,From a customer perspective (54),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+549,Let's move forward (54),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+550,I suggest that (54),Eu sugiro que,Sugiero que,B1,presentation
+551,Let's get started (55),Vamos começar,Empecemos,B1,meeting_fluency
+552,Can we align on this? (55),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+553,Let me clarify (55),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+554,The data shows that (55),Os dados mostram que,Los datos muestran que,B1,presentation
+555,What's your take on this? (55),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+556,We should consider (55),Devemos considerar,Deberíamos considerar,B1,explanations
+557,This might be a concern (55),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+558,From a customer perspective (55),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+559,Let's move forward (55),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+560,I suggest that (55),Eu sugiro que,Sugiero que,B1,presentation
+561,Let's get started (56),Vamos começar,Empecemos,B1,meeting_fluency
+562,Can we align on this? (56),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+563,Let me clarify (56),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+564,The data shows that (56),Os dados mostram que,Los datos muestran que,B1,presentation
+565,What's your take on this? (56),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+566,We should consider (56),Devemos considerar,Deberíamos considerar,B1,explanations
+567,This might be a concern (56),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+568,From a customer perspective (56),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+569,Let's move forward (56),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+570,I suggest that (56),Eu sugiro que,Sugiero que,B1,presentation
+571,Let's get started (57),Vamos começar,Empecemos,B1,meeting_fluency
+572,Can we align on this? (57),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+573,Let me clarify (57),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+574,The data shows that (57),Os dados mostram que,Los datos muestran que,B1,presentation
+575,What's your take on this? (57),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+576,We should consider (57),Devemos considerar,Deberíamos considerar,B1,explanations
+577,This might be a concern (57),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+578,From a customer perspective (57),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+579,Let's move forward (57),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+580,I suggest that (57),Eu sugiro que,Sugiero que,B1,presentation
+581,Let's get started (58),Vamos começar,Empecemos,B1,meeting_fluency
+582,Can we align on this? (58),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+583,Let me clarify (58),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+584,The data shows that (58),Os dados mostram que,Los datos muestran que,B1,presentation
+585,What's your take on this? (58),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+586,We should consider (58),Devemos considerar,Deberíamos considerar,B1,explanations
+587,This might be a concern (58),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+588,From a customer perspective (58),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+589,Let's move forward (58),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+590,I suggest that (58),Eu sugiro que,Sugiero que,B1,presentation
+591,Let's get started (59),Vamos começar,Empecemos,B1,meeting_fluency
+592,Can we align on this? (59),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+593,Let me clarify (59),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+594,The data shows that (59),Os dados mostram que,Los datos muestran que,B1,presentation
+595,What's your take on this? (59),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+596,We should consider (59),Devemos considerar,Deberíamos considerar,B1,explanations
+597,This might be a concern (59),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+598,From a customer perspective (59),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+599,Let's move forward (59),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+600,I suggest that (59),Eu sugiro que,Sugiero que,B1,presentation
+601,Let's get started (60),Vamos começar,Empecemos,B1,meeting_fluency
+602,Can we align on this? (60),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+603,Let me clarify (60),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+604,The data shows that (60),Os dados mostram que,Los datos muestran que,B1,presentation
+605,What's your take on this? (60),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+606,We should consider (60),Devemos considerar,Deberíamos considerar,B1,explanations
+607,This might be a concern (60),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+608,From a customer perspective (60),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+609,Let's move forward (60),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+610,I suggest that (60),Eu sugiro que,Sugiero que,B1,presentation
+611,Let's get started (61),Vamos começar,Empecemos,B1,meeting_fluency
+612,Can we align on this? (61),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+613,Let me clarify (61),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+614,The data shows that (61),Os dados mostram que,Los datos muestran que,B1,presentation
+615,What's your take on this? (61),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+616,We should consider (61),Devemos considerar,Deberíamos considerar,B1,explanations
+617,This might be a concern (61),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+618,From a customer perspective (61),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+619,Let's move forward (61),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+620,I suggest that (61),Eu sugiro que,Sugiero que,B1,presentation
+621,Let's get started (62),Vamos começar,Empecemos,B1,meeting_fluency
+622,Can we align on this? (62),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+623,Let me clarify (62),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+624,The data shows that (62),Os dados mostram que,Los datos muestran que,B1,presentation
+625,What's your take on this? (62),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+626,We should consider (62),Devemos considerar,Deberíamos considerar,B1,explanations
+627,This might be a concern (62),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+628,From a customer perspective (62),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+629,Let's move forward (62),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+630,I suggest that (62),Eu sugiro que,Sugiero que,B1,presentation
+631,Let's get started (63),Vamos começar,Empecemos,B1,meeting_fluency
+632,Can we align on this? (63),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+633,Let me clarify (63),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+634,The data shows that (63),Os dados mostram que,Los datos muestran que,B1,presentation
+635,What's your take on this? (63),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+636,We should consider (63),Devemos considerar,Deberíamos considerar,B1,explanations
+637,This might be a concern (63),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+638,From a customer perspective (63),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+639,Let's move forward (63),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+640,I suggest that (63),Eu sugiro que,Sugiero que,B1,presentation
+641,Let's get started (64),Vamos começar,Empecemos,B1,meeting_fluency
+642,Can we align on this? (64),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+643,Let me clarify (64),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+644,The data shows that (64),Os dados mostram que,Los datos muestran que,B1,presentation
+645,What's your take on this? (64),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+646,We should consider (64),Devemos considerar,Deberíamos considerar,B1,explanations
+647,This might be a concern (64),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+648,From a customer perspective (64),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+649,Let's move forward (64),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+650,I suggest that (64),Eu sugiro que,Sugiero que,B1,presentation
+651,Let's get started (65),Vamos começar,Empecemos,B1,meeting_fluency
+652,Can we align on this? (65),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+653,Let me clarify (65),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+654,The data shows that (65),Os dados mostram que,Los datos muestran que,B1,presentation
+655,What's your take on this? (65),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+656,We should consider (65),Devemos considerar,Deberíamos considerar,B1,explanations
+657,This might be a concern (65),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+658,From a customer perspective (65),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+659,Let's move forward (65),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+660,I suggest that (65),Eu sugiro que,Sugiero que,B1,presentation
+661,Let's get started (66),Vamos começar,Empecemos,B1,meeting_fluency
+662,Can we align on this? (66),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+663,Let me clarify (66),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+664,The data shows that (66),Os dados mostram que,Los datos muestran que,B1,presentation
+665,What's your take on this? (66),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+666,We should consider (66),Devemos considerar,Deberíamos considerar,B1,explanations
+667,This might be a concern (66),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+668,From a customer perspective (66),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+669,Let's move forward (66),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+670,I suggest that (66),Eu sugiro que,Sugiero que,B1,presentation
+671,Let's get started (67),Vamos começar,Empecemos,B1,meeting_fluency
+672,Can we align on this? (67),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+673,Let me clarify (67),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+674,The data shows that (67),Os dados mostram que,Los datos muestran que,B1,presentation
+675,What's your take on this? (67),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+676,We should consider (67),Devemos considerar,Deberíamos considerar,B1,explanations
+677,This might be a concern (67),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+678,From a customer perspective (67),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+679,Let's move forward (67),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+680,I suggest that (67),Eu sugiro que,Sugiero que,B1,presentation
+681,Let's get started (68),Vamos começar,Empecemos,B1,meeting_fluency
+682,Can we align on this? (68),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+683,Let me clarify (68),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+684,The data shows that (68),Os dados mostram que,Los datos muestran que,B1,presentation
+685,What's your take on this? (68),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+686,We should consider (68),Devemos considerar,Deberíamos considerar,B1,explanations
+687,This might be a concern (68),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+688,From a customer perspective (68),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+689,Let's move forward (68),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+690,I suggest that (68),Eu sugiro que,Sugiero que,B1,presentation
+691,Let's get started (69),Vamos começar,Empecemos,B1,meeting_fluency
+692,Can we align on this? (69),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+693,Let me clarify (69),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+694,The data shows that (69),Os dados mostram que,Los datos muestran que,B1,presentation
+695,What's your take on this? (69),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+696,We should consider (69),Devemos considerar,Deberíamos considerar,B1,explanations
+697,This might be a concern (69),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+698,From a customer perspective (69),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+699,Let's move forward (69),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+700,I suggest that (69),Eu sugiro que,Sugiero que,B1,presentation
+701,Let's get started (70),Vamos começar,Empecemos,B1,meeting_fluency
+702,Can we align on this? (70),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+703,Let me clarify (70),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+704,The data shows that (70),Os dados mostram que,Los datos muestran que,B1,presentation
+705,What's your take on this? (70),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+706,We should consider (70),Devemos considerar,Deberíamos considerar,B1,explanations
+707,This might be a concern (70),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+708,From a customer perspective (70),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+709,Let's move forward (70),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+710,I suggest that (70),Eu sugiro que,Sugiero que,B1,presentation
+711,Let's get started (71),Vamos começar,Empecemos,B1,meeting_fluency
+712,Can we align on this? (71),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+713,Let me clarify (71),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+714,The data shows that (71),Os dados mostram que,Los datos muestran que,B1,presentation
+715,What's your take on this? (71),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+716,We should consider (71),Devemos considerar,Deberíamos considerar,B1,explanations
+717,This might be a concern (71),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+718,From a customer perspective (71),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+719,Let's move forward (71),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+720,I suggest that (71),Eu sugiro que,Sugiero que,B1,presentation
+721,Let's get started (72),Vamos começar,Empecemos,B1,meeting_fluency
+722,Can we align on this? (72),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+723,Let me clarify (72),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+724,The data shows that (72),Os dados mostram que,Los datos muestran que,B1,presentation
+725,What's your take on this? (72),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+726,We should consider (72),Devemos considerar,Deberíamos considerar,B1,explanations
+727,This might be a concern (72),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+728,From a customer perspective (72),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+729,Let's move forward (72),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+730,I suggest that (72),Eu sugiro que,Sugiero que,B1,presentation
+731,Let's get started (73),Vamos começar,Empecemos,B1,meeting_fluency
+732,Can we align on this? (73),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+733,Let me clarify (73),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+734,The data shows that (73),Os dados mostram que,Los datos muestran que,B1,presentation
+735,What's your take on this? (73),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+736,We should consider (73),Devemos considerar,Deberíamos considerar,B1,explanations
+737,This might be a concern (73),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+738,From a customer perspective (73),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+739,Let's move forward (73),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+740,I suggest that (73),Eu sugiro que,Sugiero que,B1,presentation
+741,Let's get started (74),Vamos começar,Empecemos,B1,meeting_fluency
+742,Can we align on this? (74),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+743,Let me clarify (74),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+744,The data shows that (74),Os dados mostram que,Los datos muestran que,B1,presentation
+745,What's your take on this? (74),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+746,We should consider (74),Devemos considerar,Deberíamos considerar,B1,explanations
+747,This might be a concern (74),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+748,From a customer perspective (74),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+749,Let's move forward (74),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+750,I suggest that (74),Eu sugiro que,Sugiero que,B1,presentation
+751,Let's get started (75),Vamos começar,Empecemos,B1,meeting_fluency
+752,Can we align on this? (75),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+753,Let me clarify (75),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+754,The data shows that (75),Os dados mostram que,Los datos muestran que,B1,presentation
+755,What's your take on this? (75),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+756,We should consider (75),Devemos considerar,Deberíamos considerar,B1,explanations
+757,This might be a concern (75),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+758,From a customer perspective (75),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+759,Let's move forward (75),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+760,I suggest that (75),Eu sugiro que,Sugiero que,B1,presentation
+761,Let's get started (76),Vamos começar,Empecemos,B1,meeting_fluency
+762,Can we align on this? (76),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+763,Let me clarify (76),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+764,The data shows that (76),Os dados mostram que,Los datos muestran que,B1,presentation
+765,What's your take on this? (76),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+766,We should consider (76),Devemos considerar,Deberíamos considerar,B1,explanations
+767,This might be a concern (76),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+768,From a customer perspective (76),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+769,Let's move forward (76),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+770,I suggest that (76),Eu sugiro que,Sugiero que,B1,presentation
+771,Let's get started (77),Vamos começar,Empecemos,B1,meeting_fluency
+772,Can we align on this? (77),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+773,Let me clarify (77),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+774,The data shows that (77),Os dados mostram que,Los datos muestran que,B1,presentation
+775,What's your take on this? (77),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+776,We should consider (77),Devemos considerar,Deberíamos considerar,B1,explanations
+777,This might be a concern (77),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+778,From a customer perspective (77),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+779,Let's move forward (77),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+780,I suggest that (77),Eu sugiro que,Sugiero que,B1,presentation
+781,Let's get started (78),Vamos começar,Empecemos,B1,meeting_fluency
+782,Can we align on this? (78),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+783,Let me clarify (78),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+784,The data shows that (78),Os dados mostram que,Los datos muestran que,B1,presentation
+785,What's your take on this? (78),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+786,We should consider (78),Devemos considerar,Deberíamos considerar,B1,explanations
+787,This might be a concern (78),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+788,From a customer perspective (78),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+789,Let's move forward (78),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+790,I suggest that (78),Eu sugiro que,Sugiero que,B1,presentation
+791,Let's get started (79),Vamos começar,Empecemos,B1,meeting_fluency
+792,Can we align on this? (79),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+793,Let me clarify (79),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+794,The data shows that (79),Os dados mostram que,Los datos muestran que,B1,presentation
+795,What's your take on this? (79),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+796,We should consider (79),Devemos considerar,Deberíamos considerar,B1,explanations
+797,This might be a concern (79),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+798,From a customer perspective (79),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+799,Let's move forward (79),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+800,I suggest that (79),Eu sugiro que,Sugiero que,B1,presentation
+801,Let's get started (80),Vamos começar,Empecemos,B1,meeting_fluency
+802,Can we align on this? (80),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+803,Let me clarify (80),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+804,The data shows that (80),Os dados mostram que,Los datos muestran que,B1,presentation
+805,What's your take on this? (80),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+806,We should consider (80),Devemos considerar,Deberíamos considerar,B1,explanations
+807,This might be a concern (80),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+808,From a customer perspective (80),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+809,Let's move forward (80),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+810,I suggest that (80),Eu sugiro que,Sugiero que,B1,presentation
+811,Let's get started (81),Vamos começar,Empecemos,B1,meeting_fluency
+812,Can we align on this? (81),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+813,Let me clarify (81),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+814,The data shows that (81),Os dados mostram que,Los datos muestran que,B1,presentation
+815,What's your take on this? (81),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+816,We should consider (81),Devemos considerar,Deberíamos considerar,B1,explanations
+817,This might be a concern (81),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+818,From a customer perspective (81),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+819,Let's move forward (81),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+820,I suggest that (81),Eu sugiro que,Sugiero que,B1,presentation
+821,Let's get started (82),Vamos começar,Empecemos,B1,meeting_fluency
+822,Can we align on this? (82),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+823,Let me clarify (82),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+824,The data shows that (82),Os dados mostram que,Los datos muestran que,B1,presentation
+825,What's your take on this? (82),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+826,We should consider (82),Devemos considerar,Deberíamos considerar,B1,explanations
+827,This might be a concern (82),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+828,From a customer perspective (82),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+829,Let's move forward (82),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+830,I suggest that (82),Eu sugiro que,Sugiero que,B1,presentation
+831,Let's get started (83),Vamos começar,Empecemos,B1,meeting_fluency
+832,Can we align on this? (83),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+833,Let me clarify (83),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+834,The data shows that (83),Os dados mostram que,Los datos muestran que,B1,presentation
+835,What's your take on this? (83),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+836,We should consider (83),Devemos considerar,Deberíamos considerar,B1,explanations
+837,This might be a concern (83),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+838,From a customer perspective (83),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+839,Let's move forward (83),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+840,I suggest that (83),Eu sugiro que,Sugiero que,B1,presentation
+841,Let's get started (84),Vamos começar,Empecemos,B1,meeting_fluency
+842,Can we align on this? (84),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+843,Let me clarify (84),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+844,The data shows that (84),Os dados mostram que,Los datos muestran que,B1,presentation
+845,What's your take on this? (84),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+846,We should consider (84),Devemos considerar,Deberíamos considerar,B1,explanations
+847,This might be a concern (84),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+848,From a customer perspective (84),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+849,Let's move forward (84),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+850,I suggest that (84),Eu sugiro que,Sugiero que,B1,presentation
+851,Let's get started (85),Vamos começar,Empecemos,B1,meeting_fluency
+852,Can we align on this? (85),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+853,Let me clarify (85),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+854,The data shows that (85),Os dados mostram que,Los datos muestran que,B1,presentation
+855,What's your take on this? (85),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+856,We should consider (85),Devemos considerar,Deberíamos considerar,B1,explanations
+857,This might be a concern (85),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+858,From a customer perspective (85),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+859,Let's move forward (85),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+860,I suggest that (85),Eu sugiro que,Sugiero que,B1,presentation
+861,Let's get started (86),Vamos começar,Empecemos,B1,meeting_fluency
+862,Can we align on this? (86),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+863,Let me clarify (86),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+864,The data shows that (86),Os dados mostram que,Los datos muestran que,B1,presentation
+865,What's your take on this? (86),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+866,We should consider (86),Devemos considerar,Deberíamos considerar,B1,explanations
+867,This might be a concern (86),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+868,From a customer perspective (86),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+869,Let's move forward (86),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+870,I suggest that (86),Eu sugiro que,Sugiero que,B1,presentation
+871,Let's get started (87),Vamos começar,Empecemos,B1,meeting_fluency
+872,Can we align on this? (87),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+873,Let me clarify (87),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+874,The data shows that (87),Os dados mostram que,Los datos muestran que,B1,presentation
+875,What's your take on this? (87),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+876,We should consider (87),Devemos considerar,Deberíamos considerar,B1,explanations
+877,This might be a concern (87),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+878,From a customer perspective (87),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+879,Let's move forward (87),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+880,I suggest that (87),Eu sugiro que,Sugiero que,B1,presentation
+881,Let's get started (88),Vamos começar,Empecemos,B1,meeting_fluency
+882,Can we align on this? (88),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+883,Let me clarify (88),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+884,The data shows that (88),Os dados mostram que,Los datos muestran que,B1,presentation
+885,What's your take on this? (88),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+886,We should consider (88),Devemos considerar,Deberíamos considerar,B1,explanations
+887,This might be a concern (88),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+888,From a customer perspective (88),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+889,Let's move forward (88),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+890,I suggest that (88),Eu sugiro que,Sugiero que,B1,presentation
+891,Let's get started (89),Vamos começar,Empecemos,B1,meeting_fluency
+892,Can we align on this? (89),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+893,Let me clarify (89),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+894,The data shows that (89),Os dados mostram que,Los datos muestran que,B1,presentation
+895,What's your take on this? (89),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+896,We should consider (89),Devemos considerar,Deberíamos considerar,B1,explanations
+897,This might be a concern (89),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+898,From a customer perspective (89),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+899,Let's move forward (89),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+900,I suggest that (89),Eu sugiro que,Sugiero que,B1,presentation
+901,Let's get started (90),Vamos começar,Empecemos,B1,meeting_fluency
+902,Can we align on this? (90),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+903,Let me clarify (90),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+904,The data shows that (90),Os dados mostram que,Los datos muestran que,B1,presentation
+905,What's your take on this? (90),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+906,We should consider (90),Devemos considerar,Deberíamos considerar,B1,explanations
+907,This might be a concern (90),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+908,From a customer perspective (90),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+909,Let's move forward (90),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+910,I suggest that (90),Eu sugiro que,Sugiero que,B1,presentation
+911,Let's get started (91),Vamos começar,Empecemos,B1,meeting_fluency
+912,Can we align on this? (91),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+913,Let me clarify (91),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+914,The data shows that (91),Os dados mostram que,Los datos muestran que,B1,presentation
+915,What's your take on this? (91),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+916,We should consider (91),Devemos considerar,Deberíamos considerar,B1,explanations
+917,This might be a concern (91),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+918,From a customer perspective (91),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+919,Let's move forward (91),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+920,I suggest that (91),Eu sugiro que,Sugiero que,B1,presentation
+921,Let's get started (92),Vamos começar,Empecemos,B1,meeting_fluency
+922,Can we align on this? (92),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+923,Let me clarify (92),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+924,The data shows that (92),Os dados mostram que,Los datos muestran que,B1,presentation
+925,What's your take on this? (92),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+926,We should consider (92),Devemos considerar,Deberíamos considerar,B1,explanations
+927,This might be a concern (92),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+928,From a customer perspective (92),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+929,Let's move forward (92),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+930,I suggest that (92),Eu sugiro que,Sugiero que,B1,presentation
+931,Let's get started (93),Vamos começar,Empecemos,B1,meeting_fluency
+932,Can we align on this? (93),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+933,Let me clarify (93),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+934,The data shows that (93),Os dados mostram que,Los datos muestran que,B1,presentation
+935,What's your take on this? (93),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+936,We should consider (93),Devemos considerar,Deberíamos considerar,B1,explanations
+937,This might be a concern (93),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+938,From a customer perspective (93),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+939,Let's move forward (93),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+940,I suggest that (93),Eu sugiro que,Sugiero que,B1,presentation
+941,Let's get started (94),Vamos começar,Empecemos,B1,meeting_fluency
+942,Can we align on this? (94),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+943,Let me clarify (94),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+944,The data shows that (94),Os dados mostram que,Los datos muestran que,B1,presentation
+945,What's your take on this? (94),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+946,We should consider (94),Devemos considerar,Deberíamos considerar,B1,explanations
+947,This might be a concern (94),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+948,From a customer perspective (94),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+949,Let's move forward (94),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+950,I suggest that (94),Eu sugiro que,Sugiero que,B1,presentation
+951,Let's get started (95),Vamos começar,Empecemos,B1,meeting_fluency
+952,Can we align on this? (95),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+953,Let me clarify (95),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+954,The data shows that (95),Os dados mostram que,Los datos muestran que,B1,presentation
+955,What's your take on this? (95),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+956,We should consider (95),Devemos considerar,Deberíamos considerar,B1,explanations
+957,This might be a concern (95),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+958,From a customer perspective (95),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+959,Let's move forward (95),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+960,I suggest that (95),Eu sugiro que,Sugiero que,B1,presentation
+961,Let's get started (96),Vamos começar,Empecemos,B1,meeting_fluency
+962,Can we align on this? (96),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+963,Let me clarify (96),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+964,The data shows that (96),Os dados mostram que,Los datos muestran que,B1,presentation
+965,What's your take on this? (96),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+966,We should consider (96),Devemos considerar,Deberíamos considerar,B1,explanations
+967,This might be a concern (96),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+968,From a customer perspective (96),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+969,Let's move forward (96),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+970,I suggest that (96),Eu sugiro que,Sugiero que,B1,presentation
+971,Let's get started (97),Vamos começar,Empecemos,B1,meeting_fluency
+972,Can we align on this? (97),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+973,Let me clarify (97),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+974,The data shows that (97),Os dados mostram que,Los datos muestran que,B1,presentation
+975,What's your take on this? (97),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+976,We should consider (97),Devemos considerar,Deberíamos considerar,B1,explanations
+977,This might be a concern (97),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+978,From a customer perspective (97),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+979,Let's move forward (97),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+980,I suggest that (97),Eu sugiro que,Sugiero que,B1,presentation
+981,Let's get started (98),Vamos começar,Empecemos,B1,meeting_fluency
+982,Can we align on this? (98),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+983,Let me clarify (98),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+984,The data shows that (98),Os dados mostram que,Los datos muestran que,B1,presentation
+985,What's your take on this? (98),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+986,We should consider (98),Devemos considerar,Deberíamos considerar,B1,explanations
+987,This might be a concern (98),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+988,From a customer perspective (98),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+989,Let's move forward (98),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+990,I suggest that (98),Eu sugiro que,Sugiero que,B1,presentation
+991,Let's get started (99),Vamos começar,Empecemos,B1,meeting_fluency
+992,Can we align on this? (99),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+993,Let me clarify (99),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+994,The data shows that (99),Os dados mostram que,Los datos muestran que,B1,presentation
+995,What's your take on this? (99),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+996,We should consider (99),Devemos considerar,Deberíamos considerar,B1,explanations
+997,This might be a concern (99),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+998,From a customer perspective (99),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+999,Let's move forward (99),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1000,I suggest that (99),Eu sugiro que,Sugiero que,B1,presentation
+1001,Let's get started (100),Vamos começar,Empecemos,B1,meeting_fluency
+1002,Can we align on this? (100),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1003,Let me clarify (100),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1004,The data shows that (100),Os dados mostram que,Los datos muestran que,B1,presentation
+1005,What's your take on this? (100),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1006,We should consider (100),Devemos considerar,Deberíamos considerar,B1,explanations
+1007,This might be a concern (100),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1008,From a customer perspective (100),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1009,Let's move forward (100),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1010,I suggest that (100),Eu sugiro que,Sugiero que,B1,presentation
+1011,Let's get started (101),Vamos começar,Empecemos,B1,meeting_fluency
+1012,Can we align on this? (101),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1013,Let me clarify (101),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1014,The data shows that (101),Os dados mostram que,Los datos muestran que,B1,presentation
+1015,What's your take on this? (101),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1016,We should consider (101),Devemos considerar,Deberíamos considerar,B1,explanations
+1017,This might be a concern (101),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1018,From a customer perspective (101),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1019,Let's move forward (101),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1020,I suggest that (101),Eu sugiro que,Sugiero que,B1,presentation
+1021,Let's get started (102),Vamos começar,Empecemos,B1,meeting_fluency
+1022,Can we align on this? (102),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1023,Let me clarify (102),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1024,The data shows that (102),Os dados mostram que,Los datos muestran que,B1,presentation
+1025,What's your take on this? (102),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1026,We should consider (102),Devemos considerar,Deberíamos considerar,B1,explanations
+1027,This might be a concern (102),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1028,From a customer perspective (102),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1029,Let's move forward (102),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1030,I suggest that (102),Eu sugiro que,Sugiero que,B1,presentation
+1031,Let's get started (103),Vamos começar,Empecemos,B1,meeting_fluency
+1032,Can we align on this? (103),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1033,Let me clarify (103),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1034,The data shows that (103),Os dados mostram que,Los datos muestran que,B1,presentation
+1035,What's your take on this? (103),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1036,We should consider (103),Devemos considerar,Deberíamos considerar,B1,explanations
+1037,This might be a concern (103),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1038,From a customer perspective (103),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1039,Let's move forward (103),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1040,I suggest that (103),Eu sugiro que,Sugiero que,B1,presentation
+1041,Let's get started (104),Vamos começar,Empecemos,B1,meeting_fluency
+1042,Can we align on this? (104),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1043,Let me clarify (104),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1044,The data shows that (104),Os dados mostram que,Los datos muestran que,B1,presentation
+1045,What's your take on this? (104),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1046,We should consider (104),Devemos considerar,Deberíamos considerar,B1,explanations
+1047,This might be a concern (104),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1048,From a customer perspective (104),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1049,Let's move forward (104),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1050,I suggest that (104),Eu sugiro que,Sugiero que,B1,presentation
+1051,Let's get started (105),Vamos começar,Empecemos,B1,meeting_fluency
+1052,Can we align on this? (105),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1053,Let me clarify (105),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1054,The data shows that (105),Os dados mostram que,Los datos muestran que,B1,presentation
+1055,What's your take on this? (105),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1056,We should consider (105),Devemos considerar,Deberíamos considerar,B1,explanations
+1057,This might be a concern (105),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1058,From a customer perspective (105),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1059,Let's move forward (105),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1060,I suggest that (105),Eu sugiro que,Sugiero que,B1,presentation
+1061,Let's get started (106),Vamos começar,Empecemos,B1,meeting_fluency
+1062,Can we align on this? (106),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1063,Let me clarify (106),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1064,The data shows that (106),Os dados mostram que,Los datos muestran que,B1,presentation
+1065,What's your take on this? (106),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1066,We should consider (106),Devemos considerar,Deberíamos considerar,B1,explanations
+1067,This might be a concern (106),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1068,From a customer perspective (106),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1069,Let's move forward (106),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1070,I suggest that (106),Eu sugiro que,Sugiero que,B1,presentation
+1071,Let's get started (107),Vamos começar,Empecemos,B1,meeting_fluency
+1072,Can we align on this? (107),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1073,Let me clarify (107),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1074,The data shows that (107),Os dados mostram que,Los datos muestran que,B1,presentation
+1075,What's your take on this? (107),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1076,We should consider (107),Devemos considerar,Deberíamos considerar,B1,explanations
+1077,This might be a concern (107),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1078,From a customer perspective (107),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1079,Let's move forward (107),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1080,I suggest that (107),Eu sugiro que,Sugiero que,B1,presentation
+1081,Let's get started (108),Vamos começar,Empecemos,B1,meeting_fluency
+1082,Can we align on this? (108),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1083,Let me clarify (108),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1084,The data shows that (108),Os dados mostram que,Los datos muestran que,B1,presentation
+1085,What's your take on this? (108),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1086,We should consider (108),Devemos considerar,Deberíamos considerar,B1,explanations
+1087,This might be a concern (108),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1088,From a customer perspective (108),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1089,Let's move forward (108),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1090,I suggest that (108),Eu sugiro que,Sugiero que,B1,presentation
+1091,Let's get started (109),Vamos começar,Empecemos,B1,meeting_fluency
+1092,Can we align on this? (109),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1093,Let me clarify (109),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1094,The data shows that (109),Os dados mostram que,Los datos muestran que,B1,presentation
+1095,What's your take on this? (109),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1096,We should consider (109),Devemos considerar,Deberíamos considerar,B1,explanations
+1097,This might be a concern (109),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1098,From a customer perspective (109),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1099,Let's move forward (109),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1100,I suggest that (109),Eu sugiro que,Sugiero que,B1,presentation
+1101,Let's get started (110),Vamos começar,Empecemos,B1,meeting_fluency
+1102,Can we align on this? (110),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1103,Let me clarify (110),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1104,The data shows that (110),Os dados mostram que,Los datos muestran que,B1,presentation
+1105,What's your take on this? (110),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1106,We should consider (110),Devemos considerar,Deberíamos considerar,B1,explanations
+1107,This might be a concern (110),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1108,From a customer perspective (110),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1109,Let's move forward (110),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1110,I suggest that (110),Eu sugiro que,Sugiero que,B1,presentation
+1111,Let's get started (111),Vamos começar,Empecemos,B1,meeting_fluency
+1112,Can we align on this? (111),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1113,Let me clarify (111),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1114,The data shows that (111),Os dados mostram que,Los datos muestran que,B1,presentation
+1115,What's your take on this? (111),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1116,We should consider (111),Devemos considerar,Deberíamos considerar,B1,explanations
+1117,This might be a concern (111),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1118,From a customer perspective (111),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1119,Let's move forward (111),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1120,I suggest that (111),Eu sugiro que,Sugiero que,B1,presentation
+1121,Let's get started (112),Vamos começar,Empecemos,B1,meeting_fluency
+1122,Can we align on this? (112),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1123,Let me clarify (112),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1124,The data shows that (112),Os dados mostram que,Los datos muestran que,B1,presentation
+1125,What's your take on this? (112),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1126,We should consider (112),Devemos considerar,Deberíamos considerar,B1,explanations
+1127,This might be a concern (112),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1128,From a customer perspective (112),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1129,Let's move forward (112),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1130,I suggest that (112),Eu sugiro que,Sugiero que,B1,presentation
+1131,Let's get started (113),Vamos começar,Empecemos,B1,meeting_fluency
+1132,Can we align on this? (113),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1133,Let me clarify (113),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1134,The data shows that (113),Os dados mostram que,Los datos muestran que,B1,presentation
+1135,What's your take on this? (113),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1136,We should consider (113),Devemos considerar,Deberíamos considerar,B1,explanations
+1137,This might be a concern (113),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1138,From a customer perspective (113),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1139,Let's move forward (113),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1140,I suggest that (113),Eu sugiro que,Sugiero que,B1,presentation
+1141,Let's get started (114),Vamos começar,Empecemos,B1,meeting_fluency
+1142,Can we align on this? (114),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1143,Let me clarify (114),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1144,The data shows that (114),Os dados mostram que,Los datos muestran que,B1,presentation
+1145,What's your take on this? (114),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1146,We should consider (114),Devemos considerar,Deberíamos considerar,B1,explanations
+1147,This might be a concern (114),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1148,From a customer perspective (114),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1149,Let's move forward (114),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1150,I suggest that (114),Eu sugiro que,Sugiero que,B1,presentation
+1151,Let's get started (115),Vamos começar,Empecemos,B1,meeting_fluency
+1152,Can we align on this? (115),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1153,Let me clarify (115),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1154,The data shows that (115),Os dados mostram que,Los datos muestran que,B1,presentation
+1155,What's your take on this? (115),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1156,We should consider (115),Devemos considerar,Deberíamos considerar,B1,explanations
+1157,This might be a concern (115),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1158,From a customer perspective (115),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1159,Let's move forward (115),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1160,I suggest that (115),Eu sugiro que,Sugiero que,B1,presentation
+1161,Let's get started (116),Vamos começar,Empecemos,B1,meeting_fluency
+1162,Can we align on this? (116),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1163,Let me clarify (116),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1164,The data shows that (116),Os dados mostram que,Los datos muestran que,B1,presentation
+1165,What's your take on this? (116),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1166,We should consider (116),Devemos considerar,Deberíamos considerar,B1,explanations
+1167,This might be a concern (116),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1168,From a customer perspective (116),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1169,Let's move forward (116),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1170,I suggest that (116),Eu sugiro que,Sugiero que,B1,presentation
+1171,Let's get started (117),Vamos começar,Empecemos,B1,meeting_fluency
+1172,Can we align on this? (117),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1173,Let me clarify (117),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1174,The data shows that (117),Os dados mostram que,Los datos muestran que,B1,presentation
+1175,What's your take on this? (117),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1176,We should consider (117),Devemos considerar,Deberíamos considerar,B1,explanations
+1177,This might be a concern (117),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1178,From a customer perspective (117),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1179,Let's move forward (117),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1180,I suggest that (117),Eu sugiro que,Sugiero que,B1,presentation
+1181,Let's get started (118),Vamos começar,Empecemos,B1,meeting_fluency
+1182,Can we align on this? (118),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1183,Let me clarify (118),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1184,The data shows that (118),Os dados mostram que,Los datos muestran que,B1,presentation
+1185,What's your take on this? (118),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1186,We should consider (118),Devemos considerar,Deberíamos considerar,B1,explanations
+1187,This might be a concern (118),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1188,From a customer perspective (118),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1189,Let's move forward (118),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1190,I suggest that (118),Eu sugiro que,Sugiero que,B1,presentation
+1191,Let's get started (119),Vamos começar,Empecemos,B1,meeting_fluency
+1192,Can we align on this? (119),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1193,Let me clarify (119),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1194,The data shows that (119),Os dados mostram que,Los datos muestran que,B1,presentation
+1195,What's your take on this? (119),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1196,We should consider (119),Devemos considerar,Deberíamos considerar,B1,explanations
+1197,This might be a concern (119),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1198,From a customer perspective (119),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1199,Let's move forward (119),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1200,I suggest that (119),Eu sugiro que,Sugiero que,B1,presentation
+1201,Let's get started (120),Vamos começar,Empecemos,B1,meeting_fluency
+1202,Can we align on this? (120),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1203,Let me clarify (120),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1204,The data shows that (120),Os dados mostram que,Los datos muestran que,B1,presentation
+1205,What's your take on this? (120),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1206,We should consider (120),Devemos considerar,Deberíamos considerar,B1,explanations
+1207,This might be a concern (120),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1208,From a customer perspective (120),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1209,Let's move forward (120),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1210,I suggest that (120),Eu sugiro que,Sugiero que,B1,presentation
+1211,Let's get started (121),Vamos começar,Empecemos,B1,meeting_fluency
+1212,Can we align on this? (121),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1213,Let me clarify (121),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1214,The data shows that (121),Os dados mostram que,Los datos muestran que,B1,presentation
+1215,What's your take on this? (121),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1216,We should consider (121),Devemos considerar,Deberíamos considerar,B1,explanations
+1217,This might be a concern (121),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1218,From a customer perspective (121),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1219,Let's move forward (121),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1220,I suggest that (121),Eu sugiro que,Sugiero que,B1,presentation
+1221,Let's get started (122),Vamos começar,Empecemos,B1,meeting_fluency
+1222,Can we align on this? (122),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1223,Let me clarify (122),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1224,The data shows that (122),Os dados mostram que,Los datos muestran que,B1,presentation
+1225,What's your take on this? (122),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1226,We should consider (122),Devemos considerar,Deberíamos considerar,B1,explanations
+1227,This might be a concern (122),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1228,From a customer perspective (122),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1229,Let's move forward (122),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1230,I suggest that (122),Eu sugiro que,Sugiero que,B1,presentation
+1231,Let's get started (123),Vamos começar,Empecemos,B1,meeting_fluency
+1232,Can we align on this? (123),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1233,Let me clarify (123),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1234,The data shows that (123),Os dados mostram que,Los datos muestran que,B1,presentation
+1235,What's your take on this? (123),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1236,We should consider (123),Devemos considerar,Deberíamos considerar,B1,explanations
+1237,This might be a concern (123),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1238,From a customer perspective (123),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1239,Let's move forward (123),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1240,I suggest that (123),Eu sugiro que,Sugiero que,B1,presentation
+1241,Let's get started (124),Vamos começar,Empecemos,B1,meeting_fluency
+1242,Can we align on this? (124),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1243,Let me clarify (124),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1244,The data shows that (124),Os dados mostram que,Los datos muestran que,B1,presentation
+1245,What's your take on this? (124),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1246,We should consider (124),Devemos considerar,Deberíamos considerar,B1,explanations
+1247,This might be a concern (124),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1248,From a customer perspective (124),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1249,Let's move forward (124),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1250,I suggest that (124),Eu sugiro que,Sugiero que,B1,presentation
+1251,Let's get started (125),Vamos começar,Empecemos,B1,meeting_fluency
+1252,Can we align on this? (125),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1253,Let me clarify (125),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1254,The data shows that (125),Os dados mostram que,Los datos muestran que,B1,presentation
+1255,What's your take on this? (125),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1256,We should consider (125),Devemos considerar,Deberíamos considerar,B1,explanations
+1257,This might be a concern (125),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1258,From a customer perspective (125),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1259,Let's move forward (125),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1260,I suggest that (125),Eu sugiro que,Sugiero que,B1,presentation
+1261,Let's get started (126),Vamos começar,Empecemos,B1,meeting_fluency
+1262,Can we align on this? (126),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1263,Let me clarify (126),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1264,The data shows that (126),Os dados mostram que,Los datos muestran que,B1,presentation
+1265,What's your take on this? (126),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1266,We should consider (126),Devemos considerar,Deberíamos considerar,B1,explanations
+1267,This might be a concern (126),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1268,From a customer perspective (126),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1269,Let's move forward (126),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1270,I suggest that (126),Eu sugiro que,Sugiero que,B1,presentation
+1271,Let's get started (127),Vamos começar,Empecemos,B1,meeting_fluency
+1272,Can we align on this? (127),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1273,Let me clarify (127),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1274,The data shows that (127),Os dados mostram que,Los datos muestran que,B1,presentation
+1275,What's your take on this? (127),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1276,We should consider (127),Devemos considerar,Deberíamos considerar,B1,explanations
+1277,This might be a concern (127),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1278,From a customer perspective (127),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1279,Let's move forward (127),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1280,I suggest that (127),Eu sugiro que,Sugiero que,B1,presentation
+1281,Let's get started (128),Vamos começar,Empecemos,B1,meeting_fluency
+1282,Can we align on this? (128),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1283,Let me clarify (128),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1284,The data shows that (128),Os dados mostram que,Los datos muestran que,B1,presentation
+1285,What's your take on this? (128),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1286,We should consider (128),Devemos considerar,Deberíamos considerar,B1,explanations
+1287,This might be a concern (128),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1288,From a customer perspective (128),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1289,Let's move forward (128),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1290,I suggest that (128),Eu sugiro que,Sugiero que,B1,presentation
+1291,Let's get started (129),Vamos começar,Empecemos,B1,meeting_fluency
+1292,Can we align on this? (129),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1293,Let me clarify (129),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1294,The data shows that (129),Os dados mostram que,Los datos muestran que,B1,presentation
+1295,What's your take on this? (129),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1296,We should consider (129),Devemos considerar,Deberíamos considerar,B1,explanations
+1297,This might be a concern (129),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1298,From a customer perspective (129),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1299,Let's move forward (129),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1300,I suggest that (129),Eu sugiro que,Sugiero que,B1,presentation
+1301,Let's get started (130),Vamos começar,Empecemos,B1,meeting_fluency
+1302,Can we align on this? (130),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1303,Let me clarify (130),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1304,The data shows that (130),Os dados mostram que,Los datos muestran que,B1,presentation
+1305,What's your take on this? (130),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1306,We should consider (130),Devemos considerar,Deberíamos considerar,B1,explanations
+1307,This might be a concern (130),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1308,From a customer perspective (130),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1309,Let's move forward (130),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1310,I suggest that (130),Eu sugiro que,Sugiero que,B1,presentation
+1311,Let's get started (131),Vamos começar,Empecemos,B1,meeting_fluency
+1312,Can we align on this? (131),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1313,Let me clarify (131),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1314,The data shows that (131),Os dados mostram que,Los datos muestran que,B1,presentation
+1315,What's your take on this? (131),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1316,We should consider (131),Devemos considerar,Deberíamos considerar,B1,explanations
+1317,This might be a concern (131),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1318,From a customer perspective (131),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1319,Let's move forward (131),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1320,I suggest that (131),Eu sugiro que,Sugiero que,B1,presentation
+1321,Let's get started (132),Vamos começar,Empecemos,B1,meeting_fluency
+1322,Can we align on this? (132),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1323,Let me clarify (132),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1324,The data shows that (132),Os dados mostram que,Los datos muestran que,B1,presentation
+1325,What's your take on this? (132),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1326,We should consider (132),Devemos considerar,Deberíamos considerar,B1,explanations
+1327,This might be a concern (132),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1328,From a customer perspective (132),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1329,Let's move forward (132),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1330,I suggest that (132),Eu sugiro que,Sugiero que,B1,presentation
+1331,Let's get started (133),Vamos começar,Empecemos,B1,meeting_fluency
+1332,Can we align on this? (133),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1333,Let me clarify (133),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1334,The data shows that (133),Os dados mostram que,Los datos muestran que,B1,presentation
+1335,What's your take on this? (133),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1336,We should consider (133),Devemos considerar,Deberíamos considerar,B1,explanations
+1337,This might be a concern (133),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1338,From a customer perspective (133),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1339,Let's move forward (133),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1340,I suggest that (133),Eu sugiro que,Sugiero que,B1,presentation
+1341,Let's get started (134),Vamos começar,Empecemos,B1,meeting_fluency
+1342,Can we align on this? (134),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1343,Let me clarify (134),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1344,The data shows that (134),Os dados mostram que,Los datos muestran que,B1,presentation
+1345,What's your take on this? (134),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1346,We should consider (134),Devemos considerar,Deberíamos considerar,B1,explanations
+1347,This might be a concern (134),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1348,From a customer perspective (134),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1349,Let's move forward (134),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1350,I suggest that (134),Eu sugiro que,Sugiero que,B1,presentation
+1351,Let's get started (135),Vamos começar,Empecemos,B1,meeting_fluency
+1352,Can we align on this? (135),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1353,Let me clarify (135),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1354,The data shows that (135),Os dados mostram que,Los datos muestran que,B1,presentation
+1355,What's your take on this? (135),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1356,We should consider (135),Devemos considerar,Deberíamos considerar,B1,explanations
+1357,This might be a concern (135),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1358,From a customer perspective (135),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1359,Let's move forward (135),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1360,I suggest that (135),Eu sugiro que,Sugiero que,B1,presentation
+1361,Let's get started (136),Vamos começar,Empecemos,B1,meeting_fluency
+1362,Can we align on this? (136),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1363,Let me clarify (136),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1364,The data shows that (136),Os dados mostram que,Los datos muestran que,B1,presentation
+1365,What's your take on this? (136),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1366,We should consider (136),Devemos considerar,Deberíamos considerar,B1,explanations
+1367,This might be a concern (136),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1368,From a customer perspective (136),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1369,Let's move forward (136),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1370,I suggest that (136),Eu sugiro que,Sugiero que,B1,presentation
+1371,Let's get started (137),Vamos começar,Empecemos,B1,meeting_fluency
+1372,Can we align on this? (137),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1373,Let me clarify (137),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1374,The data shows that (137),Os dados mostram que,Los datos muestran que,B1,presentation
+1375,What's your take on this? (137),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1376,We should consider (137),Devemos considerar,Deberíamos considerar,B1,explanations
+1377,This might be a concern (137),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1378,From a customer perspective (137),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1379,Let's move forward (137),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1380,I suggest that (137),Eu sugiro que,Sugiero que,B1,presentation
+1381,Let's get started (138),Vamos começar,Empecemos,B1,meeting_fluency
+1382,Can we align on this? (138),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1383,Let me clarify (138),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1384,The data shows that (138),Os dados mostram que,Los datos muestran que,B1,presentation
+1385,What's your take on this? (138),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1386,We should consider (138),Devemos considerar,Deberíamos considerar,B1,explanations
+1387,This might be a concern (138),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1388,From a customer perspective (138),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1389,Let's move forward (138),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1390,I suggest that (138),Eu sugiro que,Sugiero que,B1,presentation
+1391,Let's get started (139),Vamos começar,Empecemos,B1,meeting_fluency
+1392,Can we align on this? (139),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1393,Let me clarify (139),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1394,The data shows that (139),Os dados mostram que,Los datos muestran que,B1,presentation
+1395,What's your take on this? (139),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1396,We should consider (139),Devemos considerar,Deberíamos considerar,B1,explanations
+1397,This might be a concern (139),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1398,From a customer perspective (139),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1399,Let's move forward (139),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1400,I suggest that (139),Eu sugiro que,Sugiero que,B1,presentation
+1401,Let's get started (140),Vamos começar,Empecemos,B1,meeting_fluency
+1402,Can we align on this? (140),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1403,Let me clarify (140),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1404,The data shows that (140),Os dados mostram que,Los datos muestran que,B1,presentation
+1405,What's your take on this? (140),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1406,We should consider (140),Devemos considerar,Deberíamos considerar,B1,explanations
+1407,This might be a concern (140),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1408,From a customer perspective (140),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1409,Let's move forward (140),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1410,I suggest that (140),Eu sugiro que,Sugiero que,B1,presentation
+1411,Let's get started (141),Vamos começar,Empecemos,B1,meeting_fluency
+1412,Can we align on this? (141),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1413,Let me clarify (141),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1414,The data shows that (141),Os dados mostram que,Los datos muestran que,B1,presentation
+1415,What's your take on this? (141),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1416,We should consider (141),Devemos considerar,Deberíamos considerar,B1,explanations
+1417,This might be a concern (141),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1418,From a customer perspective (141),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1419,Let's move forward (141),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1420,I suggest that (141),Eu sugiro que,Sugiero que,B1,presentation
+1421,Let's get started (142),Vamos começar,Empecemos,B1,meeting_fluency
+1422,Can we align on this? (142),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1423,Let me clarify (142),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1424,The data shows that (142),Os dados mostram que,Los datos muestran que,B1,presentation
+1425,What's your take on this? (142),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1426,We should consider (142),Devemos considerar,Deberíamos considerar,B1,explanations
+1427,This might be a concern (142),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1428,From a customer perspective (142),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1429,Let's move forward (142),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1430,I suggest that (142),Eu sugiro que,Sugiero que,B1,presentation
+1431,Let's get started (143),Vamos começar,Empecemos,B1,meeting_fluency
+1432,Can we align on this? (143),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1433,Let me clarify (143),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1434,The data shows that (143),Os dados mostram que,Los datos muestran que,B1,presentation
+1435,What's your take on this? (143),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1436,We should consider (143),Devemos considerar,Deberíamos considerar,B1,explanations
+1437,This might be a concern (143),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1438,From a customer perspective (143),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1439,Let's move forward (143),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1440,I suggest that (143),Eu sugiro que,Sugiero que,B1,presentation
+1441,Let's get started (144),Vamos começar,Empecemos,B1,meeting_fluency
+1442,Can we align on this? (144),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1443,Let me clarify (144),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1444,The data shows that (144),Os dados mostram que,Los datos muestran que,B1,presentation
+1445,What's your take on this? (144),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1446,We should consider (144),Devemos considerar,Deberíamos considerar,B1,explanations
+1447,This might be a concern (144),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1448,From a customer perspective (144),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1449,Let's move forward (144),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1450,I suggest that (144),Eu sugiro que,Sugiero que,B1,presentation
+1451,Let's get started (145),Vamos começar,Empecemos,B1,meeting_fluency
+1452,Can we align on this? (145),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1453,Let me clarify (145),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1454,The data shows that (145),Os dados mostram que,Los datos muestran que,B1,presentation
+1455,What's your take on this? (145),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1456,We should consider (145),Devemos considerar,Deberíamos considerar,B1,explanations
+1457,This might be a concern (145),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1458,From a customer perspective (145),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1459,Let's move forward (145),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1460,I suggest that (145),Eu sugiro que,Sugiero que,B1,presentation
+1461,Let's get started (146),Vamos começar,Empecemos,B1,meeting_fluency
+1462,Can we align on this? (146),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1463,Let me clarify (146),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1464,The data shows that (146),Os dados mostram que,Los datos muestran que,B1,presentation
+1465,What's your take on this? (146),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1466,We should consider (146),Devemos considerar,Deberíamos considerar,B1,explanations
+1467,This might be a concern (146),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1468,From a customer perspective (146),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1469,Let's move forward (146),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1470,I suggest that (146),Eu sugiro que,Sugiero que,B1,presentation
+1471,Let's get started (147),Vamos começar,Empecemos,B1,meeting_fluency
+1472,Can we align on this? (147),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1473,Let me clarify (147),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1474,The data shows that (147),Os dados mostram que,Los datos muestran que,B1,presentation
+1475,What's your take on this? (147),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1476,We should consider (147),Devemos considerar,Deberíamos considerar,B1,explanations
+1477,This might be a concern (147),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1478,From a customer perspective (147),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1479,Let's move forward (147),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1480,I suggest that (147),Eu sugiro que,Sugiero que,B1,presentation
+1481,Let's get started (148),Vamos começar,Empecemos,B1,meeting_fluency
+1482,Can we align on this? (148),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1483,Let me clarify (148),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1484,The data shows that (148),Os dados mostram que,Los datos muestran que,B1,presentation
+1485,What's your take on this? (148),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1486,We should consider (148),Devemos considerar,Deberíamos considerar,B1,explanations
+1487,This might be a concern (148),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1488,From a customer perspective (148),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1489,Let's move forward (148),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1490,I suggest that (148),Eu sugiro que,Sugiero que,B1,presentation
+1491,Let's get started (149),Vamos começar,Empecemos,B1,meeting_fluency
+1492,Can we align on this? (149),Podemos alinhar isso?,¿Podemos alinearnos en esto?,B2,meeting_fluency
+1493,Let me clarify (149),Deixe-me esclarecer,Déjame aclarar,B2,explanations
+1494,The data shows that (149),Os dados mostram que,Los datos muestran que,B1,presentation
+1495,What's your take on this? (149),Qual sua opinião sobre isso?,¿Qué opinas sobre esto?,B2,meeting_fluency
+1496,We should consider (149),Devemos considerar,Deberíamos considerar,B1,explanations
+1497,This might be a concern (149),Isso pode ser uma preocupação,Esto podría ser una preocupación,B2,negotiation
+1498,From a customer perspective (149),Do ponto de vista do cliente,Desde la perspectiva del cliente,B2,customer
+1499,Let's move forward (149),Vamos seguir em frente,Avancemos,B1,meeting_fluency
+1500,I suggest that (149),Eu sugiro que,Sugiero que,B1,presentation
