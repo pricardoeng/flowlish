@@ -1,0 +1,375 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.dashboard-header p {
+  margin-top: 0.5rem;
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-card);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-xl);
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-sm);
+  color: var(--text-main);
+}
+
+.text-warning { color: var(--warning); }
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.dashboard-card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-subtitle {
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+.badge-success {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-xl);
+}
+
+/* Learning Rhythm Refined */
+.rhythm-section {
+  grid-column: span 12;
+}
+
+.rhythm-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 1rem 0;
+}
+
+.streak-focus {
+  flex: 1;
+}
+
+.streak-fire-large {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.fire-icon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4));
+  animation: flicker 2s infinite alternate ease-in-out;
+}
+
+@keyframes flicker {
+  from { transform: scale(1); filter: brightness(1); }
+  to { transform: scale(1.05); filter: brightness(1.2); }
+}
+
+.streak-count h2 {
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--text-main);
+}
+
+.streak-count span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 1px;
+}
+
+.weekly-goal-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+.goal-circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.goal-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.goal-text h3 {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.goal-text span {
+  font-size: 0.6rem;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.weekly-dots {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.day-dot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.day-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #f1f5f9;
+}
+
+.day-dot.done .dot {
+  background: var(--primary);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+.day-dot.done .day-label {
+  color: var(--primary);
+}
+
+/* Redefined Progress & Charts */
+.mastered-section { grid-column: span 7; }
+.achievements-section { grid-column: span 5; }
+.full-width { grid-column: span 12; }
+
+/* Progress Items */
+.progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.progress-value {
+  color: var(--primary);
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: #F3F4F6;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: 4px;
+  transition: width 1s ease-out;
+}
+
+/* Achievements */
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.achievement-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #F3F4F6;
+  border-radius: var(--radius-md);
+  transition: transform 0.2s;
+}
+
+.achievement-card:hover {
+  transform: translateX(4px);
+  border-color: var(--primary-light);
+}
+
+.ach-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.ach-text h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-main);
+}
+
+.ach-text p {
+  font-size: 0.8rem;
+}
+
+/* Base Chart Setup */
+.mock-chart {
+  height: 200px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.btn-small {
+  background: white;
+  border: 1px solid #E5E7EB;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-xl);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Banner */
+.dashboard-banner {
+  background-color: var(--primary-light);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.banner-icon-wrapper {
+  position: relative;
+}
+
+.banner-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #6EE7B7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+
+.badge-notification {
+  position: absolute;
+  top: -5px; right: -5px;
+  background-color: #C2410C;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--primary-light);
+}
+
+.banner-content {
+  flex: 1;
+}
+
+.banner-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.banner-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.banner-content p {
+  color: var(--text-main);
+  opacity: 0.8;
+}
+
+.btn-dark {
+  background-color: #18181B;
+  color: white;
+}
+
+.btn-dark:hover {
+  background-color: #27272A;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .mastered-section, .achievements-section {
+    grid-column: span 12;
+  }
+  
+  .dashboard-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+}

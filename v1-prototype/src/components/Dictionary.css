@@ -1,0 +1,239 @@
+.dictionary-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dict-header {
+  position: relative;
+}
+
+.mt-4 { margin-top: 1rem; }
+
+.subtitle {
+  color: var(--text-muted);
+  max-width: 800px;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Filters */
+.dict-filters {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-bar {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--bg-card);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.95rem;
+  background: transparent;
+}
+
+.search-bar input::placeholder {
+  color: var(--text-light);
+}
+
+.filter-select {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--bg-card);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.btn-favorite-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-card);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid #FFE4E6;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.text-error { color: var(--error); }
+.text-light { color: var(--text-light); }
+.text-primary { color: var(--primary); }
+
+/* Chunks Grid */
+.chunks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.chunk-card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.chunk-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.chunk-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-right: 2rem; /* space for favorite icon potentially */
+}
+
+.chunk-english {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-main);
+}
+
+.play-btn {
+  background-color: var(--primary-light);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.play-btn:hover {
+  transform: scale(1.1);
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.favorite-icon-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.favorite-icon-btn:hover {
+  transform: scale(1.1);
+}
+
+.chunk-body {
+  flex: 1;
+}
+
+.trans-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-light);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.chunk-translation {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.chunk-footer {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chunk-tag {
+  background-color: #E0E7FF;
+  color: #4F46E5;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-xl);
+}
+
+/* Hardcoded subtle variations for tags */
+.chunk-card:nth-child(even) .chunk-tag {
+  background-color: #E8F5EE;
+  color: var(--primary);
+}
+
+.chunk-card:nth-child(3) .chunk-tag {
+  background-color: #F1F5F9;
+  color: var(--text-muted);
+}
+
+/* Pagination */
+.dict-pagination-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.page-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.page-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+.page-dots {
+  color: var(--text-muted);
+  font-weight: bold;
+}

@@ -1,0 +1,160 @@
+"use client"
+import React, { useState } from 'react';
+import Button from '@/components/ui/Button';
+import { User, Mail, Target, Award, Bell, LogOut, Check, Sparkles } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { updateUserProfile } from '@/actions/learning';
+import { useModals } from '@/context/ModalContext';
+
+const ProfileForm = ({ user }) => {
+  const { openUpgrade } = useModals();
+  const [formData, setFormData] = useState({
+    name: user.name,
+    email: user.email,
+    goal: user.goal || 'Regular',
+    level: user.currentLevel || 'B2'
+  });
+  const [isSaving, setIsSaving] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+
+  const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  const goals = [
+    { id: 'Casual', label: 'Casual', desc: '5 min/dia' },
+    { id: 'Regular', label: 'Regular', desc: '15 min/dia' },
+    { id: 'Intenso', label: 'Intenso', desc: '30+ min/dia' }
+  ];
+
+  const handleSave = async () => {
+    setIsSaving(true);
+    const res = await updateUserProfile(user.id, formData);
+    setIsSaving(false);
+    if (res.success) {
+      setIsSaved(true);
+      setTimeout(() => setIsSaved(false), 3000);
+    }
+  };
+
+  return (
+    <div className="space-y-10">
+      {/* Pro Banner */}
+      <section className="group relative overflow-hidden rounded-[2.5rem] bg-zinc-900 p-8 text-white shadow-premium">
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-6">
+            <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-primary text-white shadow-lg shadow-primary/20">
+              <Sparkles size={32} />
+            </div>
+            <div>
+              <h2 className="text-2xl font-black tracking-tight">Flowlish Pro Vitalício</h2>
+              <p className="text-zinc-400 font-medium">Acesso ilimitado a +1500 chunks e vozes neurais.</p>
+            </div>
+          </div>
+          <Button 
+            variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-zinc-900"
+            onClick={openUpgrade}
+          >
+            Gerenciar Plano
+          </Button>
+        </div>
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 h-64 w-64 rounded-full bg-primary/20 blur-3xl group-hover:bg-primary/30 transition-colors"></div>
+      </section>
+
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        {/* Basic Info */}
+        <div className="rounded-[2.5rem] bg-white p-8 border border-zinc-100 shadow-sm space-y-6">
+          <div className="flex items-center gap-2 text-primary">
+            <User size={20} />
+            <h3 className="font-bold uppercase tracking-widest text-xs">Dados Pessoais</h3>
+          </div>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider ml-1">Nome Completo</label>
+              <input 
+                type="text" 
+                value={formData.name} 
+                onChange={e => setFormData({...formData, name: e.target.value})}
+                className="w-full rounded-2xl border border-zinc-100 bg-zinc-50 px-5 py-4 text-sm font-semibold outline-hidden focus:border-primary focus:bg-white transition-all"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider ml-1">E-mail</label>
+              <input 
+                type="email" 
+                value={formData.email} 
+                onChange={e => setFormData({...formData, email: e.target.value})}
+                className="w-full rounded-2xl border border-zinc-100 bg-zinc-50 px-5 py-4 text-sm font-semibold outline-hidden focus:border-primary focus:bg-white transition-all"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Study Goal */}
+        <div className="rounded-[2.5rem] bg-white p-8 border border-zinc-100 shadow-sm space-y-6">
+          <div className="flex items-center gap-2 text-primary">
+            <Target size={20} />
+            <h3 className="font-bold uppercase tracking-widest text-xs">Meta de Estudo</h3>
+          </div>
+          <div className="grid grid-cols-1 gap-3">
+            {goals.map(g => (
+              <button 
+                key={g.id}
+                onClick={() => setFormData({...formData, goal: g.id})}
+                className={cn(
+                  "flex items-center justify-between rounded-2xl p-5 border transition-all text-left",
+                  formData.goal === g.id 
+                    ? "border-primary bg-primary-light ring-2 ring-primary/10" 
+                    : "border-zinc-100 bg-white hover:border-primary/30"
+                )}
+              >
+                <div>
+                  <p className="font-bold text-zinc-900">{g.label}</p>
+                  <p className="text-xs text-zinc-500 font-medium">{g.desc}</p>
+                </div>
+                {formData.goal === g.id && <Check className="text-primary" size={20} />}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Level Selection */}
+        <div className="rounded-[2.5rem] bg-white p-8 border border-zinc-100 shadow-sm space-y-6 lg:col-span-2">
+          <div className="flex items-center gap-2 text-primary">
+            <Award size={20} />
+            <h3 className="font-bold uppercase tracking-widest text-xs">Nível CEFR Atual</h3>
+          </div>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+            {levels.map(lvl => (
+              <button 
+                key={lvl}
+                onClick={() => setFormData({...formData, level: lvl})}
+                className={cn(
+                  "flex h-20 items-center justify-center rounded-2xl text-xl font-black transition-all border",
+                  formData.level === lvl 
+                    ? "bg-primary text-white border-primary shadow-lg shadow-primary/20" 
+                    : "bg-white text-zinc-400 border-zinc-100 hover:border-primary/30 hover:text-primary"
+                )}
+              >
+                {lvl}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between border-t border-zinc-100 pt-10">
+        <Button variant="ghost" className="text-zinc-400">
+           <LogOut size={18} /> Sair da conta
+        </Button>
+        <Button 
+          size="lg" 
+          onClick={handleSave} 
+          disabled={isSaving}
+          className={cn(isSaved && "bg-zinc-900 text-white")}
+        >
+           {isSaving ? "Salvando..." : isSaved ? <><Check size={18} /> Salvo!</> : "Salvar Alterações"}
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default ProfileForm;

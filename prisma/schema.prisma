@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String              @id @default(cuid())
+  name             String?
+  email            String              @unique
+  goal             String?
+  nativeLanguage   String              @default("Portuguese")
+  currentLevel     String              @default("A1")
+  createdAt        DateTime            @default(now())
+  certificates     Certificate[]
+  learningSessions LearningSession[]
+  purchases        Purchase[]
+  testSessions     TestSession[]
+  progress         UserChunkProgress[]
+}
+
+model Chunk {
+  id                    String              @id @default(cuid())
+  englishText           String
+  portugueseTranslation String
+  cefrLevel             String
+  context               String?
+  theme                 String?
+  variant               String              @default("US")
+  tags                  String?
+  audioUrl              String?
+  createdAt             DateTime            @default(now())
+  userProgress          UserChunkProgress[]
+}
+
+model UserChunkProgress {
+  id             String    @id @default(cuid())
+  userId         String
+  chunkId        String
+  status         String    @default("new")
+  masteryScore   Int       @default(0)
+  isFavorite     Boolean   @default(false)
+  lastReviewedAt DateTime?
+  nextReviewAt   DateTime?
+  chunk          Chunk     @relation(fields: [chunkId], references: [id])
+  user           User      @relation(fields: [userId], references: [id])
+
+  @@unique([userId, chunkId])
+}
+
+model LearningSession {
+  id          String   @id @default(cuid())
+  userId      String
+  date        DateTime @default(now())
+  sessionType String
+  score       Int
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model TestSession {
+  id        String   @id @default(cuid())
+  userId    String
+  config    String
+  score     Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Badge {
+  id       String @id @default(cuid())
+  name     String
+  category String
+  icon     String
+  rule     String
+}
+
+model Certificate {
+  id       String   @id @default(cuid())
+  userId   String
+  level    String
+  issuedAt DateTime @default(now())
+  shareUrl String?
+  user     User     @relation(fields: [userId], references: [id])
+}
+
+model Purchase {
+  id         String   @id @default(cuid())
+  userId     String
+  planType   String
+  levelScope String?
+  status     String   @default("active")
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+}
