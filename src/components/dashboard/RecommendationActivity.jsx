@@ -66,14 +66,14 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
   // ── Success screen ───────────────────────────────────────────────────────────
   if (stage === 'success') {
     return (
-      <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-zinc-900/60 backdrop-blur-md animate-fade-in">
-        <div className="w-full max-w-sm rounded-[2.5rem] bg-white p-10 shadow-2xl text-center space-y-6 animate-scale-in">
-          <div className="mx-auto h-20 w-20 rounded-3xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-4xl">
+      <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-md animate-fade-in">
+        <div className="w-full max-w-sm rounded-[2.5rem] bg-white dark:bg-zinc-900 p-10 shadow-2xl text-center space-y-6 animate-scale-in transition-colors">
+          <div className="mx-auto h-20 w-20 rounded-3xl bg-primary/10 text-primary flex items-center justify-center text-4xl">
             🏆
           </div>
           <div className="space-y-2">
-            <h2 className="text-3xl font-black text-zinc-900 tracking-tight">Muito bem!</h2>
-            <p className="text-zinc-500 font-medium">
+            <h2 className="text-3xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight">Muito bem!</h2>
+            <p className="text-zinc-500 dark:text-zinc-400 font-medium">
               Você concluiu o desafio e ganhou{' '}
               <span className="text-primary font-black">+{activity.recompensa_xp} XP</span>
             </p>
@@ -96,12 +96,12 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
         )}
       </div>
       <div className="space-y-2">
-        <p className="text-xs font-black uppercase tracking-widest text-zinc-400">Ouça e repita:</p>
-        <h3 className="text-2xl font-black text-zinc-900 tracking-tight">"{chunk.englishText}"</h3>
+        <p className="text-xs font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Ouça e repita:</p>
+        <h3 className="text-2xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight">"{chunk.englishText}"</h3>
         {/* Show translation only as hint */}
         <button
           onClick={() => setShowHint(h => !h)}
-          className="inline-flex items-center gap-1.5 text-sm font-bold text-zinc-400 hover:text-primary transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-zinc-400 dark:text-zinc-500 hover:text-primary transition-colors"
         >
           <span className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-current text-xs font-black">?</span>
           {showHint ? chunk.portugueseTranslation : 'Ver tradução'}
@@ -132,7 +132,7 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
           
           window.speechSynthesis.speak(utt);
         }}
-        className="w-full h-16 rounded-2xl bg-zinc-900 text-white font-bold text-lg active:scale-95 transition-all select-none flex items-center justify-center gap-2"
+        className="w-full h-16 rounded-2xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-bold text-lg active:scale-95 transition-all select-none flex items-center justify-center gap-2"
       >
         {isListening ? (
            <span className="flex items-center gap-2 animate-pulse"><Volume2 size={24} /> Tocando...</span>
@@ -152,27 +152,27 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
 
   const renderEscrita = () => (
     <div className="space-y-5 py-4">
-      <div className="flex flex-col gap-1 p-5 rounded-2xl bg-zinc-50 border border-zinc-100">
-        <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Traduza para inglês:</p>
-        <p className="text-xl font-bold text-zinc-900 italic">"{chunk.portugueseTranslation}"</p>
+      <div className="flex flex-col gap-1 p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-700 transition-colors">
+        <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Traduza para inglês:</p>
+        <p className="text-xl font-bold text-zinc-900 dark:text-zinc-100 italic">"{chunk.portugueseTranslation}"</p>
       </div>
       <textarea
         value={input}
         onChange={e => setInput(e.target.value)}
         placeholder="Escreva o chunk em inglês..."
-        className="w-full h-28 rounded-2xl border border-zinc-200 p-4 font-medium outline-none focus:border-primary transition-all bg-white resize-none"
+        className="w-full h-28 rounded-2xl border border-zinc-200 dark:border-zinc-700 p-4 font-medium outline-none focus:border-primary transition-all bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 resize-none"
       />
 
       {/* Hint button */}
       <button
         onClick={() => setShowHint(h => !h)}
-        className="flex items-center gap-2 text-sm font-bold text-zinc-400 hover:text-primary transition-colors"
+        className="flex items-center gap-2 text-sm font-bold text-zinc-400 dark:text-zinc-500 hover:text-primary transition-colors"
       >
         <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-current text-xs font-black">?</span>
         {showHint ? 'Esconder dica' : 'Ver dica'}
       </button>
       {showHint && (
-        <div className="p-4 rounded-2xl bg-amber-50 border border-amber-100 text-amber-800 font-medium text-sm">
+        <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-500/10 border border-amber-100 dark:border-amber-500/20 text-amber-800 dark:text-amber-400 font-medium text-sm">
           💡 Dica: <span className="font-black italic">"{chunk.englishText}"</span>
         </div>
       )}
@@ -211,8 +211,8 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
           style={{ transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'none' }}
         >
           {/* Front — shows English (the question) */}
-          <div className="absolute inset-0 bg-white border border-zinc-100 shadow-sm flex items-center justify-center p-8 rounded-[2.5rem]" style={{ backfaceVisibility: 'hidden' }}>
-            <h3 className="text-2xl font-black text-zinc-900 text-center">{chunk.englishText}</h3>
+          <div className="absolute inset-0 bg-white dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-700 shadow-sm flex items-center justify-center p-8 rounded-[2.5rem]" style={{ backfaceVisibility: 'hidden' }}>
+            <h3 className="text-2xl font-black text-zinc-900 dark:text-white text-center">{chunk.englishText}</h3>
           </div>
           {/* Back — shows Portuguese (the answer, revealed on flip) */}
           <div className="absolute inset-0 bg-primary text-white flex items-center justify-center p-8 rounded-[2.5rem] shadow-xl" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
@@ -227,10 +227,10 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
       {!isFlipped && (
         <button
           onClick={() => setShowHint(h => !h)}
-          className="flex items-center gap-1.5 text-sm font-bold text-zinc-400 hover:text-primary transition-colors"
+          className="flex items-center gap-1.5 text-sm font-bold text-zinc-400 dark:text-zinc-500 hover:text-primary transition-colors"
         >
           <span className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-current text-xs font-black">?</span>
-          {showHint ? <span className="text-amber-700">{chunk.portugueseTranslation}</span> : 'Ver dica'}
+          {showHint ? <span className="text-amber-700 dark:text-amber-400">{chunk.portugueseTranslation}</span> : 'Ver dica'}
         </button>
       )}
       {isFlipped && (
@@ -244,9 +244,9 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
       return (
         <div className="space-y-5 py-4 text-center">
           <div className="text-5xl">⏰</div>
-          <h3 className="text-xl font-black text-zinc-900">Tempo esgotado!</h3>
-          <p className="text-zinc-500 font-medium">
-            A resposta correta era: <span className="font-black text-zinc-900">"{chunk.portugueseTranslation}"</span>
+          <h3 className="text-xl font-black text-zinc-900 dark:text-zinc-100 uppercase tracking-tight">Tempo esgotado!</h3>
+          <p className="text-zinc-500 dark:text-zinc-400 font-medium italic">
+            A resposta correta era: <span className="font-black text-zinc-900 dark:text-white">"{chunk.portugueseTranslation}"</span>
           </p>
           <Button variant="secondary" className="w-full" onClick={onClose}>Tentar novamente depois</Button>
         </div>
@@ -262,9 +262,9 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
       <div className="space-y-5 py-4">
         {/* Timer bar */}
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-bold text-zinc-900 leading-snug">
+          <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug">
             Qual o significado de:
-            <br /><span className="text-primary font-black text-xl">"{chunk.englishText}"</span>
+            <br /><span className="text-primary font-black text-xl tracking-tight">"{chunk.englishText}"</span>
           </h3>
           <div className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-xl border font-black text-sm tabular-nums', timerColor)}>
             <Timer size={14} />
@@ -294,10 +294,10 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
                 }
               }}
               className={cn(
-                'w-full p-4 rounded-2xl border text-left font-bold transition-all text-zinc-700',
+                'w-full p-4 rounded-2xl border text-left font-bold transition-all text-zinc-700 dark:text-zinc-200',
                 selectedWrong === i
-                  ? 'border-red-300 bg-red-50 text-red-700 scale-95'
-                  : 'border-zinc-100 bg-white hover:border-primary hover:bg-primary/5'
+                  ? 'border-red-300 bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-400 scale-95'
+                  : 'border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800 hover:border-primary hover:bg-primary/5 dark:hover:bg-primary/10'
               )}
             >
               {opt.label}
@@ -320,10 +320,10 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
 
   // ── Main modal ───────────────────────────────────────────────────────────────
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-zinc-900/60 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-lg rounded-[2.5rem] bg-white shadow-2xl animate-scale-in overflow-hidden">
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-md animate-fade-in transition-colors">
+      <div className="relative w-full max-w-lg rounded-[2.5rem] bg-white dark:bg-zinc-900 shadow-2xl animate-scale-in overflow-hidden transition-colors">
         {/* Header */}
-        <div className="flex items-center justify-between px-8 pt-8 pb-5 border-b border-zinc-50">
+        <div className="flex items-center justify-between px-8 pt-8 pb-5 border-b border-zinc-50 dark:border-zinc-800 transition-colors">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
               <Icon size={20} />
@@ -333,10 +333,10 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
               {/* For writing exercises, don't show the English answer in the header */}
               {hidesAnswer ? (
                 <div className="flex items-center gap-2">
-                  <h2 className="text-lg font-black text-zinc-900 leading-tight">Desafio de {label}</h2>
+                  <h2 className="text-lg font-black text-zinc-900 dark:text-zinc-100 leading-tight">Desafio de {label}</h2>
                 </div>
               ) : (
-                <h2 className="text-lg font-black text-zinc-900 leading-tight">{chunk.englishText}</h2>
+                <h2 className="text-lg font-black text-zinc-900 dark:text-zinc-100 leading-tight">{chunk.englishText}</h2>
               )}
             </div>
           </div>
@@ -353,10 +353,10 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
           {stage === 'intro' ? (
             <div className="space-y-6 pt-6 text-center">
               <div className="space-y-2">
-                <h3 className="text-2xl font-black text-zinc-900 tracking-tight leading-tight">
+                <h3 className="text-2xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight leading-tight uppercase">
                   {activity.tipo === 'Rápido' ? '⚡ Desafio Rápido!' : 'Preparado?'}
                 </h3>
-                <p className="text-zinc-500 font-medium">
+                <p className="text-zinc-500 dark:text-zinc-400 font-medium">
                   {activity.tipo === 'Rápido'
                     ? `Você tem ${QUIZ_DURATION} segundos para responder. Pense rápido!`
                     : `Esta atividade dura cerca de ${activity.duracao} min e reforça seu aprendizado.`}

@@ -11,16 +11,17 @@ model User {
   id               String              @id @default(cuid())
   name             String?
   email            String              @unique
-  password         String?
   goal             String?
   nativeLanguage   String              @default("Portuguese")
   currentLevel     String              @default("A1")
   createdAt        DateTime            @default(now())
+  password         String?
   certificates     Certificate[]
   learningSessions LearningSession[]
   purchases        Purchase[]
   testSessions     TestSession[]
   progress         UserChunkProgress[]
+  wordProgress     UserWordProgress[]
 }
 
 model Chunk {
@@ -34,6 +35,7 @@ model Chunk {
   tags                  String?
   audioUrl              String?
   createdAt             DateTime            @default(now())
+  imageUrl              String?
   userProgress          UserChunkProgress[]
 }
 
@@ -50,6 +52,33 @@ model UserChunkProgress {
   user           User      @relation(fields: [userId], references: [id])
 
   @@unique([userId, chunkId])
+}
+
+model Word {
+  id                    String             @id @default(cuid())
+  englishWord           String
+  portugueseTranslation String
+  cefrLevel             String
+  theme                 String?
+  imageUrl              String?
+  audioUrl              String?
+  createdAt             DateTime           @default(now())
+  userProgress          UserWordProgress[]
+}
+
+model UserWordProgress {
+  id            String   @id @default(cuid())
+  userId        String
+  wordId        String
+  status        String   @default("new")
+  masteryScore  Int      @default(0)
+  lastReviewed  DateTime @default(now())
+  timesReviewed Int      @default(0)
+  isFavorite    Boolean  @default(false)
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  word          Word     @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, wordId])
 }
 
 model LearningSession {

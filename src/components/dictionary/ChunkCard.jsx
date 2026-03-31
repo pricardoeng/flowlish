@@ -51,18 +51,18 @@ const ChunkCard = ({ chunk, userId }) => {
   };
 
   const levelColors = {
-    A1: 'bg-emerald-50 text-emerald-600 border-emerald-100',
-    A2: 'bg-emerald-50 text-emerald-600 border-emerald-100',
-    B1: 'bg-blue-50 text-blue-600 border-blue-100',
-    B2: 'bg-blue-50 text-blue-600 border-blue-100',
-    C1: 'bg-purple-50 text-purple-600 border-purple-100',
-    C2: 'bg-purple-50 text-purple-600 border-purple-100',
+    A1: 'bg-primary-light/30 dark:bg-orange-500/10 text-primary dark:text-orange-400 border-primary/20 dark:border-orange-500/20',
+    A2: 'bg-primary-light/30 dark:bg-orange-500/10 text-primary dark:text-orange-400 border-primary/20 dark:border-orange-500/20',
+    B1: 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-100 dark:border-blue-500/20',
+    B2: 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-100 dark:border-blue-500/20',
+    C1: 'bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-100 dark:border-purple-500/20',
+    C2: 'bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-100 dark:border-purple-500/20',
   };
 
   return (
     <div className={cn(
-      "group relative flex flex-col justify-between rounded-3xl bg-white p-6 shadow-sm border transition-all hover:shadow-md",
-      isMastered ? "border-primary/40 ring-1 ring-primary/10" : "border-zinc-100 hover:border-primary/20"
+      "group relative flex flex-col justify-between rounded-3xl bg-white dark:bg-zinc-900 p-6 shadow-sm border transition-all hover:shadow-md",
+      isMastered ? "border-primary/40 dark:border-primary/60 ring-1 ring-primary/10" : "border-zinc-100 dark:border-zinc-800 hover:border-primary/20"
     )}>
       <div className="flex items-start justify-between">
         <span className={cn(
@@ -89,17 +89,17 @@ const ChunkCard = ({ chunk, userId }) => {
       </div>
 
       <div className="mt-4 space-y-1">
-        <h3 className="text-xl font-black text-zinc-900 leading-tight group-hover:text-primary transition-colors tracking-tight">
+        <h3 className="text-xl font-black text-zinc-900 dark:text-zinc-100 leading-tight group-hover:text-primary transition-colors tracking-tight">
           {chunk.englishText}
         </h3>
-        <p className="text-sm font-medium text-zinc-600 italic">
+        <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400 italic">
           {chunk.portugueseTranslation}
         </p>
       </div>
 
-      <div className="mt-6 flex items-center justify-between pt-4 border-t border-zinc-100">
+      <div className="mt-6 flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-800">
         <div className="flex items-center gap-2">
-          <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 bg-zinc-100 px-3 py-1 rounded-lg mt-1">
+          <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-lg mt-1">
             {chunk.theme || 'GENERAL'}
           </span>
           {isMastered && (

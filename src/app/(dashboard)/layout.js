@@ -2,22 +2,24 @@ import Sidebar from "@/components/layout/Sidebar";
 import MobileNav from "@/components/layout/MobileNav";
 import Link from 'next/link';
 import { Crown } from 'lucide-react';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 export default function DashboardLayout({ children }) {
   return (
     <div className="flex min-h-screen flex-col lg:flex-row">
       {/* Mobile Top Header */}
-      <div className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-zinc-200 bg-white/80 px-6 backdrop-blur-md lg:hidden">
-        <Link href="/">
+      <div className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 px-6 backdrop-blur-md lg:hidden transition-colors">
+        <Link href="/" className="flex items-center">
           <img 
-            src="/images/logo_icon.png" 
-            alt="Flowlish" 
+            src="/images/logo_mango_small.png" 
+            alt="Mango Logo" 
             className="h-8 w-auto object-contain"
           />
         </Link>
-        <div className="flex items-center gap-4">
-            <button className="text-zinc-400 hover:text-zinc-900">
-              <Crown size={20} className="text-primary" />
+        <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <button className="text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">
+              <Crown size={22} className="text-primary" />
             </button>
         </div>
       </div>

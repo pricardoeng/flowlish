@@ -3,7 +3,7 @@ import React from 'react';
 import { Linkedin, Instagram, Share2 } from 'lucide-react';
 import Button from '@/components/ui/Button';
 
-const ShareButtons = ({ text = "Estou dominando o inglês com o Flowlish! 🚀" }) => {
+const ShareButtons = ({ text = "Estou dominando o inglês com o Mango! 🥭" }) => {
   const url = "https://flowlish.app";
   
   const shareLinkedIn = () => {

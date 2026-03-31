@@ -10,3 +10,7 @@ prisma/dev.db
 prisma/*.db
 
 /src/generated/prisma
+
+# Next.js build output
+.next/
+out/

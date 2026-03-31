@@ -37,15 +37,15 @@ const ProfileForm = ({ user }) => {
   return (
     <div className="space-y-10">
       {/* Pro Banner */}
-      <section className="group relative overflow-hidden rounded-[2.5rem] bg-zinc-900 p-8 text-white shadow-premium">
+      <section className="group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-orange-600 to-zinc-900 p-8 text-white shadow-premium transition-colors">
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-6">
             <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-primary text-white shadow-lg shadow-primary/20">
               <Sparkles size={32} />
             </div>
             <div>
-              <h2 className="text-2xl font-black tracking-tight">Flowlish Pro Vitalício</h2>
-              <p className="text-zinc-400 font-medium">Acesso ilimitado a +1500 chunks e vozes neurais.</p>
+              <h2 className="text-2xl font-black tracking-tight !text-white">Mango Pro Vitalício</h2>
+              <p className="text-white/75 font-medium">Acesso ilimitado a +1500 chunks e vozes neurais.</p>
             </div>
           </div>
           <Button 
@@ -60,7 +60,7 @@ const ProfileForm = ({ user }) => {
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         {/* Basic Info */}
-        <div className="rounded-[2.5rem] bg-white p-8 border border-zinc-100 shadow-sm space-y-6">
+        <div className="rounded-[2.5rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm space-y-6 transition-colors">
           <div className="flex items-center gap-2 text-primary">
             <User size={20} />
             <h3 className="font-bold uppercase tracking-widest text-xs">Dados Pessoais</h3>
@@ -72,7 +72,7 @@ const ProfileForm = ({ user }) => {
                 type="text" 
                 value={formData.name} 
                 onChange={e => setFormData({...formData, name: e.target.value})}
-                className="w-full rounded-2xl border border-zinc-100 bg-zinc-50 px-5 py-4 text-sm font-semibold outline-hidden focus:border-primary focus:bg-white transition-all"
+                className="w-full rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 px-5 py-4 text-sm font-semibold outline-hidden focus:border-primary focus:bg-white dark:focus:bg-zinc-900 transition-all text-zinc-900 dark:text-zinc-100"
               />
             </div>
             <div className="space-y-2">
@@ -81,14 +81,14 @@ const ProfileForm = ({ user }) => {
                 type="email" 
                 value={formData.email} 
                 onChange={e => setFormData({...formData, email: e.target.value})}
-                className="w-full rounded-2xl border border-zinc-100 bg-zinc-50 px-5 py-4 text-sm font-semibold outline-hidden focus:border-primary focus:bg-white transition-all"
+                className="w-full rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 px-5 py-4 text-sm font-semibold outline-hidden focus:border-primary focus:bg-white dark:focus:bg-zinc-900 transition-all text-zinc-900 dark:text-zinc-100"
               />
             </div>
           </div>
         </div>
 
         {/* Study Goal */}
-        <div className="rounded-[2.5rem] bg-white p-8 border border-zinc-100 shadow-sm space-y-6">
+        <div className="rounded-[2.5rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm space-y-6 transition-colors">
           <div className="flex items-center gap-2 text-primary">
             <Target size={20} />
             <h3 className="font-bold uppercase tracking-widest text-xs">Meta de Estudo</h3>
@@ -101,13 +101,13 @@ const ProfileForm = ({ user }) => {
                 className={cn(
                   "flex items-center justify-between rounded-2xl p-5 border transition-all text-left",
                   formData.goal === g.id 
-                    ? "border-primary bg-primary-light ring-2 ring-primary/10" 
-                    : "border-zinc-100 bg-white hover:border-primary/30"
+                    ? "border-primary bg-primary-light dark:bg-orange-500/10 ring-2 ring-primary/10" 
+                    : "border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-primary/30"
                 )}
               >
                 <div>
-                  <p className="font-bold text-zinc-900">{g.label}</p>
-                  <p className="text-xs text-zinc-500 font-medium">{g.desc}</p>
+                  <p className="font-bold text-zinc-900 dark:text-zinc-100">{g.label}</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">{g.desc}</p>
                 </div>
                 {formData.goal === g.id && <Check className="text-primary" size={20} />}
               </button>
@@ -116,7 +116,7 @@ const ProfileForm = ({ user }) => {
         </div>
 
         {/* Level Selection */}
-        <div className="rounded-[2.5rem] bg-white p-8 border border-zinc-100 shadow-sm space-y-6 lg:col-span-2">
+        <div className="rounded-[2.5rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm space-y-6 lg:col-span-2 transition-colors">
           <div className="flex items-center gap-2 text-primary">
             <Award size={20} />
             <h3 className="font-bold uppercase tracking-widest text-xs">Nível CEFR Atual</h3>
@@ -130,7 +130,7 @@ const ProfileForm = ({ user }) => {
                   "flex h-20 items-center justify-center rounded-2xl text-xl font-black transition-all border",
                   formData.level === lvl 
                     ? "bg-primary text-white border-primary shadow-lg shadow-primary/20" 
-                    : "bg-white text-zinc-400 border-zinc-100 hover:border-primary/30 hover:text-primary"
+                    : "bg-white dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 border-zinc-100 dark:border-zinc-800 hover:border-primary/30 dark:hover:border-primary/30 hover:text-primary dark:hover:text-primary"
                 )}
               >
                 {lvl}

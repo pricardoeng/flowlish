@@ -14,11 +14,12 @@ const MobileNav = () => {
     { id: 'dashboard', label: 'Início', icon: Home, href: '/' },
     { id: 'dictionary', label: 'Explorar', icon: BookOpen, href: '/dictionary' },
     { id: 'practice', label: 'Treinar', icon: Mic, href: '/practice' },
+    { id: 'flashcards', label: 'Cartas', icon: BookOpen, href: '/practice/flashcards' },
     { id: 'profile', label: 'Meu Perfil', icon: Settings, href: '/profile' },
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 z-50 flex w-full items-center justify-around border-t border-zinc-200 bg-white/95 p-2 pb-6 backdrop-blur-lg lg:hidden">
+    <nav className="fixed bottom-0 left-0 z-50 flex w-full items-center justify-around border-t border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-950/95 p-2 pb-6 backdrop-blur-lg lg:hidden transition-colors">
       {navItems.map((item) => {
         const isActive = pathname === item.href;
         return (
@@ -27,7 +28,7 @@ const MobileNav = () => {
             href={item.href}
             className={cn(
               "relative flex flex-col items-center gap-1 p-2 transition-colors",
-              isActive ? "text-primary" : "text-zinc-400"
+              isActive ? "text-primary" : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300"
             )}
           >
             <item.icon size={24} />

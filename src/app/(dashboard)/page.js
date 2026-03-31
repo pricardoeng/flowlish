@@ -82,24 +82,33 @@ export default async function Dashboard() {
   return (
     <div className="space-y-10 animate-fade-in">
       {/* Header Section */}
-      <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between tracking-tight">
-        <div>
-          <h1 className="text-4xl font-black text-zinc-900">Bom dia, {user.name.split(' ')[0]}!</h1>
-          {user.progress.length === 0 ? (
-            <p className="text-zinc-500 font-medium">
-              Você ainda não completou nenhum chunk hoje. <span className="text-primary font-bold">Comece agora</span> e construa seu hábito diário! 🚀
-            </p>
-          ) : (
-            <p className="text-zinc-500 font-medium">Você já dominou <span className="text-primary font-bold">{user.progress.length} chunks</span> hoje. Continue assim!</p>
-          )}
+      <header className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between tracking-tight">
+        <div className="flex items-center gap-6">
+          <div className="relative h-24 w-24 shrink-0 rounded-3xl bg-primary/10 p-2 transition-transform hover:rotate-6">
+            <img 
+              src="/images/mascot.png" 
+              alt="Mango Mascot" 
+              className="h-full w-full object-contain"
+            />
+          </div>
+          <div>
+            <h1 className="text-4xl font-black text-zinc-900 dark:text-foreground tracking-tight transition-colors">Bom dia, {user.name.split(' ')[0]}!</h1>
+            {user.progress.length === 0 ? (
+              <p className="text-zinc-500 dark:text-zinc-400 font-medium my-2">
+                Você ainda não completou nenhum chunk hoje. <span className="text-primary font-bold">Comece agora</span> e construa seu hábito diário! 🚀
+              </p>
+            ) : (
+              <p className="text-zinc-500 dark:text-zinc-400 font-medium my-2">Você já dominou <span className="text-primary font-bold">{user.progress.length} chunks</span> hoje. Continue assim!</p>
+            )}
+          </div>
         </div>
-        <div className="flex items-center gap-3 rounded-2xl bg-white px-4 py-2 shadow-sm border border-zinc-100">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-yellow-400 text-white">
+        <div className="flex items-center gap-3 rounded-2xl bg-white dark:bg-zinc-900 px-4 py-2 shadow-sm border border-zinc-100 dark:border-zinc-800 transition-colors">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-400 text-white">
             <TrendingUp size={18} />
           </div>
           <div>
             <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 leading-none">Total XP</p>
-            <p className="text-sm font-bold text-zinc-900">{xp}</p>
+            <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100">{xp}</p>
           </div>
         </div>
       </header>
@@ -115,7 +124,7 @@ export default async function Dashboard() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Sparkles className="text-primary" size={24} />
-            <h2 className="text-2xl font-black text-zinc-900 tracking-tight">Recomendado para você</h2>
+            <h2 className="text-2xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight">Recomendado para você</h2>
           </div>
           <Button variant="ghost" size="sm" className="group">
             Ver tudo <ArrowRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" />
@@ -136,8 +145,8 @@ export default async function Dashboard() {
         
         {/* Weekly Chart Placeholder */}
         <div className="space-y-6">
-          <div className="rounded-[2.5rem] bg-white p-8 border border-zinc-100 shadow-sm">
-            <h3 className="text-lg font-black text-zinc-900 mb-4 tracking-tight">Evolução Semanal</h3>
+          <div className="rounded-[2.5rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm transition-colors">
+            <h3 className="text-lg font-black text-zinc-900 dark:text-zinc-100 mb-4 tracking-tight">Evolução Semanal</h3>
             <div className="mt-10 flex h-32 items-end justify-between gap-2">
               {[40, 70, 45, 90, 65, 80, 50].map((h, i) => (
                 <div key={i} className="group relative flex flex-1 flex-col items-center">
@@ -145,7 +154,7 @@ export default async function Dashboard() {
                     className="w-full rounded-t-lg bg-primary/20 transition-all hover:bg-primary"
                     style={{ height: `${h}%` }}
                   />
-                  <span className="mt-2 text-[10px] font-black text-zinc-400 uppercase tracking-widest">
+                  <span className="mt-2 text-[10px] font-black text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">
                     {['S','T','Q','Q','S','S','D'][i]}
                   </span>
                 </div>

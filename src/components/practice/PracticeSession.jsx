@@ -34,14 +34,18 @@ const PracticeSession = ({ user, chunks }) => {
   if (!sessionActive && results.length > 0) {
     const mastered = results.filter(r => r.status === 'mastered').length;
     return (
-      <div className="flex flex-col items-center justify-center min-h-[70vh] text-center space-y-8 animate-fade-in">
-        <div className="h-32 w-32 rounded-3xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-6xl">
-          🎉
+      <div className="flex flex-col items-center justify-center min-h-[70vh] text-center space-y-10 animate-fade-in transition-colors">
+        <div className="relative h-48 w-48 transition-transform hover:scale-110">
+          <img 
+            src="/images/mascot.png" 
+            alt="Mango Mascot" 
+            className="h-full w-full object-contain drop-shadow-2xl animate-float"
+          />
         </div>
         <div className="max-w-md space-y-3">
-          <h1 className="text-4xl font-black text-zinc-900 tracking-tight">Sessão concluída!</h1>
-          <p className="text-zinc-600 font-medium">
-            Você dominou <span className="text-primary font-bold">{mastered} de {results.length} chunks</span> nesta sessão. Incrível progresso!
+          <h1 className="text-4xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight transition-colors transition-colors uppercase">Sessão concluída!</h1>
+          <p className="text-zinc-600 dark:text-zinc-400 font-medium transition-colors">
+            Parabéns! Você dominou <span className="text-primary font-bold">{mastered} de {results.length} chunks</span> hoje.
           </p>
         </div>
         <div className="flex flex-col w-full max-w-sm gap-3">
@@ -49,7 +53,7 @@ const PracticeSession = ({ user, chunks }) => {
             Mais uma sessão! <Play size={20} fill="currentColor" />
           </Button>
           <Link href="/" className="w-full">
-            <Button variant="secondary" size="lg" className="w-full text-zinc-500 font-bold">Voltar ao Dashboard</Button>
+            <Button variant="secondary" size="lg" className="w-full text-zinc-500 dark:text-zinc-400 font-bold transition-colors">Voltar ao Dashboard</Button>
           </Link>
         </div>
       </div>
@@ -59,11 +63,11 @@ const PracticeSession = ({ user, chunks }) => {
   // Sem chunks disponíveis para o nível atual
   if (chunks.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[70vh] text-center space-y-8 animate-fade-in">
+      <div className="flex flex-col items-center justify-center min-h-[70vh] text-center space-y-8 animate-fade-in transition-colors">
         <div className="text-6xl">📭</div>
         <div className="max-w-md space-y-4">
-          <h1 className="text-3xl font-black text-zinc-900 tracking-tight">Nenhum chunk disponível</h1>
-          <p className="text-zinc-600 font-medium">
+          <h1 className="text-3xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight transition-colors">Nenhum chunk disponível</h1>
+          <p className="text-zinc-600 dark:text-zinc-400 font-medium transition-colors">
             Ainda não temos chunks para o seu nível ({user.currentLevel || 'A1'}). Ajuste seu perfil para desbloquear mais conteúdo!
           </p>
         </div>
@@ -77,16 +81,19 @@ const PracticeSession = ({ user, chunks }) => {
   // Pronto para começar
   if (!sessionActive) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[70vh] text-center space-y-8 animate-fade-in">
-        <div className="relative h-40 w-40 rounded-full bg-primary-light flex items-center justify-center text-primary">
-          <Brain size={80} strokeWidth={1} />
-          <div className="absolute inset-0 rounded-full border-4 border-primary border-t-transparent animate-spin opacity-20"></div>
+      <div className="flex flex-col items-center justify-center min-h-[70vh] text-center space-y-10 animate-fade-in transition-colors">
+        <div className="relative h-48 w-48 transition-transform hover:scale-110">
+          <img 
+            src="/images/mascot.png" 
+            alt="Mango Mascot" 
+            className="h-full w-full object-contain drop-shadow-xl"
+          />
         </div>
         
         <div className="max-w-md space-y-4">
-          <h1 className="text-4xl font-black text-zinc-900 tracking-tight">Pronto para começar?</h1>
-          <p className="text-zinc-600 font-medium">
-            Sua meta de hoje é de 15 chunks. Vamos revisar os aprendidos e descobrir novos!
+          <h1 className="text-4xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight transition-colors uppercase">Vamos começar?</h1>
+          <p className="text-zinc-600 dark:text-zinc-400 font-medium transition-colors">
+            Sua meta de hoje é de {chunks.length} chunks. Estou pronto para te ajudar a dominar cada um deles!
           </p>
         </div>
 
@@ -94,7 +101,7 @@ const PracticeSession = ({ user, chunks }) => {
           <Button size="lg" onClick={() => setSessionActive(true)} className="w-full">
             Começar Sessão <Play size={20} fill="currentColor" />
           </Button>
-          <Button variant="secondary" size="lg" className="w-full text-zinc-500 font-bold">
+          <Button variant="secondary" size="lg" className="w-full text-zinc-500 dark:text-zinc-400 font-bold transition-colors">
             Revisar Chunks Dominados
           </Button>
         </div>
@@ -106,16 +113,16 @@ const PracticeSession = ({ user, chunks }) => {
   const progress = ((step + 1) / chunks.length) * 100;
 
   return (
-    <div className="max-w-2xl mx-auto space-y-12 py-10 animate-fade-in">
+    <div className="max-w-2xl mx-auto space-y-12 py-10 animate-fade-in transition-colors">
       {/* Session Header */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between text-xs font-black uppercase tracking-widest text-zinc-500">
+        <div className="flex items-center justify-between text-xs font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400 transition-colors">
           <span>Sessão Diária: Chuva de Chunks</span>
           <span>{step + 1} de {chunks.length}</span>
         </div>
-        <div className="h-2 w-full rounded-full bg-zinc-100 overflow-hidden">
+        <div className="h-2 w-full rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden transition-colors">
           <div 
-             className="h-full bg-primary transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" 
+             className="h-full bg-primary transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(249,115,22,0.5)]" 
              style={{ width: `${progress}%` }} 
           />
         </div>
@@ -123,14 +130,14 @@ const PracticeSession = ({ user, chunks }) => {
 
       {/* Chunk Stage */}
       <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-8">
-        <div className="relative group text-center space-y-4 p-10 rounded-[3rem] bg-white border border-zinc-100 shadow-premium w-full transition-all hover:scale-[1.01]">
-          <span className="px-3 py-1 rounded-full bg-primary-light text-primary text-[10px] font-black uppercase tracking-widest">
+        <div className="relative group text-center space-y-4 p-10 rounded-[3rem] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-premium w-full transition-all hover:scale-[1.01]">
+          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest transition-colors">
             {currentChunk.cefrLevel}
           </span>
-          <h2 className="text-4xl md:text-5xl font-black text-zinc-900 tracking-tighter leading-tight drop-shadow-sm">
+          <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-zinc-100 tracking-tighter leading-tight drop-shadow-sm transition-colors">
             {currentChunk.englishText}
           </h2>
-          <p className="text-xl text-zinc-600 font-medium italic">
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 font-medium italic transition-colors">
             "{currentChunk.portugueseTranslation}"
           </p>
           

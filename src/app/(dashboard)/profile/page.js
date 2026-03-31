@@ -18,8 +18,8 @@ export default async function ProfilePage() {
   return (
     <div className="space-y-10 animate-fade-in pb-20">
       <header className="space-y-2">
-        <h1 className="text-4xl font-black text-zinc-900 tracking-tight">Configurações de Perfil</h1>
-        <p className="text-zinc-500 font-medium">Personalize sua jornada e ajuste suas preferências de aprendizado.</p>
+        <h1 className="text-4xl font-black text-zinc-900 dark:text-foreground tracking-tight transition-colors">Configurações de Perfil</h1>
+        <p className="text-zinc-500 dark:text-zinc-400 font-medium transition-colors">Personalize sua jornada e ajuste suas preferências de aprendizado.</p>
       </header>
       
       <ProfileForm user={user} />

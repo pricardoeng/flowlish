@@ -163,3 +163,48 @@ export async function claimActivityReward(clientUserId, xp) {
     return { success: false, error: error.message };
   }
 }
+
+export async function markWordAsMastered(clientUserId, wordId) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return { success: false, error: "Unauthorized" };
+    
+    // Always trust the server session ID
+    const userId = session.user.id;
+    
+    // Check if progress already exists
+    const existing = await prisma.userWordProgress.findUnique({
+      where: {
+        userId_wordId: { userId, wordId }
+      }
+    });
+
+    if (existing) {
+      await prisma.userWordProgress.update({
+        where: { id: existing.id },
+        data: {
+          status: 'mastered',
+          masteryScore: Math.min(existing.masteryScore + 20, 100),
+          timesReviewed: existing.timesReviewed + 1,
+          lastReviewed: new Date()
+        }
+      });
+    } else {
+      await prisma.userWordProgress.create({
+        data: {
+          userId,
+          wordId,
+          status: 'mastered',
+          masteryScore: 100,
+          timesReviewed: 1
+        }
+      });
+    }
+    
+    revalidatePath('/practice/flashcards');
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to mark word mastered:", error);
+    return { success: false, error: error.message };
+  }
+}
