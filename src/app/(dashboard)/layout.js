@@ -3,6 +3,7 @@ import MobileNav from "@/components/layout/MobileNav";
 import Link from 'next/link';
 import { Crown } from 'lucide-react';
 import ThemeToggle from '@/components/ui/ThemeToggle';
+import Logo from '@/components/ui/Logo';
 
 export default function DashboardLayout({ children }) {
   return (
@@ -10,16 +11,12 @@ export default function DashboardLayout({ children }) {
       {/* Mobile Top Header */}
       <div className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 px-6 backdrop-blur-md lg:hidden transition-colors">
         <Link href="/" className="flex items-center">
-          <img 
-            src="/images/logo_mango_small.png" 
-            alt="Mango Logo" 
-            className="h-8 w-auto object-contain"
-          />
+          <Logo size="sm" />
         </Link>
         <div className="flex items-center gap-3">
             <ThemeToggle />
             <button className="text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">
-              <Crown size={22} className="text-primary" />
+              <Crown size={22} className="text-orange-500" />
             </button>
         </div>
       </div>

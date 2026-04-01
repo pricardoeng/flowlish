@@ -8,6 +8,7 @@ import { useModals } from '@/context/ModalContext';
 
 import Image from 'next/image';
 import ThemeToggle from '@/components/ui/ThemeToggle';
+import Logo from '@/components/ui/Logo';
 
 const Sidebar = () => {
   const { openUpgrade } = useModals();
@@ -23,12 +24,8 @@ const Sidebar = () => {
 
   return (
     <aside className="fixed left-0 top-0 hidden h-screen w-64 flex-col border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 lg:flex shadow-sm transition-colors">
-      <Link href="/" className="mb-10 flex items-center px-2 py-2 transition-opacity hover:opacity-80">
-        <img 
-          src="/images/logo_mango_large.png" 
-          alt="Mango Logo" 
-          className="h-12 w-auto object-contain"
-        />
+      <Link href="/" className="mb-10 block px-2 py-2">
+        <Logo />
       </Link>
       
       <nav className="flex flex-1 flex-col gap-2">
@@ -41,7 +38,7 @@ const Sidebar = () => {
               className={cn(
                 "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200",
                 isActive 
-                  ? "bg-primary-light dark:bg-orange-500/10 text-primary" 
+                  ? "bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-500" 
                   : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white"
               )}
             >
