@@ -7,7 +7,7 @@ const UpgradeModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const handlePayment = () => {
-    window.open('https://buy.stripe.com/test_aFa00j3Acgl4aAI1qc8Zq00', '_blank');
+    window.open('https://buy.stripe.com/test_8x23cv2w89WGcIQ8SE8Zq01', '_blank');
   };
 
   return (

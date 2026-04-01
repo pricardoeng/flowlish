@@ -1,12 +1,10 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, BookOpen, Mic, Settings, Crown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useModals } from '@/context/ModalContext';
-
-import Image from 'next/image';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import Logo from '@/components/ui/Logo';
 

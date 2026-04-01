@@ -138,6 +138,7 @@ export default function VideoRoom({ roomId, userName, userId }) {
             <div className="text-center space-y-2">
               <p className="text-2xl font-black text-white tracking-tight">Falha na Conexão</p>
               <p className="max-w-md text-zinc-400">{error}</p>
+              <p className="text-[10px] text-zinc-600 font-mono mt-2">Domínio detectado: {DAILY_DOMAIN}.daily.co</p>
             </div>
             <div className="flex gap-4">
               <Button onClick={() => window.location.reload()} className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8">
