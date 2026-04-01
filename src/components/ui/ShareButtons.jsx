@@ -18,19 +18,39 @@ const ShareButtons = ({ text = "Estou dominando o inglês com o Mango! 🥭" }) 
   };
 
   return (
-    <div className="flex flex-col gap-4 p-6 rounded-3xl bg-primary-light border border-primary/10">
-      <div className="flex items-center gap-2 text-primary">
-        <Share2 size={18} />
-        <span className="text-xs font-black uppercase tracking-widest">Desafie seus amigos</span>
-      </div>
-      <p className="text-sm font-medium text-zinc-600">Gostando do progresso? Compartilhe sua jornada!</p>
-      <div className="flex gap-2">
-        <Button variant="secondary" size="sm" onClick={shareLinkedIn} className="flex-1 bg-white">
-          <Linkedin size={16} /> LinkedIn
-        </Button>
-        <Button variant="secondary" size="sm" onClick={shareInstagram} className="flex-1 bg-white">
-          <Instagram size={16} /> Instagram
-        </Button>
+    <div className="relative overflow-hidden rounded-[2.5rem] bg-zinc-950/50 dark:bg-zinc-950/50 p-8 shadow-2xl border border-zinc-800/60 backdrop-blur-sm transition-all hover:scale-[1.01] hover:shadow-primary/5 group">
+      {/* Subtle background glow */}
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 h-64 w-64 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+      
+      <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 text-primary">
+            <Share2 size={20} className="drop-shadow-[0_0_8px_rgba(234,88,12,0.4)]" />
+            <span className="text-xs font-black uppercase tracking-widest">Desafie seus amigos</span>
+          </div>
+          <h3 className="text-xl font-bold text-white tracking-tight">Gostando do seu progresso?</h3>
+          <p className="text-sm font-medium text-zinc-400 max-w-md">
+            Compartilhe sua jornada de aprendizado no Flowlish e inspire outros a dominarem o inglês também! 🚀
+          </p>
+        </div>
+
+        <div className="flex flex-wrap gap-4">
+          <button 
+            onClick={shareLinkedIn}
+            className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-zinc-800/80 hover:bg-zinc-700 text-white font-bold text-sm transition-all hover:scale-105 active:scale-95 border border-zinc-700/50 shadow-lg"
+          >
+            <Linkedin size={20} className="text-blue-400" />
+            <span>Compartilhar</span>
+          </button>
+          
+          <button 
+            onClick={shareInstagram}
+            className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-zinc-800/80 hover:bg-zinc-700 text-white font-bold text-sm transition-all hover:scale-105 active:scale-95 border border-zinc-700/50 shadow-lg"
+          >
+            <Instagram size={20} className="text-pink-500" />
+            <span>Story</span>
+          </button>
+        </div>
       </div>
     </div>
   );

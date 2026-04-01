@@ -23,9 +23,7 @@ export async function completePracticeSession(clientUserId, chunkResults) {
         },
         update: {
           status: res.status,
-          lastReviewed: new Date(),
-          // Simple SRS increment (can be expanded)
-          timesReviewed: { increment: 1 }
+          lastReviewedAt: new Date()
         },
         create: {
           userId,
@@ -34,16 +32,6 @@ export async function completePracticeSession(clientUserId, chunkResults) {
         }
       })
     }))
-
-    // Record the session
-    await prisma.learningSession.create({
-      data: {
-        userId,
-        duration: 10, // Mock duration for now
-        chunksLearned: chunkResults.length,
-        xpEarned: chunkResults.length * 10 
-      }
-    })
 
     revalidatePath('/')
     revalidatePath('/dictionary')
@@ -130,8 +118,7 @@ export async function markChunkAsMastered(clientUserId, chunkId) {
       },
       update: {
         status: 'mastered',
-        lastReviewed: new Date(),
-        timesReviewed: { increment: 1 }
+        lastReviewedAt: new Date()
       },
       create: {
         userId,
@@ -149,14 +136,21 @@ export async function markChunkAsMastered(clientUserId, chunkId) {
   }
 }
 
-export async function claimActivityReward(clientUserId, xp) {
+export async function claimActivityReward(clientUserId, xp, activityType = 'General') {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) return { success: false, error: "Unauthorized" };
     const userId = session.user.id;
 
-    console.log(`User ${userId} claimed ${xp} XP`);
-    // Logic to increment User.totalXP if we add it to the schema later
+    // Save XP earned to LearningSession for the correct total
+    await prisma.learningSession.create({
+      data: {
+        userId,
+        sessionType: activityType,
+        score: Math.round(xp)
+      }
+    });
+
     revalidatePath('/')
     return { success: true };
   } catch (error) {

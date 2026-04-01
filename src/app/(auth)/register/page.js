@@ -5,6 +5,7 @@ import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { registerUser } from "@/actions/auth";
 import { signIn } from "next-auth/react";
+import { Camera } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -13,6 +14,8 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +28,15 @@ export default function RegisterPage() {
       return;
     }
 
-    const { success, error: serverError } = await registerUser({ name, email, password });
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
+    const { success, error: serverError } = await registerUser(formData);
 
     if (!success) {
       setError(serverError);
@@ -64,6 +75,34 @@ export default function RegisterPage() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          <div className="flex flex-col items-center mb-6">
+            <div 
+              className="relative h-24 w-24 rounded-full border-2 border-dashed border-zinc-300 dark:border-zinc-700 flex items-center justify-center overflow-hidden bg-zinc-50 dark:bg-zinc-800/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer group shadow-sm"
+              onClick={() => document.getElementById('avatarUpload').click()}
+            >
+              {imagePreview ? (
+                <img src={imagePreview} className="w-full h-full object-cover transition-transform group-hover:scale-110" alt="Preview" />
+              ) : (
+                <div className="flex flex-col items-center gap-1 text-zinc-400">
+                  <Camera size={24} />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Foto</span>
+                </div>
+              )}
+            </div>
+            <input 
+              id="avatarUpload" 
+              type="file" 
+              accept="image/*" 
+              className="hidden" 
+              onChange={(e) => {
+                if (e.target.files && e.target.files[0]) {
+                  setImageFile(e.target.files[0]);
+                  setImagePreview(URL.createObjectURL(e.target.files[0]));
+                }
+              }} 
+            />
+          </div>
+
           <div className="space-y-2">
             <label className="text-xs font-black tracking-widest uppercase text-zinc-400">Nome Mágico</label>
             <input

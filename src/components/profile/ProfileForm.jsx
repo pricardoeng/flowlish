@@ -1,9 +1,10 @@
 "use client"
 import React, { useState } from 'react';
 import Button from '@/components/ui/Button';
-import { User, Mail, Target, Award, Bell, LogOut, Check, Sparkles } from 'lucide-react';
+import { User, Mail, Target, Award, Bell, LogOut, Check, Sparkles, Camera } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { updateUserProfile } from '@/actions/learning';
+import { uploadProfilePicture } from '@/actions/auth';
 import { useModals } from '@/context/ModalContext';
 
 const ProfileForm = ({ user }) => {
@@ -16,13 +17,33 @@ const ProfileForm = ({ user }) => {
   });
   const [isSaving, setIsSaving] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [avatarSrc, setAvatarSrc] = useState(`/uploads/${user.id}.jpg`);
+  const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
 
   const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
   const goals = [
-    { id: 'Casual', label: 'Casual', desc: '5 min/dia' },
-    { id: 'Regular', label: 'Regular', desc: '15 min/dia' },
-    { id: 'Intenso', label: 'Intenso', desc: '30+ min/dia' }
+    { id: 'Casual', label: 'Casual', desc: '4 Chunks / dia' },
+    { id: 'Regular', label: 'Regular', desc: '8 Chunks / dia' },
+    { id: 'Intenso', label: 'Intenso', desc: '12 Chunks / dia' }
   ];
+
+  const handlePhotoChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setIsUploadingPhoto(true);
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const res = await uploadProfilePicture(formData);
+    setIsUploadingPhoto(false);
+
+    if (res.success && res.avatarUrl) {
+      setAvatarSrc(res.avatarUrl); // Timestamp ensures cache break
+    } else {
+      alert("Falha ao salvar a imagem. Tente novamente.");
+    }
+  };
 
   const handleSave = async () => {
     setIsSaving(true);
@@ -57,6 +78,53 @@ const ProfileForm = ({ user }) => {
         </div>
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 h-64 w-64 rounded-full bg-primary/20 blur-3xl group-hover:bg-primary/30 transition-colors"></div>
       </section>
+
+      {/* Profile Form */}
+      <section className="rounded-[2.5rem] bg-white dark:bg-zinc-950 p-8 shadow-sm border border-zinc-100 dark:border-zinc-800 transition-colors">
+        <div className="space-y-8">
+          {/* Avatar Section */}
+          <div className="flex items-center gap-6 pb-8 border-b border-zinc-100 dark:border-zinc-800 relative">
+            <div 
+              className="group relative h-24 w-24 rounded-full border-4 border-zinc-50 dark:border-zinc-900 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center overflow-hidden shadow-sm cursor-pointer transition-transform hover:scale-105"
+              onClick={() => document.getElementById('profilePhotoUpload').click()}
+            >
+              <img 
+                src={avatarSrc} 
+                alt="Profile" 
+                className={cn("w-full h-full object-cover", isUploadingPhoto && "opacity-50 blur-sm")}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="absolute inset-0 items-center justify-center hidden bg-zinc-100 dark:bg-zinc-800">
+                <User size={32} className="text-zinc-400" />
+              </div>
+
+              {/* Upload Hover Overlay */}
+              <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <Camera size={24} className="text-white mb-1" />
+                <span className="text-[8px] font-black uppercase text-white tracking-widest">Alterar</span>
+              </div>
+            </div>
+            
+            <input 
+              id="profilePhotoUpload"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handlePhotoChange}
+            />
+
+            <div>
+              <h3 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Sua Foto</h3>
+              <p className="text-sm font-medium text-zinc-500">
+                {isUploadingPhoto ? "Enviando fotinha nova..." : "Clique na foto para alterar seu avatar atual."}
+              </p>
+            </div>
+          </div>
+
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         {/* Basic Info */}
@@ -153,6 +221,8 @@ const ProfileForm = ({ user }) => {
            {isSaving ? "Salvando..." : isSaved ? <><Check size={18} /> Salvo!</> : "Salvar Alterações"}
         </Button>
       </div>
+        </div>
+      </section>
     </div>
   );
 };

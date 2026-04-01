@@ -1,27 +1,29 @@
 "use client"
 import React, { useState, useEffect, useMemo } from 'react';
-import { X, Mic, Edit3, Languages, HelpCircle, Award, Timer } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { X, Mic, Edit3, Languages, HelpCircle, Award, Timer, Volume2, CheckCircle2, Layers, RotateCcw, MicOff, Activity } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
-import { claimActivityReward } from '@/actions/learning';
+import { claimActivityReward, markChunkAsMastered } from '@/actions/learning';
 
 const ACTIVITY_LABELS = {
-  'Pronúncia': 'Pronúncia',
+  'Flashcards': 'Flashcards',
+  'Praticar': 'Praticar',
   'Escrita': 'Escrita',
-  'Tradução': 'Tradução',
   'Rápido': 'Quiz',
 };
 
 const ACTIVITY_ICONS = {
-  'Pronúncia': Mic,
+  'Flashcards': Layers,
+  'Praticar': Mic,
   'Escrita': Edit3,
-  'Tradução': Languages,
   'Rápido': HelpCircle,
 };
 
 const QUIZ_DURATION = 10;
 
 const RecommendationActivity = ({ activity, onClose, userId }) => {
+  const router = useRouter();
   const [stage, setStage] = useState('intro'); // intro | active | success
   const [input, setInput] = useState('');
   const [isFlipped, setIsFlipped] = useState(false);
@@ -31,8 +33,15 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
   const [timeLeft, setTimeLeft] = useState(QUIZ_DURATION);
   const [timedOut, setTimedOut] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+  const [wasCorrect, setWasCorrect] = useState(null); // null | true | false
+  const [selectedWords, setSelectedWords] = useState([]);
+  const [availableWords, setAvailableWords] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const chunk = activity.chunk || { englishText: 'Sample phrase', portugueseTranslation: 'Frase de exemplo' };
+  const chunks = activity.chunks || [activity.chunk || { englishText: 'Sample phrase', portugueseTranslation: 'Frase de exemplo', id: 'sample' }];
+  const chunk = chunks[currentIndex];
 
   // Whether this activity type should hide the answer (english text) from the header
   const hidesAnswer = activity.tipo === 'Escrita';
@@ -40,9 +49,28 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
   // Build quiz options once, stable across renders
   const quizOptions = useMemo(() => {
     const correct = { label: chunk.portugueseTranslation, correct: true };
-    const wrong = (activity.distractors || []).map(d => ({ label: d, correct: false }));
+    // Use other chunks from the session as distractors if available
+    const otherChunks = chunks.filter(c => c.id !== chunk.id);
+    const distractors = otherChunks.length > 0 
+      ? otherChunks.map(c => c.portugueseTranslation)
+      : (activity.distractors || []);
+    
+    const wrong = distractors.slice(0, 3).map(d => ({ label: d, correct: false }));
     return [...wrong, correct].sort(() => Math.random() - 0.5);
-  }, [chunk.portugueseTranslation, activity.distractors]);
+  }, [chunk.id, chunk.portugueseTranslation, activity.distractors, chunks]);
+
+  // Prepare Sentence Builder words
+  useEffect(() => {
+    if (activity.tipo === 'Escrita' && stage === 'active') {
+      const words = chunk.englishText
+        .split(' ')
+        .map((w, i) => ({ id: i, text: w }));
+      
+      // Shuffle words
+      setAvailableWords([...words].sort(() => Math.random() - 0.5));
+      setSelectedWords([]);
+    }
+  }, [activity.tipo, stage, chunk.englishText]);
 
   // Quiz countdown timer
   useEffect(() => {
@@ -55,13 +83,173 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
     return () => clearInterval(id);
   }, [stage, timeLeft, activity.tipo, timedOut]);
 
+  const playAudio = (text) => {
+    if (isPlayingAudio) return;
+    setIsPlayingAudio(true);
+    window.speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'en-US';
+    utt.rate = 0.85;
+    const voices = window.speechSynthesis.getVoices();
+    const best = voices.find(v => (v.name.includes('Google') || v.name.includes('Samantha')) && v.lang.startsWith('en'));
+    if (best) utt.voice = best;
+    utt.onend = () => setIsPlayingAudio(false);
+    utt.onerror = () => setIsPlayingAudio(false);
+    window.speechSynthesis.speak(utt);
+  };
+
+  const handleNext = () => {
+    if (currentIndex < chunks.length - 1) {
+      setCurrentIndex(prev => prev + 1);
+      // Reset local chunk state
+      setFeedback(null);
+      setIsFlipped(false);
+      setShowHint(false);
+      setWasCorrect(null);
+      setSelectedWords([]);
+      setAvailableWords([]);
+      setTimeLeft(QUIZ_DURATION);
+      setTimedOut(false);
+      setSelectedWrong(null);
+    } else {
+      setStage('success');
+    }
+  };
+
+  // Track per-activity-type completion in localStorage (avoids shared counter bug)
+  const trackActivityProgress = () => {
+    const today = new Date().toLocaleDateString('en-CA');
+    const key = `flowlish:activity:${userId}:${activity.tipo}:${today}`;
+    const current = parseInt(localStorage.getItem(key) || '0');
+    localStorage.setItem(key, String(current + 1));
+  };
+
   const handleComplete = async () => {
-    await claimActivityReward(userId, activity.recompensa_xp);
-    setStage('success');
+    await markChunkAsMastered(userId, chunk.id);
+    trackActivityProgress();
+    handleNext();
+  };
+
+  const handleClaimFinal = async () => {
+    await claimActivityReward(userId, activity.recompensa_xp, activity.tipo);
+  };
+
+  // Trigger final reward when success stage is reached
+  useEffect(() => {
+    if (stage === 'success') {
+      handleClaimFinal();
+    }
+  }, [stage]);
+
+  const startRecording = () => {
+    if (isRecording) return;
+    
+    // Check for SpeechRecognition support
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Seu navegador não suporta reconhecimento de voz. Tente usar o Chrome.");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onstart = () => {
+      setIsRecording(true);
+      setWasCorrect(null);
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      
+      const normalize = s => s
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, '') // Remove all non-alphanumeric except spaces
+        .replace(/\s+/g, ' ');       // Collapse multiple spaces
+      
+      const original = normalize(chunk.englishText);
+      const spoken = normalize(transcript);
+
+      // Word-based comparison (80% threshold)
+      const originalWords = original.split(' ');
+      const spokenWords = spoken.split(' ');
+      
+      let matches = 0;
+      originalWords.forEach(word => {
+        if (spokenWords.includes(word)) matches++;
+      });
+
+      const ratio = matches / originalWords.length;
+      
+      console.log('Original:', original, 'Spoken:', spoken, 'Ratio:', ratio);
+
+      if (ratio >= 0.8) {
+        setWasCorrect(true);
+        setFeedback('success');
+      } else {
+        setWasCorrect(false);
+        setFeedback('error');
+        setTimeout(() => setFeedback(null), 4000);
+      }
+    };
+
+    recognition.onerror = () => {
+      setIsRecording(false);
+      setFeedback('error');
+    };
+
+    recognition.onend = () => {
+      setIsRecording(false);
+    };
+
+    recognition.start();
   };
 
   const Icon = ACTIVITY_ICONS[activity.tipo] || HelpCircle;
   const label = ACTIVITY_LABELS[activity.tipo] || activity.tipo;
+
+  const renderHeader = () => (
+    <div className="flex items-center justify-between px-8 pt-8 pb-5 border-b border-zinc-50 dark:border-zinc-800 transition-colors">
+      <div className="flex items-center gap-3">
+        <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+          <Icon size={20} />
+        </div>
+        <div>
+          <div className="flex items-center gap-2 mb-0.5">
+            <p className="text-[10px] font-black uppercase tracking-widest text-primary">{label}</p>
+            <div className="flex gap-1 items-center ml-1">
+              {chunks.map((_, i) => (
+                <div 
+                  key={i} 
+                  className={cn(
+                    "h-1 w-2.5 rounded-full transition-all duration-500",
+                    i === currentIndex ? "bg-primary w-5" : i < currentIndex ? "bg-primary/40" : "bg-zinc-200 dark:bg-zinc-800"
+                  )} 
+                />
+              ))}
+              <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest ml-1">
+                {currentIndex + 1}/{chunks.length}
+              </span>
+            </div>
+          </div>
+          {hidesAnswer ? (
+            <h2 className="text-lg font-black text-zinc-900 dark:text-zinc-100 leading-tight">Desafio de {label}</h2>
+          ) : (
+            <h2 className="text-lg font-black text-zinc-900 dark:text-zinc-100 leading-tight line-clamp-1">{chunk.englishText}</h2>
+          )}
+        </div>
+      </div>
+      <button
+        onClick={onClose}
+        className="rounded-full p-2 text-zinc-300 hover:bg-zinc-100 hover:text-zinc-900 transition-all"
+      >
+        <X size={22} />
+      </button>
+    </div>
+  );
 
   // ── Success screen ───────────────────────────────────────────────────────────
   if (stage === 'success') {
@@ -72,13 +260,20 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
             🏆
           </div>
           <div className="space-y-2">
-            <h2 className="text-3xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight">Muito bem!</h2>
+            <h2 className="text-3xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight">Sessão Concluída!</h2>
             <p className="text-zinc-500 dark:text-zinc-400 font-medium">
-              Você concluiu o desafio e ganhou{' '}
-              <span className="text-primary font-black">+{activity.recompensa_xp} XP</span>
+              Você completou {chunks.length} chunks e ganhou{' '}
+              <span className="text-primary font-black">+{Math.round(activity.recompensa_xp)} XP</span>
             </p>
           </div>
-          <Button size="lg" className="w-full" onClick={onClose}>
+          <Button 
+            size="lg" 
+            className="w-full" 
+            onClick={() => {
+              router.refresh();
+              onClose();
+            }}
+          >
             Continuar
           </Button>
         </div>
@@ -90,15 +285,14 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
   const renderPronuncia = () => (
     <div className="space-y-6 py-4 text-center">
       <div className="mx-auto h-24 w-24 rounded-full bg-primary/10 flex items-center justify-center text-primary relative">
-        <Mic size={40} className={cn(isListening && 'animate-pulse')} />
-        {isListening && (
+        {isRecording ? <Activity size={40} className="animate-pulse" /> : <Mic size={40} />}
+        {isRecording && (
           <div className="absolute inset-0 rounded-full border-4 border-primary animate-ping opacity-20" />
         )}
       </div>
       <div className="space-y-2">
         <p className="text-xs font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Ouça e repita:</p>
         <h3 className="text-2xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight">"{chunk.englishText}"</h3>
-        {/* Show translation only as hint */}
         <button
           onClick={() => setShowHint(h => !h)}
           className="inline-flex items-center gap-1.5 text-sm font-bold text-zinc-400 dark:text-zinc-500 hover:text-primary transition-colors"
@@ -107,70 +301,138 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
           {showHint ? chunk.portugueseTranslation : 'Ver tradução'}
         </button>
       </div>
-      <button
-        onMouseDown={(e) => {
-          e.preventDefault();
-          if (isListening) return;
-          setIsListening(true);
-          setFeedback(null);
-          
-          window.speechSynthesis.cancel();
-          const utt = new SpeechSynthesisUtterance(chunk.englishText);
-          utt.lang = 'en-US';
-          utt.rate = 0.8;
-          
-          const voices = window.speechSynthesis.getVoices();
-          const best = voices.find(v => (v.name.includes('Google') || v.name.includes('Samantha')) && v.lang.startsWith('en'));
-          if (best) utt.voice = best;
-          
-          utt.onend = () => {
-            setIsListening(false);
-            setFeedback('success');
-            // Auto-complete the recommendation flow in the background
-            handleComplete();
-          };
-          
-          window.speechSynthesis.speak(utt);
-        }}
-        className="w-full h-16 rounded-2xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-bold text-lg active:scale-95 transition-all select-none flex items-center justify-center gap-2"
-      >
-        {isListening ? (
-           <span className="flex items-center gap-2 animate-pulse"><Volume2 size={24} /> Tocando...</span>
-        ) : (
-           <span className="flex items-center gap-2"><Volume2 size={24} /> Ouvir Pronúncia</span>
-        )}
-      </button>
-      {feedback === 'success' && (
-        <div className="space-y-3 mt-4 text-center">
-          <p className="text-primary font-black text-lg flex items-center justify-center gap-2">
-            <CheckCircle2 size={20} /> Concluído!
-          </p>
+
+      <div className="grid grid-cols-1 gap-4">
+        {/* Play Audio Button */}
+        <button
+          onClick={() => playAudio(chunk.englishText)}
+          className="w-full h-14 rounded-2xl bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white font-bold flex items-center justify-center gap-2 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+        >
+          <Volume2 size={20} className={isPlayingAudio ? 'animate-pulse' : ''} />
+          {isPlayingAudio ? 'Tocando...' : 'Ouvir Pronúncia'}
+        </button>
+
+        {/* Record Speech Button */}
+        <button
+          onClick={startRecording}
+          disabled={isRecording || wasCorrect === true}
+          className={cn(
+            "w-full h-16 rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-2 shadow-lg",
+            isRecording 
+              ? "bg-red-500 text-white animate-pulse" 
+              : wasCorrect === true 
+                ? "bg-emerald-500 text-white" 
+                : "bg-primary text-white shadow-primary/20 hover:scale-[1.02] active:scale-95"
+          )}
+        >
+          {isRecording ? (
+            <> <MicOff size={24} /> Gravando... </>
+          ) : wasCorrect === true ? (
+            <> <CheckCircle2 size={24} /> Pronúncia Correta! </>
+          ) : (
+            <> <Mic size={24} /> Pressionar para falar </>
+          )}
+        </button>
+      </div>
+
+      {feedback === 'error' && (
+        <p className="text-red-500 font-bold text-sm animate-bounce">
+          ✗ Pronúncia não identificada. Tente falar mais claro.
+        </p>
+      )}
+
+      {wasCorrect === true && (
+        <div className="space-y-4 mt-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+          <div className="h-px bg-zinc-100 dark:bg-zinc-800 w-full" />
+          <p className="text-sm font-bold text-zinc-500 dark:text-zinc-400">Você já memorizou este chunk?</p>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              onClick={onClose}
+              className="px-6 py-3.5 rounded-2xl border-2 border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 font-bold hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+            >
+              Ainda não
+            </button>
+            <button
+              onClick={async () => {
+                await markChunkAsMastered(userId, chunk.id);
+                handleComplete();
+              }}
+              className="px-6 py-3.5 rounded-2xl bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2"
+            >
+              <CheckCircle2 size={18} />
+              Já decorei!
+            </button>
+          </div>
         </div>
       )}
     </div>
   );
 
   const renderEscrita = () => (
-    <div className="space-y-5 py-4">
+    <div className="space-y-6 py-4">
       <div className="flex flex-col gap-1 p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-700 transition-colors">
         <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Traduza para inglês:</p>
         <p className="text-xl font-bold text-zinc-900 dark:text-zinc-100 italic">"{chunk.portugueseTranslation}"</p>
       </div>
-      <textarea
-        value={input}
-        onChange={e => setInput(e.target.value)}
-        placeholder="Escreva o chunk em inglês..."
-        className="w-full h-28 rounded-2xl border border-zinc-200 dark:border-zinc-700 p-4 font-medium outline-none focus:border-primary transition-all bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 resize-none"
-      />
 
-      {/* Hint button */}
-      <button
-        onClick={() => setShowHint(h => !h)}
-        className="flex items-center gap-2 text-sm font-bold text-zinc-400 dark:text-zinc-500 hover:text-primary transition-colors"
-      >
-        <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-current text-xs font-black">?</span>
-        {showHint ? 'Esconder dica' : 'Ver dica'}
-      </button>
+      {/* Selected Words Area */}
+      <div className="min-h-[80px] w-full rounded-2xl border-2 border-dashed border-zinc-200 dark:border-zinc-800 p-4 flex flex-wrap gap-2 transition-colors bg-white dark:bg-zinc-950/50">
+        {selectedWords.length === 0 && (
+          <p className="text-zinc-400 dark:text-zinc-600 text-sm font-medium italic">Clique nas palavras abaixo para montar a frase...</p>
+        )}
+        {selectedWords.map((word, idx) => (
+          <button
+            key={`selected-${word.id}-${idx}`}
+            onClick={() => {
+              setSelectedWords(prev => prev.filter((_, i) => i !== idx));
+              setAvailableWords(prev => [...prev, word]);
+            }}
+            className="px-4 py-2 rounded-xl bg-primary text-white font-bold text-sm shadow-sm hover:scale-95 transition-transform"
+          >
+            {word.text}
+          </button>
+        ))}
+      </div>
+
+      {/* Available Words Board */}
+      <div className="flex flex-wrap gap-2 justify-center py-2">
+        {availableWords.map((word) => (
+          <button
+            key={`avail-${word.id}`}
+            onClick={() => {
+              setSelectedWords(prev => [...prev, word]);
+              setAvailableWords(prev => prev.filter(w => w.id !== word.id));
+            }}
+            className="px-4 py-2 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 font-bold text-sm hover:border-primary hover:text-primary transition-all shadow-sm"
+          >
+            {word.text}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => setShowHint(h => !h)}
+          className="flex items-center gap-2 text-sm font-bold text-zinc-400 dark:text-zinc-500 hover:text-primary transition-colors"
+        >
+          <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-current text-xs font-black">?</span>
+          {showHint ? 'Esconder dica' : 'Ver dica'}
+        </button>
+
+        {selectedWords.length > 0 && (
+          <button
+            onClick={() => {
+              setAvailableWords(chunk.englishText.split(' ').map((w, i) => ({ id: i, text: w })));
+              setSelectedWords([]);
+            }}
+            className="flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-zinc-400 hover:text-red-500 transition-colors"
+          >
+            <RotateCcw size={14} />
+            Recomeçar
+          </button>
+        )}
+      </div>
+
       {showHint && (
         <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-500/10 border border-amber-100 dark:border-amber-500/20 text-amber-800 dark:text-amber-400 font-medium text-sm">
           💡 Dica: <span className="font-black italic">"{chunk.englishText}"</span>
@@ -182,14 +444,18 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
           ✗ Não é bem isso. Tente novamente ou use a dica acima.
         </div>
       )}
+
       <Button
         className="w-full"
+        disabled={selectedWords.length === 0}
         onClick={() => {
+          const result = selectedWords.map(w => w.text).join(' ');
           const normalize = s => s.trim().toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()'"]/, '');
-          if (normalize(input) === normalize(chunk.englishText)) {
+          if (normalize(result) === normalize(chunk.englishText)) {
             handleComplete();
           } else {
             setFeedback('error');
+            setTimeout(() => setFeedback(null), 2000);
           }
         }}
       >
@@ -223,6 +489,22 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
           </div>
         </div>
       </div>
+
+      {/* Audio button */}
+      <button
+        onClick={(e) => { e.stopPropagation(); playAudio(chunk.englishText); }}
+        className={cn(
+          'flex items-center gap-2 px-5 py-2.5 rounded-2xl border-2 font-bold text-sm transition-all',
+          isPlayingAudio
+            ? 'border-primary bg-primary/10 text-primary animate-pulse cursor-not-allowed'
+            : 'border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:border-primary hover:text-primary hover:bg-primary/5'
+        )}
+        disabled={isPlayingAudio}
+      >
+        <Volume2 size={18} className={isPlayingAudio ? 'animate-pulse' : ''} />
+        {isPlayingAudio ? 'Tocando...' : 'Ouvir pronúncia'}
+      </button>
+
       {/* Hint before flipping */}
       {!isFlipped && (
         <button
@@ -310,9 +592,9 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
 
   const renderModule = () => {
     switch (activity.tipo) {
-      case 'Pronúncia': return renderPronuncia();
+      case 'Praticar': return renderPronuncia();
       case 'Escrita': return renderEscrita();
-      case 'Tradução': return renderTraducao();
+      case 'Flashcards': return renderTraducao();
       case 'Rápido': return renderQuiz();
       default: return <div className="py-8 text-center text-zinc-400">Em breve...</div>;
     }
@@ -322,31 +604,8 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
   return (
     <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-md animate-fade-in transition-colors">
       <div className="relative w-full max-w-lg rounded-[2.5rem] bg-white dark:bg-zinc-900 shadow-2xl animate-scale-in overflow-hidden transition-colors">
-        {/* Header */}
-        <div className="flex items-center justify-between px-8 pt-8 pb-5 border-b border-zinc-50 dark:border-zinc-800 transition-colors">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-              <Icon size={20} />
-            </div>
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-primary">{label}</p>
-              {/* For writing exercises, don't show the English answer in the header */}
-              {hidesAnswer ? (
-                <div className="flex items-center gap-2">
-                  <h2 className="text-lg font-black text-zinc-900 dark:text-zinc-100 leading-tight">Desafio de {label}</h2>
-                </div>
-              ) : (
-                <h2 className="text-lg font-black text-zinc-900 dark:text-zinc-100 leading-tight">{chunk.englishText}</h2>
-              )}
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="rounded-full p-2 text-zinc-300 hover:bg-zinc-100 hover:text-zinc-900 transition-all"
-          >
-            <X size={22} />
-          </button>
-        </div>
+        {/* Header with Progress */}
+        {renderHeader()}
 
         {/* Body */}
         <div className="px-8 pb-8">
@@ -359,7 +618,7 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
                 <p className="text-zinc-500 dark:text-zinc-400 font-medium">
                   {activity.tipo === 'Rápido'
                     ? `Você tem ${QUIZ_DURATION} segundos para responder. Pense rápido!`
-                    : `Esta atividade dura cerca de ${activity.duracao} min e reforça seu aprendizado.`}
+                    : `Esta atividade contém ${chunks.length} chunks e reforça seu aprendizado.`}
                 </p>
               </div>
               <Button size="lg" className="w-full h-14" onClick={() => setStage('active')}>

@@ -22,6 +22,7 @@ model User {
   testSessions     TestSession[]
   progress         UserChunkProgress[]
   wordProgress     UserWordProgress[]
+  speechQueues     SpeechQueue[]
 }
 
 model Chunk {
@@ -88,6 +89,16 @@ model LearningSession {
   sessionType String
   score       Int
   user        User     @relation(fields: [userId], references: [id])
+}
+
+model SpeechQueue {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  status    String   @default("waiting") // 'waiting', 'matched', 'completed'
+  roomId    String?  
+  targetId  String?  
+  createdAt DateTime @default(now())
 }
 
 model TestSession {

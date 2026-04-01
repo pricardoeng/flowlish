@@ -1,3 +1,4 @@
+// Flowlish Prisma Client Singleton
 import { PrismaClient } from '@prisma/client'
 
 const prismaClientSingleton = () => {
@@ -8,6 +9,7 @@ const globalForPrisma = globalThis
 
 const prisma = globalForPrisma.prisma ?? prismaClientSingleton()
 
-export default prisma
-
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+
+// Exported client instance
+export default prisma;

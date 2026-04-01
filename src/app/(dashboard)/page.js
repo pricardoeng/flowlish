@@ -1,11 +1,12 @@
 import React from 'react';
 import prisma from '@/lib/prisma';
+import Link from "next/link";
 import StreakCard from '@/components/dashboard/StreakCard';
 import MasteryCard from '@/components/dashboard/MasteryCard';
 import WeeklyGoal from '@/components/dashboard/WeeklyGoal';
 import RecommendationCard from '@/components/dashboard/RecommendationCard';
 import Button from '@/components/ui/Button';
-import { LayoutGrid, TrendingUp, Sparkles, ArrowRight } from 'lucide-react';
+import { LayoutGrid, TrendingUp, Sparkles, ArrowRight, Video } from 'lucide-react';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
@@ -25,57 +26,175 @@ export default async function Dashboard() {
 
   if (!user) return <div>Usuário não encontrado. Por favor, execute o seed.</div>;
 
-  // Calculate stats
-  const xp = 1240; // Simplified for now
-  const streaks = 15; // Simplified for now
+  // Real XP: sum of all LearningSession scores (starts at 0, grows with each activity)
+  const xp = user.learningSessions.reduce((sum, s) => sum + (s.score || 0), 0);
   
-  // Calculate mastery by level
-  const mastery = { A1: 0, A2: 0, B1: 0, B2: 0, C1: 0, C2: 0 };
-  const totalChunksByLevel = { A1: 50, A2: 100, B1: 200, B2: 300, C1: 400, C2: 500 }; // Mock denominators
+  // Real streaks: sum of all unique days the user did an activity
+  const activeDays = new Set();
+  user.learningSessions.forEach(s => {
+    if (s.date) {
+      // Map correctly to distinct ISO date strings like '2023-10-15'
+      activeDays.add(new Date(s.date).toISOString().split('T')[0]);
+    }
+  });
   
-  user.progress.forEach(p => {
-    if (p.status === 'mastered') {
-       // Logic to map chunk back to level would go here
-       // For now keeping simpler or fetching joined
+  const streaks = activeDays.size;
+
+  const todayDate = new Date();
+  const currentDayOfWeek = (todayDate.getDay() + 6) % 7; // 0=Mon, 6=Sun
+  const startOfWeek = new Date(todayDate);
+  startOfWeek.setDate(todayDate.getDate() - currentDayOfWeek);
+  startOfWeek.setHours(0, 0, 0, 0);
+
+  const startOfMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+
+  // General leaderboard with all requested stats
+  const allUsers = await prisma.user.findMany({
+    include: { 
+      learningSessions: { select: { score: true, date: true } },
+      progress: { where: { status: 'mastered' }, select: { id: true } }
     }
   });
 
-  // Fetch real activities from "chunks" as recommendations
-  // Fetch chunks for activities – always get at least 10, ignoring level if needed
-  let chunksForActivities = await prisma.chunk.findMany({
-    take: 12,
-    where: { cefrLevel: user.currentLevel || 'A1' }
+  const leaderboard = allUsers
+    .map(u => {
+      let xpTotal = 0;
+      let xpWeek = 0;
+      let xpMonth = 0;
+      
+      u.learningSessions.forEach(ls => {
+        xpTotal += ls.score || 0;
+        const d = new Date(ls.date);
+        if (d >= startOfWeek) xpWeek += ls.score || 0;
+        if (d >= startOfMonth) xpMonth += ls.score || 0;
+      });
+
+      return {
+        id: u.id,
+        name: u.name || 'Anônimo',
+        xpTotal,
+        xpWeek,
+        xpMonth,
+        chunks: u.progress.length,
+        isCurrentUser: u.id === user.id
+      };
+    })
+    .sort((a, b) => b.xpTotal - a.xpTotal);
+  
+  // Calculate Weekly Evolution data (Mon-Sun)
+  const weeklyChunks = [0, 0, 0, 0, 0, 0, 0];
+  const weeklyXp = [0, 0, 0, 0, 0, 0, 0];
+  let totalWeekChunks = 0;
+
+  user.progress.forEach(p => {
+    if (p.status === 'mastered' && p.lastReviewedAt) {
+      const d = new Date(p.lastReviewedAt);
+      if (d >= startOfWeek) {
+        const dayIdx = (d.getDay() + 6) % 7;
+        weeklyChunks[dayIdx]++;
+        totalWeekChunks++;
+      }
+    }
   });
 
-  // Fallback: if not enough chunks at this level, grab from all levels
-  if (chunksForActivities.length < 4) {
-    chunksForActivities = await prisma.chunk.findMany({ take: 12 });
-  }
+  user.learningSessions.forEach(s => {
+    if (s.date) {
+      const d = new Date(s.date);
+      if (d >= startOfWeek) {
+        const dayIdx = (d.getDay() + 6) % 7;
+        weeklyXp[dayIdx] += (s.score || 0);
+      }
+    }
+  });
+  
+  // Calculate mastery by level — fetch real data
+  const [allChunksByLevel, masteredProgress] = await Promise.all([
+    prisma.chunk.groupBy({ by: ['cefrLevel'], _count: { id: true } }),
+    prisma.userChunkProgress.findMany({
+      where: { userId: user.id, status: 'mastered' },
+      include: { chunk: { select: { cefrLevel: true } } }
+    })
+  ]);
 
-  // Shuffle and pick exactly 4 (one per activity type)
-  const shuffled = [...chunksForActivities].sort(() => 0.5 - Math.random());
-  const selectedChunks = shuffled.slice(0, 4);
+  // Build masteryData: { A1: { total, mastered, percent }, ... }
+  const masteryData = {};
+  allChunksByLevel.forEach(({ cefrLevel, _count }) => {
+    const mastered = masteredProgress.filter(p => p.chunk.cefrLevel === cefrLevel).length;
+    masteryData[cefrLevel] = {
+      total: _count.id,
+      mastered,
+      percent: _count.id > 0 ? Math.round((mastered / _count.id) * 100) : 0
+    };
+  });
 
-  const activityTypes = ['Pronúncia', 'Escrita', 'Tradução', 'Rápido'];
-  // Always produce 4 activities, cycling chunks if less than 4 available
+
+  // Map user goal to activity count
+  const goalLimits = {
+    'Casual': 4,
+    'Regular': 8,
+    'Intenso': 12
+  };
+  const limit = goalLimits[user.goal] || 4;
+
+  // Fetch real chunks for the daily activities – add ORDER BY for stability
+  let chunksForActivities = await prisma.chunk.findMany({
+    take: limit,
+    where: { cefrLevel: user.currentLevel || 'A1' },
+    orderBy: { id: 'asc' }
+  });
+
+  // Date seed logic – ensuring it's stable and deterministic for the day
+  const today = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
+  const seedString = `${today}-${user.id}`;
+  
+  // Deterministic LCG-based random number generator
+  const seededRandom = (seed) => {
+    let hash = 0;
+    for (let i = 0; i < seed.length; i++) hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+    return () => {
+      hash = (hash * 1664525 + 1013904223) % 4294967296;
+      return hash / 4294967296;
+    };
+  };
+
+  const rng = seededRandom(seedString);
+
+  // Robust Fisher-Yates shuffle with seeded RNG
+  const shuffle = (array) => {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  };
+
+  const shuffled = shuffle(chunksForActivities);
+  const activityTypes = ['Flashcards', 'Praticar', 'Escrita', 'Rápido'];
+
+  // Calculate mastered count within this fixed daily pool
+  const shuffledIds = shuffled.map(c => c.id);
+  const masteredInPool = user.progress.filter(p => shuffledIds.includes(p.chunkId) && p.status === 'mastered');
+  const masteredCount = masteredInPool.length;
+
+  // Map to precisely 4 session cards
   const recommendations = activityTypes.map((tipo, i) => {
-    const chunk = selectedChunks[i] || selectedChunks[0];
+    const baseXP = [50, 120, 80, 40][i];
+
     return {
-      id: `${chunk.id}-${tipo}`,
+      id: `session-${tipo}`,
       tipo,
-      subtitulo: chunk.englishText,
-      duracao: [8, 15, 12, 5][i],
-      recompensa_xp: [50, 120, 80, 40][i],
+      subtitulo: `${shuffled.length} chunks • Prática de ${tipo === 'Rápido' ? 'Quiz' : tipo}`,
+      recompensa_xp: Math.round(baseXP * (shuffled.length / 4)),
       status: 'Disponível',
-      chunk: {
+      masteredCount,
+      totalCount: shuffled.length,
+      isCompleted: masteredCount >= shuffled.length,
+      chunks: shuffled.map(chunk => ({
         englishText: chunk.englishText,
         portugueseTranslation: chunk.portugueseTranslation,
         id: chunk.id
-      },
-      distractors: shuffled
-        .filter(c => c.id !== chunk.id)
-        .slice(0, 2)
-        .map(c => c.portugueseTranslation)
+      }))
     };
   });
 
@@ -116,8 +235,34 @@ export default async function Dashboard() {
       {/* Main Progress Grid */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <StreakCard streaks={streaks} />
-        <WeeklyGoal percent={75} />
+        <WeeklyGoal userId={user.id} goalLimit={limit} />
       </div>
+
+      {/* Live Speaking Matchmaking CTA */}
+      <Link href="/practice/speaking" className="block group">
+        <section className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-orange-500 via-primary to-orange-700 p-8 md:p-12 shadow-2xl transition-transform hover:scale-[1.01] hover:shadow-primary/30">
+          <div className="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 h-96 w-96 rounded-full bg-white/10 blur-3xl pointer-events-none" />
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 font-bold text-white text-xs tracking-widest uppercase">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                </span>
+                Novo Recurso!
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">Pratique Inglês Ao Vivo</h2>
+              <p className="text-orange-100 max-w-lg text-lg">
+                Esqueça o medo de falar. Entre no Speakeasy Room, conecte-se com outro estudante e pratique cara a cara agora mesmo.
+              </p>
+            </div>
+            
+            <div className="shrink-0 flex items-center justify-center p-6 bg-white rounded-3xl group-hover:bg-zinc-900 group-hover:text-primary transition-colors text-zinc-900">
+              <Video className="w-16 h-16" />
+            </div>
+          </div>
+        </section>
+      </Link>
 
       {/* Recommended Section */}
       <section className="space-y-6">
@@ -137,35 +282,30 @@ export default async function Dashboard() {
         </div>
       </section>
 
-      {/* Secondary Stats Grid */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2">
-          <MasteryCard mastery={mastery} />
-        </div>
+      {/* Secondary Stats Grid: Mastery and Weekly Evolution side-by-side */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <MasteryCard masteryData={masteryData} />
         
-        {/* Weekly Chart Placeholder */}
-        <div className="space-y-6">
-          <div className="rounded-[2.5rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm transition-colors">
-            <h3 className="text-lg font-black text-zinc-900 dark:text-zinc-100 mb-4 tracking-tight">Evolução Semanal</h3>
-            <div className="mt-10 flex h-32 items-end justify-between gap-2">
-              {[40, 70, 45, 90, 65, 80, 50].map((h, i) => (
-                <div key={i} className="group relative flex flex-1 flex-col items-center">
-                  <div 
-                    className="w-full rounded-t-lg bg-primary/20 transition-all hover:bg-primary"
-                    style={{ height: `${h}%` }}
-                  />
-                  <span className="mt-2 text-[10px] font-black text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">
-                    {['S','T','Q','Q','S','S','D'][i]}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <ShareButtons />
-        </div>
+        {/* Weekly Chart */}
+        <WeeklyEvolution chunks={weeklyChunks} xp={weeklyXp} total={totalWeekChunks} />
+      </div>
+
+      {/* Share Section (Full width below) */}
+      <div className="mt-6">
+        <ShareButtons />
+      </div>
+
+      {/* Leaderboard Section (At the Bottom) */}
+
+      {/* Leaderboard Section (Moved to Bottom) */}
+      <div className="mt-8">
+        <LeaderboardCard leaderboard={leaderboard} />
       </div>
     </div>
   );
 }
 
 import ShareButtons from '@/components/ui/ShareButtons';
+import LeaderboardCard from '@/components/dashboard/LeaderboardCard';
+import WeeklyEvolution from '@/components/dashboard/WeeklyEvolution';
+
