@@ -46,8 +46,7 @@ const UpgradeModal = ({ isOpen, onClose }) => {
 
           <div className="space-y-4">
             <div className="flex items-baseline justify-center gap-2">
-              <span className="text-zinc-400 font-bold text-lg line-through">R$ 599</span>
-              <span className="text-4xl font-black text-zinc-900 dark:text-white">R$ 300</span>
+              <span className="text-4xl font-black text-zinc-900 dark:text-white">R$ 1</span>
               <span className="rounded-lg bg-emerald-100 dark:bg-emerald-900/40 px-2 py-1 text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Vitalício</span>
             </div>
             <Button size="lg" className="w-full text-lg h-16 shadow-premium" onClick={handlePayment}>
