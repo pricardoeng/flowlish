@@ -63,8 +63,8 @@ export default function VideoRoom({ roomId, userName, userId }) {
             SHOW_WATERMARK_FOR_GUESTS: false,
           }}
           userInfo={{
-            displayName: userName || 'Estudante Flowlish',
-            email: `${userId}@flowlish.dev`
+            displayName: userName || 'Estudante Mango',
+            email: `${userId}@mango-speakeasy.dev`
           }}
           onApiReady={(externalApi) => {
             // When user hangs up standardly using Jitsi red button

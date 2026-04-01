@@ -5,7 +5,7 @@ import Lobby from "@/components/speaking/Lobby";
 import prisma from "@/lib/prisma";
 
 export const metadata = {
-  title: "Flowlish | Speakeasy Room",
+  title: "Mango | Speakeasy Room",
 };
 
 export default async function SpeakingLobbyPage() {

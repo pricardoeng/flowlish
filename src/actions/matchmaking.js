@@ -22,7 +22,7 @@ export async function joinQueue() {
 
     if (waitingMatch) {
       // We found a partner! Let's match them.
-      const roomId = `flowlish-room-${waitingMatch.id}-${Date.now()}`;
+      const roomId = `mango-speakeasy-${waitingMatch.id.slice(-8)}`;
       
       await prisma.speechQueue.update({
         where: { id: waitingMatch.id },

@@ -50,8 +50,12 @@ export default function Lobby({ user }) {
   return (
     <div className="bg-zinc-900 rounded-[2rem] border border-zinc-800 shadow-2xl p-8 text-center">
       <div className="flex justify-start mb-6">
-        <Button variant="ghost" className="text-zinc-400 hover:text-white" onClick={() => router.push('/')}>
-          <ArrowLeft size={20} className="mr-2" /> Voltar
+        <Button 
+          variant="ghost" 
+          className="bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:text-white transition-all rounded-xl px-4 py-2" 
+          onClick={() => router.push('/')}
+        >
+          <ArrowLeft size={18} className="mr-2" /> Voltar
         </Button>
       </div>
 
@@ -59,7 +63,7 @@ export default function Lobby({ user }) {
         <Video size={40} />
       </div>
 
-      <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Flowlish Speakeasy</h1>
+      <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Mango Speakeasy</h1>
       <p className="text-zinc-400 mb-8 max-w-sm mx-auto">
         Pratique conversação em inglês face a face com outro aluno(a). Sem amarras, sem julgamentos.
       </p>
