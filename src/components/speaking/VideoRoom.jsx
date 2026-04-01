@@ -11,7 +11,8 @@ export default function VideoRoom({ roomId, userName, userId }) {
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    console.log("Speakeasy Room Component Mounted:", { roomId, userName, userId });
+  }, [roomId, userName, userId]);
 
   // Helper method to gracefully escape the session
   const exitRoom = () => {
@@ -40,17 +41,20 @@ export default function VideoRoom({ roomId, userName, userId }) {
       </div>
 
       <div className="h-full w-full">
-        <JitsiMeeting
-          domain="meet.jit.si"
-          roomName={roomId}
-          configOverwrite={{
-            startWithAudioMuted: false,
-            startWithVideoMuted: false,
-            prejoinPageEnabled: false,
-            disableModeratorIndicator: true,
-            startScreenSharing: false,
-            enableEmailInStats: false,
-          }}
+        {roomId ? (
+          <JitsiMeeting
+            key={roomId}
+            domain="meet.jit.si"
+            roomName={roomId}
+            configOverwrite={{
+              startWithAudioMuted: false,
+              startWithVideoMuted: false,
+              prejoinPageEnabled: false,
+              disableModeratorIndicator: true,
+              startScreenSharing: false,
+              enableEmailInStats: false,
+              disableDeepLinking: true,
+            }}
           interfaceConfigOverwrite={{
             DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
             SHOW_PROMOTIONAL_CLOSE_PAGE: false,
@@ -68,12 +72,17 @@ export default function VideoRoom({ roomId, userName, userId }) {
               exitRoom();
             });
           }}
-          getIFrameRef={(iframeRef) => {
-            iframeRef.style.height = '100%';
-            iframeRef.style.width = '100%';
-            iframeRef.style.border = 'none';
-          }}
-        />
+            getIFrameRef={(iframeRef) => {
+              iframeRef.style.height = '100%';
+              iframeRef.style.width = '100%';
+              iframeRef.style.border = 'none';
+            }}
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center text-zinc-500 font-bold">
+            Erro: Identificação da sala ausente.
+          </div>
+        )}
       </div>
     </div>
   );
