@@ -10,12 +10,7 @@ export default async function SpeakingRoomPage({ params }) {
 
   const { roomId } = await params;
 
-  // We find if the room is real
-  const match = await prisma.speechQueue.findUnique({
-    where: { id: roomId.split('-')[2] || roomId } // Simple safety fallback
-  });
-
-  // Since we use roomId based on timestamp, it's safer to check the roomId field directly
+  // We find if the room is real by checking the roomId field in the database
   const matchByRoomId = await prisma.speechQueue.findFirst({
     where: { roomId: roomId }
   });

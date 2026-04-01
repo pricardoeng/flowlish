@@ -51,55 +51,71 @@ export async function joinQueue() {
     if (!session?.user) return { success: false, error: "Unauthorized" };
     const currentUserId = session.user.id;
 
-    // First, find if someone else is waiting
-    const waitingMatch = await prisma.speechQueue.findFirst({
-      where: {
-        status: "waiting",
-        userId: { not: currentUserId }
-      },
-      orderBy: { createdAt: "asc" }
-    });
-
-    if (waitingMatch) {
-      // We found a partner! Let's match them.
-      const roomName = `mango-${waitingMatch.id.slice(-8)}-${Date.now().toString().slice(-4)}`;
-      
-      // CREATE THE ROOM NATIVELY VIA DAILY API
-      const roomResult = await createDailyRoom(roomName);
-      if (!roomResult.success) {
-        return { success: false, error: "Erro ao criar sala de vídeo segura." };
-      }
-
-      await prisma.speechQueue.update({
-        where: { id: waitingMatch.id },
-        data: {
-          status: "matched",
-          targetId: currentUserId,
-          roomId: roomResult.name
-        }
-      });
-
-      return { success: true, matched: true, roomId: roomResult.name };
-    } else {
-      // Make sure we don't have dangling waiting entries
-      await prisma.speechQueue.deleteMany({
+    // Use a transaction to ensure atomicity during the matchmaking process
+    return await prisma.$transaction(async (tx) => {
+      // 1. Clean up any existing waiting entries for this user to avoid staleness
+      await tx.speechQueue.deleteMany({
         where: { userId: currentUserId, status: "waiting" }
       });
 
-      // Nobody waiting, so we create a waiting entry
-      await prisma.speechQueue.create({
-        data: {
-          userId: currentUserId,
-          status: "waiting"
-        }
+      // 2. Find if someone else is already waiting
+      const waitingMatch = await tx.speechQueue.findFirst({
+        where: {
+          status: "waiting",
+          userId: { not: currentUserId }
+        },
+        orderBy: { createdAt: "asc" }
       });
 
-      return { success: true, matched: false };
-    }
+      if (waitingMatch) {
+        // We found a partner! Let's pair them up.
+        // Simplified roomName: just mango_ + random suffix for stability
+        const roomName = `mango_${waitingMatch.id.slice(-6)}_${Date.now().toString().slice(-4)}`;
+        
+        // CREATE THE ROOM NATIVELY VIA DAILY API (Helper call, uses the key if available)
+        const roomResult = await createDailyRoom(roomName);
+        if (!roomResult.success) {
+          throw new Error("Falha ao criar sala de vídeo segura.");
+        }
+
+        // Update the waiting entry to match BOTH users
+        await tx.speechQueue.update({
+          where: { id: waitingMatch.id },
+          data: {
+            status: "matched",
+            targetId: currentUserId,
+            roomId: roomResult.name
+          }
+        });
+
+        // We also create a complementary 'matched' entry for User B (the joiner) 
+        // to make checkMatchStatus consistent for both sides if needed
+        await tx.speechQueue.create({
+          data: {
+            userId: currentUserId,
+            status: "matched",
+            targetId: waitingMatch.userId,
+            roomId: roomResult.name
+          }
+        });
+
+        return { success: true, matched: true, roomId: roomResult.name };
+      } else {
+        // Nobody waiting, so User B becomes the one waiting
+        await tx.speechQueue.create({
+          data: {
+            userId: currentUserId,
+            status: "waiting"
+          }
+        });
+
+        return { success: true, matched: false };
+      }
+    });
 
   } catch (error) {
-    console.error("Join Queue Error:", error);
-    return { success: false, error: "System error" };
+    console.error("Join Queue Transaction Error:", error);
+    return { success: false, error: error.message || "Erro no sistema de pareamento." };
   }
 }
 
