@@ -9,8 +9,11 @@ const DAILY_API_KEY = process.env.DAILY_API_KEY;
 // Helper to create a room in Daily.co
 async function createDailyRoom(roomName) {
   if (!DAILY_API_KEY) {
-    console.warn("DAILY_API_KEY not found. Using static room fallback.");
-    return { success: true, name: roomName };
+    console.error("DAILY_API_KEY not found in environment variables.");
+    return { 
+      success: false, 
+      error: "Daily.co API Key não configurada. Por favor, adicione DAILY_API_KEY às suas variáveis de ambiente na Vercel." 
+    };
   }
 
   try {

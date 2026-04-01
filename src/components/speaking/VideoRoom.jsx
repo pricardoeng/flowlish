@@ -55,11 +55,19 @@ export default function VideoRoom({ roomId, userName, userId }) {
     callFrame.join({
       url: roomUrl,
       userName: userName || 'Estudante Mango',
+    }).catch((err) => {
+      console.error("Daily join error:", err);
+      setError("Não foi possível conectar à sala. Verifique sua conexão ou tente novamente mais tarde.");
     });
 
     // Event listeners
     callFrame.on('left-meeting', () => {
       router.push('/');
+    });
+
+    callFrame.on('error', (evt) => {
+      console.error("Daily frame error:", evt);
+      setError("Erro na chamada de vídeo. Por favor, recarregue a página.");
     });
 
     return () => {
@@ -102,10 +110,20 @@ export default function VideoRoom({ roomId, userName, userId }) {
       </div>
 
       <div className="h-full w-full p-4 md:p-8">
-        {!DAILY_DOMAIN && (
-          <div className="flex flex-col items-center justify-center h-full text-zinc-500 gap-4">
-            <p className="text-xl font-bold text-white">Configuração Pendente</p>
-            <p className="max-w-md text-center">Por favor, configure sua API Key e domínio do Daily.co nas variáveis de ambiente.</p>
+        {!process.env.NEXT_PUBLIC_DAILY_DOMAIN && (
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-zinc-950/90 text-zinc-500 gap-6 p-6">
+            <div className="bg-orange-500/10 p-4 rounded-full border border-orange-500/20 mb-2">
+              <Video size={48} className="text-orange-500" />
+            </div>
+            <div className="text-center space-y-2">
+              <p className="text-2xl font-black text-white tracking-tight">Daily.co Não Configurado</p>
+              <p className="max-w-md text-zinc-400">
+                Você precisa configurar as variáveis de ambiente <code className="text-orange-500 bg-orange-500/5 px-1 rounded">DAILY_API_KEY</code> e <code className="text-orange-500 bg-orange-500/5 px-1 rounded">NEXT_PUBLIC_DAILY_DOMAIN</code> na Vercel para o Speakeasy funcionar.
+              </p>
+            </div>
+            <Button onClick={() => router.push('/')} variant="outline" className="border-zinc-800 text-zinc-400">
+              Voltar ao Início
+            </Button>
           </div>
         )}
         
