@@ -18,8 +18,9 @@ export default function Lobby({ user }) {
       pollingInterval = setInterval(async () => {
         const res = await checkMatchStatus();
         if (res.success && res.matched && res.roomId) {
+          const roomName = res.roomId.split('/').pop();
           clearInterval(pollingInterval);
-          router.push(`/practice/speaking/room/${res.roomId}`);
+          router.push(`/practice/speaking/room/${roomName}`);
         }
       }, 3000); // Check every 3 seconds
     }
@@ -34,7 +35,8 @@ export default function Lobby({ user }) {
     setError(null);
     const res = await joinQueue();
     if (res.success && res.matched && res.roomId) {
-      router.push(`/practice/speaking/room/${res.roomId}`);
+      const roomName = res.roomId.split('/').pop();
+      router.push(`/practice/speaking/room/${roomName}`);
     } else if (!res.success) {
       setError("Erro ao conectar no servidor. Tente novamente.");
       setIsSearching(false);

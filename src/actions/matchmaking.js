@@ -4,15 +4,15 @@ import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { revalidatePath } from "next/cache"
 
-const DAILY_API_KEY = process.env.DAILY_API_KEY;
-
 // Helper to create a room in Daily.co
 async function createDailyRoom(roomName) {
-  if (!DAILY_API_KEY) {
+  const API_KEY = process.env.DAILY_API_KEY;
+  
+  if (!API_KEY) {
     console.error("DAILY_API_KEY not found in environment variables.");
     return { 
       success: false, 
-      error: "Daily.co API Key não configurada. Por favor, adicione DAILY_API_KEY às suas variáveis de ambiente na Vercel." 
+      error: "Daily.co API Key não configurada no servidor." 
     };
   }
 
@@ -21,7 +21,7 @@ async function createDailyRoom(roomName) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${DAILY_API_KEY}`,
+        Authorization: `Bearer ${API_KEY}`,
       },
       body: JSON.stringify({
         name: roomName,
@@ -35,12 +35,20 @@ async function createDailyRoom(roomName) {
     const data = await response.json();
     
     if (!response.ok) {
-      // If room already exists, that's fine too
-      if (data.error === "already-exists") return { success: true, name: roomName };
+      if (data.error === "already-exists") {
+        // If it already exists, we still need the URL. 
+        // For Daily, it's usually https://[domain].daily.co/[name]
+        // But the best way is to fetch it if it exists.
+        const getRes = await fetch(`https://api.daily.co/v1/rooms/${roomName}`, {
+          headers: { Authorization: `Bearer ${API_KEY}` }
+        });
+        const getData = await getRes.json();
+        return { success: true, name: roomName, url: getData.url };
+      }
       throw new Error(data.info || "Daily API Error");
     }
 
-    return { success: true, name: data.name };
+    return { success: true, name: data.name, url: data.url };
   } catch (error) {
     console.error("Daily Room Creation Failed:", error);
     return { success: false, error: error.message };
@@ -54,14 +62,11 @@ export async function joinQueue() {
     if (!session?.user) return { success: false, error: "Unauthorized" };
     const currentUserId = session.user.id;
 
-    // Use a transaction to ensure atomicity during the matchmaking process
     return await prisma.$transaction(async (tx) => {
-      // 1. Clean up any existing waiting entries for this user to avoid staleness
       await tx.speechQueue.deleteMany({
         where: { userId: currentUserId, status: "waiting" }
       });
 
-      // 2. Find if someone else is already waiting
       const waitingMatch = await tx.speechQueue.findFirst({
         where: {
           status: "waiting",
@@ -71,40 +76,36 @@ export async function joinQueue() {
       });
 
       if (waitingMatch) {
-        // We found a partner! Let's pair them up.
-        // Simplified roomName: just mango_ + random suffix for stability
-        const roomName = `mango_${waitingMatch.id.slice(-6)}_${Date.now().toString().slice(-4)}`;
+        // Generate a unique room name
+        const roomName = `mango_${Math.random().toString(36).substring(7)}_${Date.now().toString().slice(-4)}`;
         
-        // CREATE THE ROOM NATIVELY VIA DAILY API (Helper call, uses the key if available)
         const roomResult = await createDailyRoom(roomName);
         if (!roomResult.success) {
-          throw new Error("Falha ao criar sala de vídeo segura.");
+          throw new Error(roomResult.error || "Falha ao criar sala de vídeo.");
         }
 
-        // Update the waiting entry to match BOTH users
+        // Store the FULL URL in the roomId field for simplicity, or we can use another field if available
+        // For now, let's keep roomId but use it as the source of truth for the client
         await tx.speechQueue.update({
           where: { id: waitingMatch.id },
           data: {
             status: "matched",
             targetId: currentUserId,
-            roomId: roomResult.name
+            roomId: roomResult.url // STORE FULL URL
           }
         });
 
-        // We also create a complementary 'matched' entry for User B (the joiner) 
-        // to make checkMatchStatus consistent for both sides if needed
         await tx.speechQueue.create({
           data: {
             userId: currentUserId,
             status: "matched",
             targetId: waitingMatch.userId,
-            roomId: roomResult.name
+            roomId: roomResult.url // STORE FULL URL
           }
         });
 
-        return { success: true, matched: true, roomId: roomResult.name };
+        return { success: true, matched: true, roomId: roomResult.url };
       } else {
-        // Nobody waiting, so User B becomes the one waiting
         await tx.speechQueue.create({
           data: {
             userId: currentUserId,
@@ -138,7 +139,7 @@ export async function checkMatchStatus() {
     });
 
     if (myEntry && myEntry.roomId) {
-      return { success: true, matched: true, roomId: myEntry.roomId };
+      return { success: true, matched: true, roomId: myEntry.roomId }; // This is now the URL
     }
 
     return { success: true, matched: false };
@@ -147,7 +148,31 @@ export async function checkMatchStatus() {
   }
 }
 
-// 3. Cancel waiting
+// 3. Get the matched room URL for the current user
+export async function getMatchedRoom() {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return { success: false, error: "Unauthorized" };
+    
+    const myEntry = await prisma.speechQueue.findFirst({
+      where: {
+        userId: session.user.id,
+        status: "matched"
+      },
+      orderBy: { createdAt: "desc" }
+    });
+
+    if (myEntry && myEntry.roomId) {
+      return { success: true, url: myEntry.roomId };
+    }
+
+    return { success: false, error: "No active match found" };
+  } catch (error) {
+    return { success: false, error: "System error" };
+  }
+}
+
+// 4. Cancel waiting
 export async function cancelQueue() {
   try {
     const session = await getServerSession(authOptions);

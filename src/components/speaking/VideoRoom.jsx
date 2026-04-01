@@ -12,9 +12,10 @@ export default function VideoRoom({ roomId, userName, userId }) {
   const containerRef = useRef(null);
   const callFrameRef = useRef(null);
 
-  // Get Daily domain from env or use a placeholder for setup
-  const DAILY_DOMAIN = process.env.NEXT_PUBLIC_DAILY_DOMAIN || 'flowlish'; 
-  const roomUrl = `https://${DAILY_DOMAIN}.daily.co/${roomId}`;
+  // If roomId is a full URL (new robust way), use it. Otherwise construct it.
+  const roomUrl = roomId?.startsWith('http') 
+    ? roomId 
+    : `https://${process.env.NEXT_PUBLIC_DAILY_DOMAIN || 'heymango'}.daily.co/${roomId}`;
 
   useEffect(() => {
     setIsMounted(true);
