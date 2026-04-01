@@ -125,16 +125,16 @@ export default function VideoRoom({ roomId, userName, userId }) {
       </div>
 
       <div className="h-full w-full p-4 md:p-8">
-        {/* Missing Config Error */}
-        {!process.env.NEXT_PUBLIC_DAILY_DOMAIN && (
+        {/* Missing Config Error - Only show if we don't have a full URL and don't have a domain */}
+        {!roomUrl?.startsWith('http') && !process.env.NEXT_PUBLIC_DAILY_DOMAIN && (
           <div className="absolute inset-0 z-40 flex flex-col items-center justify-center bg-zinc-950/95 text-zinc-500 gap-6 p-6">
             <div className="bg-orange-500/10 p-4 rounded-full border border-orange-500/20">
               <Video size={48} className="text-orange-500" />
             </div>
             <div className="text-center space-y-2">
               <p className="text-2xl font-black text-white tracking-tight">Configurações Pendentes</p>
-              <p className="max-w-md text-zinc-400">
-                O Speakeasy requer as variáveis de ambiente <code className="text-orange-500 bg-orange-500/10 px-1 rounded">DAILY_API_KEY</code> e <code className="text-orange-500 bg-orange-500/10 px-1 rounded">NEXT_PUBLIC_DAILY_DOMAIN</code> na Vercel.
+              <p className="max-w-md text-zinc-400 font-medium">
+                O Speakeasy requer as variáveis de ambiente <code className="text-orange-500 bg-orange-500/10 px-1 rounded">DAILY_API_KEY</code> e <code className="text-orange-500 bg-orange-500/10 px-1 rounded">NEXT_PUBLIC_DAILY_DOMAIN</code> na Vercel para novos pareamentos.
               </p>
             </div>
             <Button onClick={() => router.push('/')} variant="outline" className="border-zinc-800 text-zinc-400">
@@ -145,17 +145,30 @@ export default function VideoRoom({ roomId, userName, userId }) {
 
         {/* Runtime Connection Error */}
         {error && (
-          <div className="absolute inset-0 z-40 flex flex-col items-center justify-center bg-zinc-950/95 text-zinc-500 gap-6 p-6">
+          <div className="absolute inset-0 z-40 flex flex-col items-center justify-center bg-zinc-950/95 text-zinc-500 gap-6 p-6 text-center">
             <div className="bg-red-500/10 p-4 rounded-full border border-red-500/20">
               <AlertCircle size={48} className="text-red-500" />
             </div>
-            <div className="text-center space-y-2">
-              <p className="text-2xl font-black text-white tracking-tight">Falha na Conexão</p>
-              <p className="max-w-md text-zinc-400">{error}</p>
-              <p className="text-[10px] text-zinc-600 font-mono mt-2">Domínio: {roomUrl?.split('//')[1]?.split('.')[0] || 'Desconhecido'}</p>
+            <div className="space-y-4 max-w-lg">
+              <div className="space-y-1">
+                <p className="text-2xl font-black text-white tracking-tight">Falha na Conexão</p>
+                <p className="text-zinc-400 font-medium">{error}</p>
+              </div>
+              
+              <div className="bg-black/40 rounded-2xl p-4 border border-white/5 space-y-2 text-left">
+                <p className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">Diagnóstico Técnico</p>
+                <div className="overflow-hidden">
+                  <p className="text-[11px] text-zinc-400 font-mono break-all bg-zinc-900/50 p-2 rounded-lg border border-zinc-800">
+                    URL: {roomUrl || 'Indefinida'}
+                  </p>
+                </div>
+                <p className="text-[10px] text-zinc-600 font-medium italic">
+                  * Verifique se esta URL existe no seu dashboard da Daily.co
+                </p>
+              </div>
             </div>
             <div className="flex gap-4">
-              <Button onClick={() => window.location.reload()} className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8">
+              <Button onClick={() => window.location.reload()} className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 shadow-lg shadow-orange-500/20">
                 <RefreshCw size={18} className="mr-2" /> Tentar Novamente
               </Button>
               <Button onClick={() => router.push('/')} variant="outline" className="border-zinc-800 text-zinc-400">
