@@ -17,8 +17,8 @@ export default function Lobby({ user }) {
     if (isSearching) {
       pollingInterval = setInterval(async () => {
         const res = await checkMatchStatus();
-        if (res.success && res.matched && res.roomId) {
-          const roomName = res.roomId.split('/').pop();
+        if (res.success && res.matched && typeof res.roomId === 'string') {
+          const roomName = res.roomId.includes('/') ? res.roomId.split('/').pop() : res.roomId;
           clearInterval(pollingInterval);
           router.push(`/practice/speaking/room/${roomName}`);
         }
@@ -34,11 +34,11 @@ export default function Lobby({ user }) {
     setIsSearching(true);
     setError(null);
     const res = await joinQueue();
-    if (res.success && res.matched && res.roomId) {
-      const roomName = res.roomId.split('/').pop();
+    if (res.success && res.matched && typeof res.roomId === 'string') {
+      const roomName = res.roomId.includes('/') ? res.roomId.split('/').pop() : res.roomId;
       router.push(`/practice/speaking/room/${roomName}`);
     } else if (!res.success) {
-      setError("Erro ao conectar no servidor. Tente novamente.");
+      setError(res.error || "Erro ao conectar no servidor. Tente novamente.");
       setIsSearching(false);
     }
     // if success but not matched, it stays in isSearching=true

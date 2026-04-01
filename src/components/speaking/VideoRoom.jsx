@@ -1,9 +1,10 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import DailyIframe from '@daily-co/daily-js';
 import Button from '@/components/ui/Button';
 import { ArrowLeft, Video, AlertCircle, RefreshCw } from 'lucide-react';
+
+// DailyIframe is imported dynamically inside useEffect for SSR safety
 
 export default function VideoRoom({ roomId, userName, userId }) {
   const router = useRouter();
@@ -26,55 +27,67 @@ export default function VideoRoom({ roomId, userName, userId }) {
   useEffect(() => {
     if (!isMounted || !containerRef.current || !roomId) return;
 
-    // Create the Daily call frame
-    const callFrame = DailyIframe.createFrame(containerRef.current, {
-      iframeStyle: {
-        width: '100%',
-        height: '100%',
-        border: 'none',
-        borderRadius: '1.5rem',
-      },
-      showLeaveButton: true,
-      theme: {
-        colors: {
-          accent: '#f97316', // Orange-500
-          accentText: '#FFFFFF',
-          background: '#09090b', // Zinc-950
-          backgroundAccent: '#18181b', // Zinc-900
-          baseText: '#FFFFFF',
-          border: '#27272a', // Zinc-800
-          mainAreaBg: '#09090b',
-          mainAreaBgAccent: '#18181b',
-          mainAreaText: '#FFFFFF',
-          supportiveText: '#a1a1aa',
-        },
-      },
-    });
+    // Move library import inside useEffect to be 100% SSR safe
+    const initCall = async () => {
+      try {
+        const { default: DailyIframe } = await import('@daily-co/daily-js');
+        
+        if (callFrameRef.current) return; // Prevent double init
 
-    callFrameRef.current = callFrame;
+        // Create the Daily call frame
+        const callFrame = DailyIframe.createFrame(containerRef.current, {
+          iframeStyle: {
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            borderRadius: '1.5rem',
+          },
+          showLeaveButton: true,
+          theme: {
+            colors: {
+              accent: '#f97316', // Orange-500
+              accentText: '#FFFFFF',
+              background: '#09090b', // Zinc-950
+              backgroundAccent: '#18181b', // Zinc-900
+              baseText: '#FFFFFF',
+              border: '#27272a', // Zinc-800
+              mainAreaBg: '#09090b',
+              mainAreaBgAccent: '#18181b',
+              mainAreaText: '#FFFFFF',
+              supportiveText: '#a1a1aa',
+            },
+          },
+        });
 
-    // Join the room
-    callFrame.join({
-      url: roomUrl,
-      userName: userName || 'Estudante Mango',
-    }).catch((err) => {
-      console.error("Daily join error:", err);
-      setError("Não foi possível conectar à sala. Verifique sua conexão ou tente novamente mais tarde.");
-    });
+        callFrameRef.current = callFrame;
 
-    // Event listeners
-    callFrame.on('left-meeting', () => {
-      router.push('/');
-    });
+        // Join the room
+        await callFrame.join({
+          url: roomUrl,
+          userName: userName || 'Estudante Mango',
+        });
 
-    callFrame.on('error', (evt) => {
-      console.error("Daily frame error:", evt);
-      setError("Erro na chamada de vídeo. Por favor, recarregue a página.");
-    });
+        // Event listeners
+        callFrame.on('left-meeting', () => {
+          router.push('/');
+        });
+
+        callFrame.on('error', (evt) => {
+          console.error("Daily frame error:", evt);
+          setError("Erro na chamada de vídeo. Por favor, recarregue a página.");
+        });
+      } catch (err) {
+        console.error("Daily init/join error:", err);
+        setError("Não foi possível carregar o sistema de vídeo. Tente recarregar a página.");
+      }
+    };
+
+    initCall();
 
     return () => {
       if (callFrameRef.current) {
         callFrameRef.current.destroy();
+        callFrameRef.current = null;
       }
     };
   }, [isMounted, roomId, roomUrl, router, userName]);
@@ -139,7 +152,7 @@ export default function VideoRoom({ roomId, userName, userId }) {
             <div className="text-center space-y-2">
               <p className="text-2xl font-black text-white tracking-tight">Falha na Conexão</p>
               <p className="max-w-md text-zinc-400">{error}</p>
-              <p className="text-[10px] text-zinc-600 font-mono mt-2">Domínio detectado: {DAILY_DOMAIN}.daily.co</p>
+              <p className="text-[10px] text-zinc-600 font-mono mt-2">Domínio: {roomUrl?.split('//')[1]?.split('.')[0] || 'Desconhecido'}</p>
             </div>
             <div className="flex gap-4">
               <Button onClick={() => window.location.reload()} className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8">

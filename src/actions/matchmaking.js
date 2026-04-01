@@ -139,12 +139,14 @@ export async function checkMatchStatus() {
     });
 
     if (myEntry && myEntry.roomId) {
+      console.log(`Match detected for user ${currentUserId}: ${myEntry.roomId}`);
       return { success: true, matched: true, roomId: myEntry.roomId }; // This is now the URL
     }
 
     return { success: true, matched: false };
   } catch (error) {
-    return { success: false, error: "System error" };
+    console.error("Check Match Status Error:", error);
+    return { success: false, error: "System error during polling" };
   }
 }
 
