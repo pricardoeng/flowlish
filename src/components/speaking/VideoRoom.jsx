@@ -1,13 +1,14 @@
 "use client";
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import DailyIframe from '@daily-co/daily-js';
 import Button from '@/components/ui/Button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Video, AlertCircle, RefreshCw } from 'lucide-react';
 
 export default function VideoRoom({ roomId, userName, userId }) {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
+  const [error, setError] = useState(null);
   const containerRef = useRef(null);
   const callFrameRef = useRef(null);
 
@@ -35,7 +36,7 @@ export default function VideoRoom({ roomId, userName, userId }) {
       showLeaveButton: true,
       theme: {
         colors: {
-          accent: '#f97316', // Orange-500 (Primary)
+          accent: '#f97316', // Orange-500
           accentText: '#FFFFFF',
           background: '#09090b', // Zinc-950
           backgroundAccent: '#18181b', // Zinc-900
@@ -89,7 +90,7 @@ export default function VideoRoom({ roomId, userName, userId }) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-950">
         <div className="animate-pulse flex flex-col items-center">
-          <div className="h-12 w-12 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4" />
+          <div className="h-12 w-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mb-4" />
           <p className="text-zinc-500 font-bold">Iniciando câmera...</p>
         </div>
       </div>
@@ -110,20 +111,42 @@ export default function VideoRoom({ roomId, userName, userId }) {
       </div>
 
       <div className="h-full w-full p-4 md:p-8">
+        {/* Missing Config Error */}
         {!process.env.NEXT_PUBLIC_DAILY_DOMAIN && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-zinc-950/90 text-zinc-500 gap-6 p-6">
-            <div className="bg-orange-500/10 p-4 rounded-full border border-orange-500/20 mb-2">
+          <div className="absolute inset-0 z-40 flex flex-col items-center justify-center bg-zinc-950/95 text-zinc-500 gap-6 p-6">
+            <div className="bg-orange-500/10 p-4 rounded-full border border-orange-500/20">
               <Video size={48} className="text-orange-500" />
             </div>
             <div className="text-center space-y-2">
-              <p className="text-2xl font-black text-white tracking-tight">Daily.co Não Configurado</p>
+              <p className="text-2xl font-black text-white tracking-tight">Configurações Pendentes</p>
               <p className="max-w-md text-zinc-400">
-                Você precisa configurar as variáveis de ambiente <code className="text-orange-500 bg-orange-500/5 px-1 rounded">DAILY_API_KEY</code> e <code className="text-orange-500 bg-orange-500/5 px-1 rounded">NEXT_PUBLIC_DAILY_DOMAIN</code> na Vercel para o Speakeasy funcionar.
+                O Speakeasy requer as variáveis de ambiente <code className="text-orange-500 bg-orange-500/10 px-1 rounded">DAILY_API_KEY</code> e <code className="text-orange-500 bg-orange-500/10 px-1 rounded">NEXT_PUBLIC_DAILY_DOMAIN</code> na Vercel.
               </p>
             </div>
             <Button onClick={() => router.push('/')} variant="outline" className="border-zinc-800 text-zinc-400">
               Voltar ao Início
             </Button>
+          </div>
+        )}
+
+        {/* Runtime Connection Error */}
+        {error && (
+          <div className="absolute inset-0 z-40 flex flex-col items-center justify-center bg-zinc-950/95 text-zinc-500 gap-6 p-6">
+            <div className="bg-red-500/10 p-4 rounded-full border border-red-500/20">
+              <AlertCircle size={48} className="text-red-500" />
+            </div>
+            <div className="text-center space-y-2">
+              <p className="text-2xl font-black text-white tracking-tight">Falha na Conexão</p>
+              <p className="max-w-md text-zinc-400">{error}</p>
+            </div>
+            <div className="flex gap-4">
+              <Button onClick={() => window.location.reload()} className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8">
+                <RefreshCw size={18} className="mr-2" /> Tentar Novamente
+              </Button>
+              <Button onClick={() => router.push('/')} variant="outline" className="border-zinc-800 text-zinc-400">
+                Sair
+              </Button>
+            </div>
           </div>
         )}
         
