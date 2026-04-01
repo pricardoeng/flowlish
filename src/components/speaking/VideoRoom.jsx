@@ -1,22 +1,79 @@
 "use client";
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { JitsiMeeting } from '@jitsi/react-sdk';
+import DailyIframe from '@daily-co/daily-js';
 import Button from '@/components/ui/Button';
 import { ArrowLeft } from 'lucide-react';
 
 export default function VideoRoom({ roomId, userName, userId }) {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
+  const containerRef = useRef(null);
+  const callFrameRef = useRef(null);
+
+  // Get Daily domain from env or use a placeholder for setup
+  const DAILY_DOMAIN = process.env.NEXT_PUBLIC_DAILY_DOMAIN || 'flowlish'; 
+  const roomUrl = `https://${DAILY_DOMAIN}.daily.co/${roomId}`;
 
   useEffect(() => {
     setIsMounted(true);
-    console.log("Speakeasy Room Component Mounted:", { roomId, userName, userId });
-  }, [roomId, userName, userId]);
+    console.log("Speakeasy Room Component Mounted (Daily):", { roomId, userName, userId, roomUrl });
+  }, [roomId, userName, userId, roomUrl]);
+
+  // Handle joining and cleanup
+  useEffect(() => {
+    if (!isMounted || !containerRef.current || !roomId) return;
+
+    // Create the Daily call frame
+    const callFrame = DailyIframe.createFrame(containerRef.current, {
+      iframeStyle: {
+        width: '100%',
+        height: '100%',
+        border: 'none',
+        borderRadius: '1.5rem',
+      },
+      showLeaveButton: true,
+      theme: {
+        colors: {
+          accent: '#f97316', // Orange-500 (Primary)
+          accentText: '#FFFFFF',
+          background: '#09090b', // Zinc-950
+          backgroundAccent: '#18181b', // Zinc-900
+          baseText: '#FFFFFF',
+          border: '#27272a', // Zinc-800
+          mainAreaBg: '#09090b',
+          mainAreaBgAccent: '#18181b',
+          mainAreaText: '#FFFFFF',
+          supportiveText: '#a1a1aa',
+        },
+      },
+    });
+
+    callFrameRef.current = callFrame;
+
+    // Join the room
+    callFrame.join({
+      url: roomUrl,
+      userName: userName || 'Estudante Mango',
+    });
+
+    // Event listeners
+    callFrame.on('left-meeting', () => {
+      router.push('/');
+    });
+
+    return () => {
+      if (callFrameRef.current) {
+        callFrameRef.current.destroy();
+      }
+    };
+  }, [isMounted, roomId, roomUrl, router, userName]);
 
   // Helper method to gracefully escape the session
   const exitRoom = () => {
-    // Ideally here we would call a server action to reward XP based on call duration!
+    if (callFrameRef.current) {
+      callFrameRef.current.leave();
+    }
     router.push('/');
   };
 
@@ -32,57 +89,30 @@ export default function VideoRoom({ roomId, userName, userId }) {
   }
 
   return (
-    <div className="relative h-screen w-full bg-zinc-950 flex flex-col pt-4">
-      {/* Small top header for navigation to avoid getting completely trapped */}
+    <div className="relative h-screen w-full bg-zinc-950 flex flex-col pt-4 overflow-hidden">
+      {/* Small top header for navigation */}
       <div className="absolute top-4 left-4 z-50">
-        <Button variant="ghost" className="text-white hover:bg-zinc-800" onClick={exitRoom}>
+        <Button 
+          variant="ghost" 
+          className="bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:text-white transition-all rounded-xl px-4 py-2" 
+          onClick={exitRoom}
+        >
           <ArrowLeft size={18} className="mr-2" /> Encerrar Prática
         </Button>
       </div>
 
-      <div className="h-full w-full">
-        {roomId ? (
-          <JitsiMeeting
-            key={roomId}
-            domain="meet.jit.si"
-            roomName={roomId}
-            configOverwrite={{
-              startWithAudioMuted: false,
-              startWithVideoMuted: false,
-              prejoinPageEnabled: false,
-              disableModeratorIndicator: true,
-              startScreenSharing: false,
-              enableEmailInStats: false,
-              disableDeepLinking: true,
-            }}
-          interfaceConfigOverwrite={{
-            DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
-            SHOW_PROMOTIONAL_CLOSE_PAGE: false,
-            SHOW_JITSI_WATERMARK: false,
-            SHOW_BRAND_WATERMARK: false,
-            SHOW_WATERMARK_FOR_GUESTS: false,
-          }}
-          userInfo={{
-            displayName: userName || 'Estudante Mango',
-            email: `${userId}@mango-speakeasy.dev`
-          }}
-          onApiReady={(externalApi) => {
-            // When user hangs up standardly using Jitsi red button
-            externalApi.addListener('videoConferenceLeft', () => {
-              exitRoom();
-            });
-          }}
-            getIFrameRef={(iframeRef) => {
-              iframeRef.style.height = '100%';
-              iframeRef.style.width = '100%';
-              iframeRef.style.border = 'none';
-            }}
-          />
-        ) : (
-          <div className="flex h-full items-center justify-center text-zinc-500 font-bold">
-            Erro: Identificação da sala ausente.
+      <div className="h-full w-full p-4 md:p-8">
+        {!DAILY_DOMAIN && (
+          <div className="flex flex-col items-center justify-center h-full text-zinc-500 gap-4">
+            <p className="text-xl font-bold text-white">Configuração Pendente</p>
+            <p className="max-w-md text-center">Por favor, configure sua API Key e domínio do Daily.co nas variáveis de ambiente.</p>
           </div>
         )}
+        
+        <div 
+          ref={containerRef} 
+          className="h-full w-full rounded-[2rem] overflow-hidden border border-zinc-800 shadow-2xl bg-zinc-900/50"
+        />
       </div>
     </div>
   );

@@ -4,6 +4,46 @@ import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { revalidatePath } from "next/cache"
 
+const DAILY_API_KEY = process.env.DAILY_API_KEY;
+
+// Helper to create a room in Daily.co
+async function createDailyRoom(roomName) {
+  if (!DAILY_API_KEY) {
+    console.warn("DAILY_API_KEY not found. Using static room fallback.");
+    return { success: true, name: roomName };
+  }
+
+  try {
+    const response = await fetch("https://api.daily.co/v1/rooms", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${DAILY_API_KEY}`,
+      },
+      body: JSON.stringify({
+        name: roomName,
+        properties: {
+          exp: Math.floor(Date.now() / 1000) + 3600, // 1 hour expiry
+          enable_chat: true,
+        },
+      }),
+    });
+
+    const data = await response.json();
+    
+    if (!response.ok) {
+      // If room already exists, that's fine too
+      if (data.error === "already-exists") return { success: true, name: roomName };
+      throw new Error(data.info || "Daily API Error");
+    }
+
+    return { success: true, name: data.name };
+  } catch (error) {
+    console.error("Daily Room Creation Failed:", error);
+    return { success: false, error: error.message };
+  }
+}
+
 // 1. Join queue
 export async function joinQueue() {
   try {
@@ -22,18 +62,24 @@ export async function joinQueue() {
 
     if (waitingMatch) {
       // We found a partner! Let's match them.
-      const roomId = `mango-speakeasy-${waitingMatch.id.slice(-8)}`;
+      const roomName = `mango-${waitingMatch.id.slice(-8)}-${Date.now().toString().slice(-4)}`;
       
+      // CREATE THE ROOM NATIVELY VIA DAILY API
+      const roomResult = await createDailyRoom(roomName);
+      if (!roomResult.success) {
+        return { success: false, error: "Erro ao criar sala de vídeo segura." };
+      }
+
       await prisma.speechQueue.update({
         where: { id: waitingMatch.id },
         data: {
           status: "matched",
           targetId: currentUserId,
-          roomId: roomId
+          roomId: roomResult.name
         }
       });
 
-      return { success: true, matched: true, roomId };
+      return { success: true, matched: true, roomId: roomResult.name };
     } else {
       // Make sure we don't have dangling waiting entries
       await prisma.speechQueue.deleteMany({
