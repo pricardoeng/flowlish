@@ -3,7 +3,6 @@ import React, { Suspense } from 'react';
 import prisma from '@/lib/prisma';
 import FilterPanel from '@/components/dictionary/FilterPanel';
 import ChunkCard from '@/components/dictionary/ChunkCard';
-import PackUpsell from '@/components/dictionary/PackUpsell';
 import Pagination from '@/components/dictionary/Pagination';
 import { BookOpen, Library } from 'lucide-react';
 import { getServerSession } from "next-auth/next";
@@ -94,7 +93,11 @@ export default async function DictionaryPage({ searchParams }) {
       mastered: c.userProgress[0]?.status === 'mastered'
     }));
 
-    const ALL_PACKS = ['Medicina', 'Jurídico', 'Financeiro', 'Tecnologia', 'Projetos', 'Engenharia', 'Corporativo', 'Viajar', 'Viver', 'Estudar', 'Trabalhar', 'Avançado', 'Acadêmico'];
+    const ALL_PACKS = [
+      'Tecnologia', 'Medicina', 'Jurídico', 'Financeiro', 'Projetos', 'Engenharia', 'Corporativo',
+      'Viajar', 'Viver', 'Estudar', 'Trabalhar',
+      'Avançado', 'Acadêmico'
+    ];
     const missingPacks = ALL_PACKS.filter(p => !unlockedPacks.includes(p));
 
     return (
@@ -135,10 +138,6 @@ export default async function DictionaryPage({ searchParams }) {
         <Suspense fallback={<div className="h-20 animate-pulse bg-zinc-100 dark:bg-zinc-800 rounded-2xl" />}>
           <FilterPanel availablePacks={availablePacks} />
         </Suspense>
-
-        {!isPro && missingPacks.length > 0 && currentPage === 1 && (
-          <PackUpsell missingPacks={missingPacks} isPro={isPro} />
-        )}
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {processedChunks.map(chunk => (

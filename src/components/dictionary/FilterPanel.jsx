@@ -25,10 +25,22 @@ const FilterPanel = ({ availablePacks = [] }) => {
   const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
   
   const filterGroups = [
-    { title: 'Profissional', items: ['Tecnologia', 'Medicina', 'Jurídico', 'Financeiro', 'Projetos', 'Engenharia', 'Corporativo'] },
-    { title: 'Experiência', items: ['Viajar', 'Viver', 'Estudar', 'Trabalhar'] },
-    { title: 'Especialidades', items: ['Avançado', 'Acadêmico'] },
-    { title: 'Geral', items: ['Casual'] }
+    { 
+      title: 'Temas Profissionais', 
+      items: ['Tecnologia', 'Medicina', 'Jurídico', 'Financeiro', 'Projetos', 'Engenharia', 'Corporativo'] 
+    },
+    { 
+      title: 'Experiência de Vida', 
+      items: ['Viajar', 'Viver', 'Estudar', 'Trabalhar'] 
+    },
+    { 
+      title: 'Especialidades', 
+      items: ['Avançado', 'Acadêmico'] 
+    },
+    {
+      title: 'Geral',
+      items: ['Casual']
+    }
   ].map(group => ({
     ...group,
     items: group.items.filter(item => availablePacks.includes(item))
