@@ -2,16 +2,17 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
-import { Play, RotateCcw, CheckCircle2, Mic, Brain, Volume2 } from 'lucide-react';
+import { Play, RotateCcw, CheckCircle2, Volume2, Sparkles, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { completePracticeSession } from '@/actions/learning';
+import { useModals } from '@/context/ModalContext';
 
-const PracticeSession = ({ user, chunks }) => {
+const PracticeSession = ({ user, chunks, isSample = false }) => {
+  const { openUpgrade } = useModals();
   const [sessionActive, setSessionActive] = useState(false);
   const [step, setStep] = useState(0);
   const [results, setResults] = useState([]);
   const [isFinishing, setIsFinishing] = useState(false);
-
   const [audioCompleted, setAudioCompleted] = useState(false);
 
   const handleNext = async (status) => {
@@ -23,10 +24,11 @@ const PracticeSession = ({ user, chunks }) => {
       setStep(step + 1);
     } else {
       setIsFinishing(true);
-      await completePracticeSession(user.id, newResults);
+      if (!isSample) {
+        await completePracticeSession(user.id, newResults);
+      }
       setSessionActive(false);
       setIsFinishing(false);
-      // In a real app, redirect to a "congrats" page or refresh dashboard
     }
   };
 
@@ -42,20 +44,41 @@ const PracticeSession = ({ user, chunks }) => {
             className="h-full w-full object-contain drop-shadow-2xl animate-float"
           />
         </div>
-        <div className="max-w-md space-y-3">
-          <h1 className="text-4xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight transition-colors transition-colors uppercase">Sessão concluída!</h1>
-          <p className="text-zinc-600 dark:text-zinc-400 font-medium transition-colors">
-            Parabéns! Você dominou <span className="text-primary font-bold">{mastered} de {results.length} chunks</span> hoje.
+        
+        <div className="max-w-md space-y-4">
+          <h1 className="text-4xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight transition-colors transition-colors uppercase">
+            {isSample ? "Gostou da amostra?" : "Sessão concluída!"}
+          </h1>
+          <p className="text-zinc-600 dark:text-zinc-400 font-medium transition-colors px-4">
+            {isSample 
+              ? `Você acaba de praticar 3 chunks do Pack ${chunks[0]?.pack}. Desbloqueie o acesso total para dominar centenas de frases técnicas!`
+              : `Parabéns! Você dominou ${mastered} de ${results.length} chunks hoje.`}
           </p>
         </div>
-        <div className="flex flex-col w-full max-w-sm gap-3">
-          <Button size="lg" onClick={() => { setResults([]); setStep(0); setSessionActive(true); }} className="w-full">
-            Mais uma sessão! <Play size={20} fill="currentColor" />
-          </Button>
-          <Link href="/" className="w-full">
-            <Button variant="secondary" size="lg" className="w-full text-zinc-500 dark:text-zinc-400 font-bold transition-colors">Voltar ao Dashboard</Button>
-          </Link>
-        </div>
+
+        {isSample ? (
+          <div className="flex flex-col w-full max-w-sm gap-4 p-6 rounded-[2.5rem] bg-orange-500/5 border border-orange-500/20 shadow-premium">
+            <div className="flex items-center gap-3 text-primary justify-center mb-2">
+              <Sparkles size={20} />
+              <span className="text-xs font-black uppercase tracking-widest">Oferta Premium</span>
+            </div>
+            <Button size="lg" onClick={openUpgrade} className="w-full bg-orange-600 hover:bg-orange-700 shadow-orange-500/20">
+              Desbloquear +1200 Chunks <ArrowRight size={18} className="ml-2" />
+            </Button>
+            <Link href="/" className="w-full">
+              <Button variant="ghost" className="w-full text-zinc-500">Voltar ao Basic</Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="flex flex-col w-full max-w-sm gap-3">
+            <Button size="lg" onClick={() => { setResults([]); setStep(0); setSessionActive(true); }} className="w-full">
+              Mais uma sessão! <Play size={20} fill="currentColor" />
+            </Button>
+            <Link href="/" className="w-full">
+              <Button variant="secondary" size="lg" className="w-full text-zinc-500 dark:text-zinc-400 font-bold transition-colors">Voltar ao Dashboard</Button>
+            </Link>
+          </div>
+        )}
       </div>
     );
   }
@@ -80,6 +103,7 @@ const PracticeSession = ({ user, chunks }) => {
 
   // Pronto para começar
   if (!sessionActive) {
+    const packName = chunks[0]?.pack || 'Daily';
     return (
       <div className="flex flex-col items-center justify-center min-h-[70vh] text-center space-y-10 animate-fade-in transition-colors">
         <div className="relative h-48 w-48 transition-transform hover:scale-110">
@@ -91,9 +115,14 @@ const PracticeSession = ({ user, chunks }) => {
         </div>
         
         <div className="max-w-md space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest shadow-sm">
+            <Sparkles size={12} /> Pack {packName}
+          </div>
           <h1 className="text-4xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight transition-colors uppercase">Vamos começar?</h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-medium transition-colors">
-            Sua meta de hoje é de {chunks.length} chunks. Estou pronto para te ajudar a dominar cada um deles!
+            {isSample 
+              ? `Você acessou uma amostra premium do pack ${packName}. Preparado para 3 desafios rápidos?`
+              : `Sua meta de hoje é de ${chunks.length} chunks. Estou pronto para te ajudar a dominar cada um deles!`}
           </p>
         </div>
 
@@ -101,9 +130,11 @@ const PracticeSession = ({ user, chunks }) => {
           <Button size="lg" onClick={() => setSessionActive(true)} className="w-full">
             Começar Sessão <Play size={20} fill="currentColor" />
           </Button>
-          <Button variant="secondary" size="lg" className="w-full text-zinc-500 dark:text-zinc-400 font-bold transition-colors">
-            Revisar Chunks Dominados
-          </Button>
+          {!isSample && (
+            <Button variant="secondary" size="lg" className="w-full text-zinc-500 dark:text-zinc-400 font-bold transition-colors">
+              Revisar Chunks Dominados
+            </Button>
+          )}
         </div>
       </div>
     );
@@ -117,7 +148,9 @@ const PracticeSession = ({ user, chunks }) => {
       {/* Session Header */}
       <div className="space-y-4">
         <div className="flex items-center justify-between text-xs font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400 transition-colors">
-          <span>Sessão Diária: Chuva de Chunks</span>
+          <span className="flex items-center gap-2">
+            {isSample ? "Amostra Premium" : "Sessão Diária"} • <span className="text-primary">{currentChunk.pack}</span>
+          </span>
           <span>{step + 1} de {chunks.length}</span>
         </div>
         <div className="h-2 w-full rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden transition-colors">
@@ -130,58 +163,57 @@ const PracticeSession = ({ user, chunks }) => {
 
       {/* Chunk Stage */}
       <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-8">
-        <div className="relative group text-center space-y-4 p-10 rounded-[3rem] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-premium w-full transition-all hover:scale-[1.01]">
-          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest transition-colors">
-            {currentChunk.cefrLevel}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-zinc-100 tracking-tighter leading-tight drop-shadow-sm transition-colors">
-            {currentChunk.englishText}
-          </h2>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 font-medium italic transition-colors">
-            "{currentChunk.portugueseTranslation}"
-          </p>
+        <div className="relative group text-center space-y-6 p-10 rounded-[3rem] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-premium w-full transition-all hover:scale-[1.01]">
+          <div className="flex justify-center">
+            <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest transition-colors">
+              {currentChunk.cefrLevel}
+            </span>
+          </div>
           
-          <div className="pt-6 flex justify-center gap-4">
-             <button 
-               onClick={() => {
-                 window.speechSynthesis.cancel();
-                 const utterance = new SpeechSynthesisUtterance(currentChunk.englishText);
-                 
-                 // Try to find a high quality English voice
-                 const voices = window.speechSynthesis.getVoices();
-                 const premiumVoice = voices.find(v => 
-                   (v.name.includes('Google') || v.name.includes('Premium') || v.name.includes('Samantha')) && 
-                   v.lang.startsWith('en')
-                 );
-                 if (premiumVoice) utterance.voice = premiumVoice;
-                 
-                 utterance.lang = 'en-US';
-                 utterance.rate = 0.8;
-                 utterance.pitch = 1.0;
-                 utterance.onend = () => {
-                   setAudioCompleted(true);
-                   // Auto-advance after 1.5 seconds as requested ("marcar como concluida")
-                   setTimeout(() => {
-                     handleNext('mastered');
-                   }, 1500);
-                 };
-                 window.speechSynthesis.speak(utterance);
-               }}
-               className={cn(
-                 "flex h-16 w-16 items-center justify-center rounded-full transition-all border shadow-sm",
-                 audioCompleted ? "bg-primary text-white border-primary" : "bg-zinc-50 text-primary border-zinc-100 ring-2 ring-primary/20"
-               )}
-             >
-                <Volume2 size={28} />
-             </button>
-             <button 
-               onClick={() => {
-                 window.speechSynthesis.cancel();
-               }}
-               className="flex h-16 w-16 items-center justify-center rounded-full bg-zinc-50 text-zinc-500 hover:text-zinc-900 transition-all border border-zinc-100"
-             >
-                <RotateCcw size={28} />
-             </button>
+          <div className="space-y-4">
+            <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-zinc-100 tracking-tighter leading-tight drop-shadow-sm transition-colors">
+              {currentChunk.englishText}
+            </h2>
+            <p className="text-xl text-zinc-600 dark:text-zinc-400 font-medium italic transition-colors">
+              "{currentChunk.portugueseTranslation}"
+            </p>
+          </div>
+          
+          <div className="pt-6 flex flex-col items-center gap-8">
+             <div className="flex justify-center gap-4">
+               <button 
+                 onClick={() => {
+                   window.speechSynthesis.cancel();
+                   const utterance = new SpeechSynthesisUtterance(currentChunk.englishText);
+                   const voices = window.speechSynthesis.getVoices();
+                   const premiumVoice = voices.find(v => 
+                     (v.name.includes('Google') || v.name.includes('Premium') || v.name.includes('Samantha')) && 
+                     v.lang.startsWith('en')
+                   );
+                   if (premiumVoice) utterance.voice = premiumVoice;
+                   utterance.lang = 'en-US';
+                   utterance.rate = 0.8;
+                   utterance.onend = () => {
+                     setAudioCompleted(true);
+                     setTimeout(() => handleNext('mastered'), 1500);
+                   };
+                   window.speechSynthesis.speak(utterance);
+                 }}
+                 className={cn(
+                   "flex h-20 w-20 items-center justify-center rounded-full transition-all border shadow-sm",
+                   audioCompleted ? "bg-primary text-white border-primary" : "bg-white dark:bg-zinc-950 text-primary border-zinc-100 dark:border-zinc-800 ring-2 ring-primary/20"
+                 )}
+               >
+                  <Volume2 size={32} />
+               </button>
+             </div>
+
+             {/* Pack Tag - As requested in screenshot */}
+             <div className="w-full border-t border-zinc-100 dark:border-zinc-800 pt-6 mt-4 flex justify-start">
+                <span className="px-4 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 text-[10px] font-black uppercase tracking-widest">
+                  {currentChunk.pack || 'General'}
+                </span>
+             </div>
           </div>
         </div>
       </div>

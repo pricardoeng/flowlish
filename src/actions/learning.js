@@ -28,7 +28,8 @@ export async function completePracticeSession(clientUserId, chunkResults) {
         create: {
           userId,
           chunkId: res.chunkId,
-          status: res.status
+          status: res.status,
+          lastReviewedAt: new Date()
         }
       })
     }))
@@ -55,7 +56,9 @@ export async function updateUserProfile(clientUserId, data) {
         name: data.name,
         email: data.email,
         goal: data.goal,
-        currentLevel: data.level
+        currentLink: data.level,
+        currentLevel: data.level,
+        interests: data.interests || []
       }
     })
     
@@ -123,7 +126,8 @@ export async function markChunkAsMastered(clientUserId, chunkId) {
       create: {
         userId,
         chunkId,
-        status: 'mastered'
+        status: 'mastered',
+        lastReviewedAt: new Date()
       }
     });
 
@@ -199,6 +203,46 @@ export async function markWordAsMastered(clientUserId, wordId) {
     return { success: true };
   } catch (error) {
     console.error("Failed to mark word mastered:", error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function unlockPack(clientUserId, packId) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return { success: false, error: "Unauthorized" };
+    const userId = session.user.id;
+
+    // 1. Add to unlockedPacks if not already there
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+    const currentPacks = user.unlockedPacks || [];
+    
+    if (!currentPacks.includes(packId)) {
+      await prisma.user.update({
+        where: { id: userId },
+        data: {
+          unlockedPacks: {
+            push: packId
+          }
+        }
+      });
+
+      // 2. Register purchase
+      await prisma.purchase.create({
+        data: {
+          userId,
+          planType: 'PACK',
+          packId: packId,
+          status: 'active'
+        }
+      });
+    }
+
+    revalidatePath('/profile');
+    revalidatePath('/');
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to unlock pack:", error);
     return { success: false, error: error.message };
   }
 }

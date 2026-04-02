@@ -10,7 +10,12 @@ export default async function ProfilePage() {
   if (!session) redirect("/login");
 
   const user = await prisma.user.findUnique({
-    where: { id: session.user.id }
+    where: { id: session.user.id },
+    include: {
+      purchases: {
+        where: { status: 'active' }
+      }
+    }
   });
 
   if (!user) return <div>Usuário não encontrado.</div>;

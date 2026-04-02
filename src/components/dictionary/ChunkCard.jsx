@@ -100,7 +100,7 @@ const ChunkCard = ({ chunk, userId }) => {
       <div className="mt-6 flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-800">
         <div className="flex items-center gap-2">
           <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-lg mt-1">
-            {chunk.theme || 'GENERAL'}
+            {chunk.pack || chunk.theme || 'GENERAL'}
           </span>
           {isMastered && (
             <CheckCircle2 size={16} className="text-primary ml-1" />

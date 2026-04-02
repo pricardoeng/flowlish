@@ -13,14 +13,32 @@ const ProfileForm = ({ user }) => {
     name: user.name,
     email: user.email,
     goal: user.goal || 'Regular',
-    level: user.currentLevel || 'B2'
+    level: user.currentLevel || 'B2',
+    interests: user.interests || [],
+    unlockedPacks: user.unlockedPacks || []
   });
   const [isSaving, setIsSaving] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [avatarSrc, setAvatarSrc] = useState(`/uploads/${user.id}.jpg`);
   const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
+  const [selectedPackForPurchase, setSelectedPackForPurchase] = useState(null);
+  const [isProcessingPurchase, setIsProcessingPurchase] = useState(false);
 
   const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  const packCategories = [
+    { 
+      label: 'Temas Profissionais', 
+      packs: ['Tecnologia', 'Medicina', 'Jurídico', 'Financeiro', 'Projetos', 'Engenharia', 'Corporativo'] 
+    },
+    { 
+      label: 'Experiência de Vida', 
+      packs: ['Viajar', 'Viver', 'Estudar', 'Trabalhar'] 
+    },
+    { 
+      label: 'Especialidades', 
+      packs: ['Avançado', 'Acadêmico'] 
+    }
+  ];
   const goals = [
     { id: 'Casual', label: 'Casual', desc: '4 Chunks / dia' },
     { id: 'Regular', label: 'Regular', desc: '8 Chunks / dia' },
@@ -55,29 +73,98 @@ const ProfileForm = ({ user }) => {
     }
   };
 
+  const confirmPurchase = async () => {
+    if (!selectedPackForPurchase) return;
+    
+    setIsProcessingPurchase(true);
+    const res = await unlockPack(user.id, selectedPackForPurchase);
+    setIsProcessingPurchase(false);
+    
+    if (res.success) {
+      setFormData(prev => ({
+        ...prev,
+        unlockedPacks: [...prev.unlockedPacks, selectedPackForPurchase]
+      }));
+      setSelectedPackForPurchase(null);
+    }
+  };
+
+  const handleUnlockClick = (pack) => {
+    setSelectedPackForPurchase(pack);
+  };
+
+  const isPro = user.purchases?.some(p => p.status === 'active' && !p.packId);
+  const activePacks = user.unlockedPacks || [];
+  const hasIndividualPacks = activePacks.length > 0 && !isPro;
+
   return (
     <div className="space-y-10">
-      {/* Pro Banner */}
-      <section className="group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-orange-600 to-zinc-900 p-8 text-white shadow-premium transition-colors">
+      {/* Dynamic Plan Banner */}
+      <section className={cn(
+        "group relative overflow-hidden rounded-[2.5rem] p-8 text-white shadow-premium transition-all",
+        isPro ? "bg-gradient-to-br from-orange-600 to-zinc-900" : "bg-zinc-900"
+      )}>
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-6">
-            <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-primary text-white shadow-lg shadow-primary/20">
-              <Sparkles size={32} />
+            <div className={cn(
+              "flex h-16 w-16 items-center justify-center rounded-3xl text-white shadow-lg",
+              isPro ? "bg-primary shadow-primary/20" : "bg-zinc-800 shadow-black/20"
+            )}>
+              {isPro ? <Sparkles size={32} /> : <Award size={32} className="text-zinc-400" />}
             </div>
             <div>
-              <h2 className="text-2xl font-black tracking-tight !text-white">Mango Pro Vitalício</h2>
-              <p className="text-white/75 font-medium">Acesso ilimitado a +1500 chunks e vozes neurais.</p>
+              <h2 className="text-2xl font-black tracking-tight !text-white">
+                {isPro ? "Mango Pro Vitalício" : hasIndividualPacks ? "Membro Individual" : "Plano Gratuito"}
+              </h2>
+              <p className="text-white/75 font-medium">
+                {isPro 
+                  ? "Acesso ilimitado a +1500 chunks e vozes neurais." 
+                  : hasIndividualPacks 
+                    ? `Você possui acesso vitalício a ${activePacks.length} packs específicos.` 
+                    : "Comece sua jornada com o conteúdo básico gratuito."}
+              </p>
             </div>
           </div>
-          <Button 
-            variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-zinc-900"
-            onClick={openUpgrade}
-          >
-            Gerenciar Plano
-          </Button>
+          
+          <div className="flex gap-3">
+            {!isPro && (
+              <Button 
+                variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-zinc-900 transition-colors"
+                onClick={openUpgrade}
+              >
+                Upgrade para Pro
+              </Button>
+            )}
+            {isPro && (
+               <div className="px-6 py-2 rounded-2xl bg-white/10 border border-white/20 text-[10px] font-black uppercase tracking-widest">
+                 Plano Ativo
+               </div>
+            )}
+          </div>
         </div>
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 h-64 w-64 rounded-full bg-primary/20 blur-3xl group-hover:bg-primary/30 transition-colors"></div>
       </section>
+
+      {/* Packs Adquiridos Summary (If any and not Pro) */}
+      {hasIndividualPacks && (
+        <section className="rounded-[2.5rem] bg-emerald-500/10 border border-emerald-500/20 p-8 flex items-center justify-between">
+           <div className="flex items-center gap-4">
+              <div className="h-12 w-12 rounded-2xl bg-emerald-500 flex items-center justify-center text-white">
+                 <Check size={24} strokeWidth={3} />
+              </div>
+              <div>
+                <h3 className="font-bold text-emerald-900 dark:text-emerald-400">Packs Adquiridos</h3>
+                <div className="flex flex-wrap gap-2 mt-1">
+                   {activePacks.map(p => (
+                     <span key={p} className="text-[9px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 px-2 py-1 rounded-lg">
+                       {p}
+                     </span>
+                   ))}
+                </div>
+              </div>
+           </div>
+        </section>
+      )}
 
       {/* Profile Form */}
       <section className="rounded-[2.5rem] bg-white dark:bg-zinc-950 p-8 shadow-sm border border-zinc-100 dark:border-zinc-800 transition-colors">
@@ -206,6 +293,71 @@ const ProfileForm = ({ user }) => {
             ))}
           </div>
         </div>
+
+        {/* Specialized Packs */}
+        <div className="rounded-[2.5rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm space-y-8 lg:col-span-2 transition-colors">
+          <div className="flex items-center gap-2 text-primary">
+            <Sparkles size={20} />
+            <h3 className="font-bold uppercase tracking-widest text-xs">Packs de Especialidades</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {packCategories.map((cat) => (
+              <div key={cat.label} className="space-y-4">
+                <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400 px-1">{cat.label}</h4>
+                <div className="flex flex-col gap-3">
+                  {cat.packs.map(pack => {
+                    const isSelected = formData.interests.includes(pack);
+                    const isUnlocked = formData.unlockedPacks.includes(pack);
+                    
+                    return (
+                      <div key={pack} className="flex flex-col gap-2">
+                        <button
+                          onClick={() => {
+                            const newInterests = isSelected
+                              ? formData.interests.filter(i => i !== pack)
+                              : [...formData.interests, pack];
+                            setFormData({ ...formData, interests: newInterests });
+                          }}
+                          className={cn(
+                            "flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold transition-all border w-full relative overflow-hidden",
+                            isPro || isUnlocked
+                              ? "bg-emerald-500/5 border-emerald-500/40 text-emerald-600 dark:text-emerald-400"
+                              : isSelected
+                                ? "bg-primary/10 border-primary text-primary"
+                                : "bg-zinc-50 dark:bg-zinc-950 border-zinc-100 dark:border-zinc-800 text-zinc-500 hover:border-primary/30"
+                          )}
+                        >
+                          <div className="flex items-center gap-2">
+                             <span>{pack}</span>
+                             {(isPro || isUnlocked) && <span className="text-[8px] font-black uppercase bg-emerald-500 text-white px-1.5 py-0.5 rounded-md">ADQUIRIDO</span>}
+                          </div>
+                          {(isSelected || isPro || isUnlocked) && <Check size={14} strokeWidth={(isPro || isUnlocked) ? 4 : 2} />}
+                        </button>
+                        
+                        {!isPro && !isUnlocked && isSelected && (
+                          <button 
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleUnlockClick(pack);
+                            }}
+                            className="text-[9px] font-black uppercase tracking-widest text-primary bg-primary/10 py-2 rounded-xl border border-primary/20 hover:bg-primary/20 transition-colors"
+                          >
+                            🔓 Desbloquear Premium
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <p className="text-[10px] text-zinc-500 font-medium italic">
+            * Selecione seus interesses para que o Curador Inteligente priorize chunks relevantes para você.
+          </p>
+        </div>
       </div>
 
       <div className="flex items-center justify-between border-t border-zinc-100 pt-10">
@@ -223,6 +375,70 @@ const ProfileForm = ({ user }) => {
       </div>
         </div>
       </section>
+
+      {/* Purchase Modal Overlay */}
+      {selectedPackForPurchase && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-sm animate-in fade-in duration-200">
+           <div className="relative w-full max-w-md overflow-hidden rounded-[3rem] bg-white dark:bg-zinc-900 p-8 shadow-2xl animate-in zoom-in-95 duration-200 border border-zinc-100 dark:border-zinc-800">
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                    <Sparkles size={28} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-black tracking-tight text-zinc-900 dark:text-zinc-100 uppercase">Desbloquear Pack</h3>
+                    <p className="text-zinc-500 font-bold text-sm tracking-tight">{selectedPackForPurchase}</p>
+                  </div>
+                </div>
+
+                <div className="py-6 border-y border-zinc-100 dark:border-zinc-800 space-y-4">
+                   <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-zinc-400 uppercase tracking-widest">Preço Individual</span>
+                      <span className="text-2xl font-black text-zinc-900 dark:text-zinc-100 tracking-tighter">R$ 1,00</span>
+                   </div>
+                   <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-xs font-bold text-zinc-600 dark:text-zinc-400">
+                         <Check size={14} className="text-emerald-500" strokeWidth={3} />
+                         Acesso vitalício ao tema {selectedPackForPurchase}
+                      </div>
+                      <div className="flex items-center gap-2 text-xs font-bold text-zinc-600 dark:text-zinc-400">
+                         <Check size={14} className="text-emerald-500" strokeWidth={3} />
+                         Selo visual identificando o conteúdo nos cards
+                      </div>
+                   </div>
+                </div>
+
+                <div className="space-y-3">
+                   <Button 
+                     className="w-full py-6 rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-primary/20"
+                     onClick={confirmPurchase}
+                     disabled={isProcessingPurchase}
+                   >
+                     {isProcessingPurchase ? "Processando..." : "Finalizar Pagamento (R$ 1,00)"}
+                   </Button>
+                   <button 
+                     onClick={() => {
+                        setSelectedPackForPurchase(null);
+                        openUpgrade();
+                     }}
+                     className="w-full text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-primary transition-colors py-2"
+                   >
+                     Ou desbloqueie TUDO com Mango Pro
+                   </button>
+                   <button 
+                     onClick={() => setSelectedPackForPurchase(null)}
+                     className="w-full text-[10px] font-black uppercase tracking-widest text-zinc-300 hover:text-zinc-500 transition-colors"
+                   >
+                     Cancelar
+                   </button>
+                </div>
+              </div>
+              
+              {/* Decorative background */}
+              <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 h-32 w-32 rounded-full bg-primary/10 blur-2xl" />
+           </div>
+        </div>
+      )}
     </div>
   );
 };

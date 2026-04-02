@@ -86,11 +86,19 @@ export default async function Dashboard() {
   const weeklyXp = [0, 0, 0, 0, 0, 0, 0];
   let totalWeekChunks = 0;
 
+  // Map dates of current week to indexes
+  const weekDates = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(startOfWeek);
+    d.setDate(startOfWeek.getDate() + i);
+    weekDates.push(d.toISOString().split('T')[0]);
+  }
+
   user.progress.forEach(p => {
     if (p.status === 'mastered' && p.lastReviewedAt) {
-      const d = new Date(p.lastReviewedAt);
-      if (d >= startOfWeek) {
-        const dayIdx = (d.getDay() + 6) % 7;
+      const dateStr = new Date(p.lastReviewedAt).toISOString().split('T')[0];
+      const dayIdx = weekDates.indexOf(dateStr);
+      if (dayIdx !== -1) {
         weeklyChunks[dayIdx]++;
         totalWeekChunks++;
       }
@@ -99,9 +107,9 @@ export default async function Dashboard() {
 
   user.learningSessions.forEach(s => {
     if (s.date) {
-      const d = new Date(s.date);
-      if (d >= startOfWeek) {
-        const dayIdx = (d.getDay() + 6) % 7;
+      const dateStr = new Date(s.date).toISOString().split('T')[0];
+      const dayIdx = weekDates.indexOf(dateStr);
+      if (dayIdx !== -1) {
         weeklyXp[dayIdx] += (s.score || 0);
       }
     }
@@ -238,7 +246,8 @@ export default async function Dashboard() {
         <WeeklyGoal userId={user.id} goalLimit={limit} />
       </div>
 
-      {/* Live Speaking Matchmaking CTA */}
+      {/* Live Speaking Matchmaking CTA - Temporarily Hidden */}
+      {/* 
       <Link href="/practice/speaking" className="block group">
         <section className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-orange-500 via-primary to-orange-700 p-8 md:p-12 shadow-2xl transition-transform hover:scale-[1.01] hover:shadow-primary/30">
           <div className="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 h-96 w-96 rounded-full bg-white/10 blur-3xl pointer-events-none" />
@@ -263,6 +272,7 @@ export default async function Dashboard() {
           </div>
         </section>
       </Link>
+      */}
 
       {/* Recommended Section */}
       <section className="space-y-6">

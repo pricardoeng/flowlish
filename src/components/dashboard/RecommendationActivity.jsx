@@ -70,7 +70,7 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
       setAvailableWords([...words].sort(() => Math.random() - 0.5));
       setSelectedWords([]);
     }
-  }, [activity.tipo, stage, chunk.englishText]);
+  }, [activity.tipo, stage, chunk.id, chunk.englishText]);
 
   // Quiz countdown timer
   useEffect(() => {

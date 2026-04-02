@@ -23,6 +23,8 @@ model User {
   progress         UserChunkProgress[]
   wordProgress     UserWordProgress[]
   speechQueues     SpeechQueue[]
+  interests        String[]            @default([])
+  unlockedPacks    String[]            @default([])
 }
 
 model Chunk {
@@ -32,11 +34,13 @@ model Chunk {
   cefrLevel             String
   context               String?
   theme                 String?
+  pack                  String?
   variant               String              @default("US")
   tags                  String?
   audioUrl              String?
   createdAt             DateTime            @default(now())
   imageUrl              String?
+  isFree                Boolean             @default(false)
   userProgress          UserChunkProgress[]
 }
 
@@ -132,6 +136,7 @@ model Purchase {
   userId     String
   planType   String
   levelScope String?
+  packId     String?
   status     String   @default("active")
   createdAt  DateTime @default(now())
   user       User     @relation(fields: [userId], references: [id])

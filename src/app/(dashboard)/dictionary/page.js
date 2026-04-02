@@ -3,7 +3,9 @@ import React, { Suspense } from 'react';
 import prisma from '@/lib/prisma';
 import FilterPanel from '@/components/dictionary/FilterPanel';
 import ChunkCard from '@/components/dictionary/ChunkCard';
-import { BookOpen } from 'lucide-react';
+import PackUpsell from '@/components/dictionary/PackUpsell';
+import Pagination from '@/components/dictionary/Pagination';
+import { BookOpen, Library } from 'lucide-react';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
@@ -12,37 +14,78 @@ export default async function DictionaryPage({ searchParams }) {
   const session = await getServerSession(authOptions);
   if (!session) redirect("/login");
 
-  const { query, level, theme } = await searchParams;
+  const { query, level, pack, page } = await searchParams;
+  const currentPage = parseInt(page) || 1;
+  const pageSize = 12;
 
   try {
     const user = await prisma.user.findUnique({
-      where: { id: session.user.id }
+      where: { id: session.user.id },
+      include: {
+        purchases: { where: { status: 'active' } }
+      }
     });
 
     if (!user) {
       return (
         <div className="flex flex-col items-center justify-center p-20 text-center space-y-4">
           <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Usuário não encontrado</h1>
-          <p className="text-zinc-500">Por favor, faça login novamente ou execute o seed.</p>
+          <p className="text-zinc-500">Por favor, faça login novamente.</p>
         </div>
       );
     }
 
-    // Fetch real chunks from Prisma with filters and user progress
+    const isPro = user.purchases.some(p => !p.packId);
+    const unlockedPacks = user.unlockedPacks || [];
+
+    // Filter logic: Free chunks OR unlocked packs OR isPro
+    const accessFilter = !isPro ? {
+      OR: [
+        { isFree: true },
+        { pack: { in: unlockedPacks } }
+      ]
+    } : {};
+
+    // 1. Total chunks in user's library
+    const totalInPlan = await prisma.chunk.count({ where: accessFilter });
+
+    // 2. Chunks matching current filters
+    const finalWhereClause = {
+      AND: [
+        query ? { englishText: { contains: query, mode: 'insensitive' } } : {},
+        level ? { cefrLevel: level } : {},
+        pack ? { pack: pack } : {},
+        accessFilter
+      ]
+    };
+
+    const [totalFiltered, packsWithContent] = await Promise.all([
+      prisma.chunk.count({ where: finalWhereClause }),
+      prisma.chunk.groupBy({
+        by: ['pack'],
+        where: { 
+          AND: [
+            { pack: { not: null } },
+            accessFilter
+          ]
+        }
+      })
+    ]);
+
+    const availablePacks = packsWithContent.map(p => p.pack);
+    const totalPages = Math.ceil(totalFiltered / pageSize);
+
+    // 3. Fetch current page chunks
     const chunks = await prisma.chunk.findMany({
-      where: {
-        AND: [
-          query ? { englishText: { contains: query } } : {},
-          level ? { cefrLevel: level } : {},
-          theme ? { theme: theme } : {},
-        ]
-      },
+      where: finalWhereClause,
       include: {
         userProgress: {
           where: { userId: user.id }
         }
       },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: 'desc' },
+      take: pageSize,
+      skip: (currentPage - 1) * pageSize
     });
 
     const processedChunks = chunks.map(c => ({
@@ -51,27 +94,59 @@ export default async function DictionaryPage({ searchParams }) {
       mastered: c.userProgress[0]?.status === 'mastered'
     }));
 
+    const ALL_PACKS = ['Medicina', 'Jurídico', 'Financeiro', 'Tecnologia', 'Projetos', 'Engenharia', 'Corporativo', 'Viajar', 'Viver', 'Estudar', 'Trabalhar', 'Avançado', 'Acadêmico'];
+    const missingPacks = ALL_PACKS.filter(p => !unlockedPacks.includes(p));
+
     return (
       <div className="space-y-10 animate-fade-in transition-colors">
-        <header className="space-y-2">
-          <div className="flex items-center gap-3">
-            <BookOpen className="text-primary" size={32} />
-            <h1 className="text-4xl font-black tracking-tight transition-colors">Dicionário de Chunks</h1>
+        <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2 border-b border-zinc-100 dark:border-zinc-800">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-transform hover:rotate-12">
+                <BookOpen size={28} strokeWidth={2.5} />
+              </div>
+              <h1 className="text-4xl font-black tracking-tighter transition-colors">Dicionário</h1>
+            </div>
+            <p className="max-w-xl text-zinc-500 dark:text-zinc-400 font-medium transition-colors text-sm">
+              Sua biblioteca de conteúdos desbloqueados. Explore {totalInPlan} chunks disponíveis no seu plano.
+            </p>
           </div>
-          <p className="max-w-xl text-zinc-600 dark:text-zinc-400 font-medium transition-colors">
-            Acesse sua biblioteca completa. Filtre por nível, tema ou busque expressões específicas para acelerar seu domínio.
-          </p>
+
+          <div className="flex items-center gap-6 px-6 py-4 bg-zinc-50/50 dark:bg-zinc-900/50 rounded-3xl border border-zinc-100 dark:border-zinc-800 backdrop-blur-sm self-start">
+             <div className="flex flex-col">
+                <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Plan Status</span>
+                <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-tight">
+                  {isPro ? "Full Access" : `${unlockedPacks.length + 1} Packs`}
+                </span>
+             </div>
+             <div className="h-8 w-px bg-zinc-200 dark:bg-zinc-800" />
+             <div className="flex flex-col">
+                <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Total Chunks</span>
+                <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100">{totalInPlan}</span>
+             </div>
+             <div className="h-8 w-px bg-zinc-200 dark:bg-zinc-800" />
+             <div className="flex flex-col">
+                <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Filtered</span>
+                <span className="text-xs font-bold text-primary">{totalFiltered}</span>
+             </div>
+          </div>
         </header>
 
         <Suspense fallback={<div className="h-20 animate-pulse bg-zinc-100 dark:bg-zinc-800 rounded-2xl" />}>
-          <FilterPanel />
+          <FilterPanel availablePacks={availablePacks} />
         </Suspense>
+
+        {!isPro && missingPacks.length > 0 && currentPage === 1 && (
+          <PackUpsell missingPacks={missingPacks} isPro={isPro} />
+        )}
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {processedChunks.map(chunk => (
             <ChunkCard key={chunk.id} chunk={chunk} userId={user.id} />
           ))}
         </div>
+
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
 
         {chunks.length === 0 && (
           <div className="flex flex-col items-center justify-center p-20 text-center space-y-6 rounded-[3rem] border-2 border-dashed border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 transition-colors">

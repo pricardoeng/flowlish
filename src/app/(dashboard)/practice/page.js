@@ -4,21 +4,20 @@ import prisma from '@/lib/prisma';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import { Curator } from '@/lib/curator';
 
 export default async function PracticePage() {
   const session = await getServerSession(authOptions);
   if (!session) redirect("/login");
 
   const user = await prisma.user.findUnique({
-    where: { id: session.user.id }
+    where: { id: session.user.id },
+    include: { purchases: true }
   });
 
-  // Fetch chunks for the session based on user level
-  const chunks = await prisma.chunk.findMany({
-    where: { cefrLevel: user.currentLevel || 'A1' },
-    take: 10
-  });
+  // Fetch curated chunks based on user interests and status
+  const { chunks, isSample } = await Curator.getCuratedChunks(user.id, user.interests);
 
-  return <PracticeSession user={user} chunks={chunks} />;
+  return <PracticeSession user={user} chunks={chunks} isSample={isSample} />;
 }
 
