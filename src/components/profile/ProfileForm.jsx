@@ -6,6 +6,27 @@ import { cn } from '@/lib/utils';
 import { updateUserProfile } from '@/actions/learning';
 import { uploadProfilePicture } from '@/actions/auth';
 import { useModals } from '@/context/ModalContext';
+import { getLevelConfig } from '@/config/levels';
+
+const LevelButton = ({ lvl, isSelected, onClick }) => {
+  const cfg = getLevelConfig(lvl);
+  return (
+    <button 
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "flex h-20 flex-col items-center justify-center rounded-2xl transition-all border-2",
+        isSelected 
+          ? "text-white shadow-lg" 
+          : "bg-white dark:bg-zinc-950 text-zinc-400 dark:text-zinc-600 border-zinc-100 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700"
+      )}
+      style={isSelected ? { backgroundColor: cfg.color, borderColor: cfg.color, boxShadow: `0 0 20px ${cfg.color}40` } : {}}
+    >
+      <span className="text-2xl font-black">{lvl}</span>
+      <span className="text-[8px] font-black uppercase tracking-widest opacity-80">{cfg.ptLabel}</span>
+    </button>
+  );
+};
 
 const ProfileForm = ({ user }) => {
   const { openUpgrade } = useModals();
@@ -14,8 +35,8 @@ const ProfileForm = ({ user }) => {
     email: user.email,
     goal: user.goal || 'Regular',
     level: user.currentLevel || 'B2',
-    interests: user.interests || [],
-    unlockedPacks: user.unlockedPacks || []
+    interests: Array.isArray(user.interests) ? user.interests : [],
+    unlockedPacks: Array.isArray(user.unlockedPacks) ? user.unlockedPacks : []
   });
   const [isSaving, setIsSaving] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -269,7 +290,6 @@ const ProfileForm = ({ user }) => {
             ))}
           </div>
         </div>
-
         {/* Level Selection */}
         <div className="rounded-[2.5rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm space-y-6 lg:col-span-2 transition-colors">
           <div className="flex items-center gap-2 text-primary">
@@ -278,18 +298,12 @@ const ProfileForm = ({ user }) => {
           </div>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
             {levels.map(lvl => (
-              <button 
+              <LevelButton 
                 key={lvl}
+                lvl={lvl}
+                isSelected={formData.level === lvl}
                 onClick={() => setFormData({...formData, level: lvl})}
-                className={cn(
-                  "flex h-20 items-center justify-center rounded-2xl text-xl font-black transition-all border",
-                  formData.level === lvl 
-                    ? "bg-primary text-white border-primary shadow-lg shadow-primary/20" 
-                    : "bg-white dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500 border-zinc-100 dark:border-zinc-800 hover:border-primary/30 dark:hover:border-primary/30 hover:text-primary dark:hover:text-primary"
-                )}
-              >
-                {lvl}
-              </button>
+              />
             ))}
           </div>
         </div>

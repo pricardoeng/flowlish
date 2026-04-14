@@ -119,7 +119,7 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
   // Track per-activity-type completion in localStorage (avoids shared counter bug)
   const trackActivityProgress = () => {
     const today = new Date().toLocaleDateString('en-CA');
-    const key = `flowlish:activity:${userId}:${activity.tipo}:${today}`;
+    const key = `mango:activity:${userId}:${activity.tipo}:${today}`;
     const current = parseInt(localStorage.getItem(key) || '0');
     localStorage.setItem(key, String(current + 1));
   };

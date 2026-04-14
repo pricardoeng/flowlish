@@ -103,8 +103,7 @@ async function main() {
   
   // Prisma createMany is better for this
   await prisma.chunk.createMany({
-    data: chunks,
-    skipDuplicates: true
+    data: chunks
   })
 
   console.log('✅ 1500 Chunks seeded successfully!')

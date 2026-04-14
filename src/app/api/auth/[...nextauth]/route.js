@@ -60,7 +60,10 @@ export const authOptions = {
   pages: {
     signIn: "/login",
   },
-  secret: process.env.NEXTAUTH_SECRET || "flowlish_auth_secret_dev_only",
+  secret: process.env.NEXTAUTH_SECRET,
+  // Ensure we trust the host for Vercel and other proxies in Next.js 15
+  trustHost: true,
+  debug: process.env.NODE_ENV === 'development',
 };
 
 const handler = NextAuth(authOptions)

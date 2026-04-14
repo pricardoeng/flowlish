@@ -56,9 +56,8 @@ export async function updateUserProfile(clientUserId, data) {
         name: data.name,
         email: data.email,
         goal: data.goal,
-        currentLink: data.level,
         currentLevel: data.level,
-        interests: data.interests || []
+        interests: Array.isArray(data.interests) ? data.interests : []
       }
     })
     

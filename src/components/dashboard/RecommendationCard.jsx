@@ -14,7 +14,7 @@ const RecommendationCard = ({ activity, userId }) => {
   const readLocalProgress = () => {
     if (typeof window === 'undefined') return 0;
     const today = new Date().toLocaleDateString('en-CA');
-    const key = `flowlish:activity:${userId}:${activity.tipo}:${today}`;
+    const key = `mango:activity:${userId}:${activity.tipo}:${today}`;
     return parseInt(localStorage.getItem(key) || '0');
   };
 

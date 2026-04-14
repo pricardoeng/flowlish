@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BookOpen, Mic, Settings } from 'lucide-react';
+import { Home, BookOpen, Mic, Settings, Layers } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 import Image from 'next/image';
@@ -14,8 +14,8 @@ const MobileNav = () => {
     { id: 'dashboard', label: 'Início', icon: Home, href: '/' },
     { id: 'dictionary', label: 'Explorar', icon: BookOpen, href: '/dictionary' },
     { id: 'practice', label: 'Treinar', icon: Mic, href: '/practice' },
-    { id: 'flashcards', label: 'Cartas', icon: BookOpen, href: '/practice/flashcards' },
-    { id: 'profile', label: 'Meu Perfil', icon: Settings, href: '/profile' },
+    { id: 'tactics', label: 'Tactics', icon: Layers, href: '/practice/tactics' },
+    { id: 'profile', label: 'Perfil', icon: Settings, href: '/profile' },
   ];
 
   return (

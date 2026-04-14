@@ -27,7 +27,7 @@ const WeeklyGoal = ({ userId, goalLimit = 4 }) => {
     // A day is "done" when AT LEAST one activity type has completed all chunks
     const done = week.map(date => {
       return ACTIVITY_TYPES.some(tipo => {
-        const key = `flowlish:activity:${userId}:${tipo}:${date}`;
+        const key = `mango:activity:${userId}:${tipo}:${date}`;
         const count = parseInt(localStorage.getItem(key) || '0');
         return count >= goalLimit;
       });

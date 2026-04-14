@@ -20,6 +20,11 @@ export const Curator = {
     const isPremium = user.purchases.some(p => p.status === 'active' && !p.packId);
     const unlockedPacks = user.unlockedPacks || [];
     const userLevel = user.currentLevel || 'A1';
+    
+    // Safety check: handle interests as native Array from Postgres (or legacy String)
+    const packs = Array.isArray(preferredPacks) 
+      ? preferredPacks 
+      : (typeof preferredPacks === 'string' ? preferredPacks.split(',').filter(Boolean) : []);
 
     /**
      * Helper to check if a pack is owned or accessible
@@ -31,7 +36,7 @@ export const Curator = {
     };
 
     // 1. CHunk Retrieval & Access Logic
-    const activePack = preferredPacks.length > 0 ? preferredPacks[0] : 'Free';
+    const activePack = packs.length > 0 ? packs[0] : 'Free';
     const hasFullAccess = hasAccessToPack(activePack);
 
     if (!hasFullAccess) {
@@ -51,10 +56,21 @@ export const Curator = {
     }
 
     // 2. FULL ACCESS LOGIC (Owned Pack or Premium)
+    // Map goal to limit
+    const goalLimits = { 
+      'Casual': 4, 
+      'Regular': 8, 
+      'Intenso': 12,
+      'Fluency': 10 // Legacy fallback
+    };
+    const totalLimit = goalLimits[user.goal] || 10;
+
     // 70/30 Mix for specialized packs, or 100% for Free/Context if requested
     const isSpecialized = !['Free', ...CONTEXT_PACKS].includes(activePack);
     
-    let mainChunksCount = isSpecialized ? 7 : 10;
+    let mainChunksCount = isSpecialized ? Math.ceil(totalLimit * 0.7) : totalLimit;
+    let secondaryChunksCount = totalLimit - mainChunksCount;
+    
     
     const primaryChunks = await prisma.chunk.findMany({
       where: { 
@@ -73,7 +89,7 @@ export const Curator = {
           pack: randomContext,
           cefrLevel: userLevel
         },
-        take: 3
+        take: secondaryChunksCount
       });
       combined = [...combined, ...secondaryChunks];
     }

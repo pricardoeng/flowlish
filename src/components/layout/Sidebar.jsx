@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BookOpen, Mic, Settings, Crown } from 'lucide-react';
+import { Home, BookOpen, Mic, Settings, Crown, Layers } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useModals } from '@/context/ModalContext';
 import ThemeToggle from '@/components/ui/ThemeToggle';
@@ -16,7 +16,8 @@ const Sidebar = () => {
     { id: 'dashboard', label: 'Início', icon: Home, href: '/' },
     { id: 'dictionary', label: 'Dicionário', icon: BookOpen, href: '/dictionary' },
     { id: 'practice', label: 'Praticar', icon: Mic, href: '/practice' },
-    { id: 'flashcards', label: 'Flashcards', icon: BookOpen, href: '/practice/flashcards' }, /* Reusing BookOpen icon as placeholder for Cards */
+    { id: 'flashcards', label: 'Flashcards', icon: BookOpen, href: '/practice/flashcards' },
+    { id: 'tactics', label: 'Chunk Tactics', icon: Layers, href: '/practice/tactics' },
     { id: 'profile', label: 'Perfil', icon: Settings, href: '/profile' },
   ];
 

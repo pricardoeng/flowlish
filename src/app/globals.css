@@ -47,3 +47,36 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--foreground);
   transition: color 0.3s ease;
 }
+
+
+/* Pip Decks Neo-Brutalist Card Utilities */
+.neo-shadow {
+  box-shadow: 4px 4px 0px 0px rgba(9, 9, 11, 1);
+}
+
+.neo-card {
+  background-color: white;
+  border: 3px solid #09090b;
+  border-radius: 1.5rem;
+  box-shadow: 4px 4px 0px 0px #09090b;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.neo-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #09090b;
+}
+
+.dark .neo-shadow {
+  box-shadow: 4px 4px 0px 0px rgba(113, 113, 122, 0.4);
+}
+
+.dark .neo-card {
+  background-color: #18181b;
+  border-color: #3f3f46;
+  box-shadow: 4px 4px 0px 0px #3f3f46;
+}
+
+.dark .neo-card:hover {
+  box-shadow: 6px 6px 0px 0px #3f3f46;
+}

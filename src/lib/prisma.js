@@ -1,4 +1,4 @@
-// Flowlish Prisma Client Singleton
+// Mango Prisma Client Singleton
 import { PrismaClient } from '@prisma/client'
 
 const prismaClientSingleton = () => {

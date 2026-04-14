@@ -7,6 +7,7 @@ import Image from 'next/image';
 const MemoryCard = ({ word, onComplete }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   const playAudio = (e) => {
     e.stopPropagation();
@@ -42,22 +43,27 @@ const MemoryCard = ({ word, onComplete }) => {
       >
         {/* FRONT FACE (Image/MTG Card) */}
         <div className="absolute inset-0 backface-hidden bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden border-4 border-zinc-100 dark:border-zinc-800 flex flex-col items-center justify-center p-2 transition-colors">
-          {word.imageUrl ? (
+          {(word.imageUrl && !imgError) ? (
             <div className="relative w-full h-full rounded-xl overflow-hidden">
               <Image 
                 src={`${word.imageUrl}?v=3`} 
                 alt={word.englishWord} 
                 fill
-                className="object-contain p-4"
+                className="object-contain p-4 transition-opacity duration-300"
                 priority
                 unoptimized
+                onError={() => setImgError(true)}
               />
             </div>
           ) : (
-            <div className="p-8 text-center text-zinc-400 dark:text-zinc-500 transition-colors">
-              <span className="text-4xl block mb-4">🖼️</span>
-              <p className="font-bold">Missing Illustration</p>
-              <p className="text-sm mt-2">{word.englishWord}</p>
+            <div className="p-8 text-center text-zinc-400 dark:text-zinc-500 transition-colors animate-in fade-in duration-500">
+              <div className="relative w-24 h-24 mx-auto mb-6 opacity-40">
+                <img src="/images/logo_icon.png" alt="Mango Logo" className="object-contain grayscale" />
+              </div>
+              <p className="font-serif text-xl italic font-black text-zinc-900 dark:text-zinc-100 leading-tight">
+                {word.englishWord}
+              </p>
+              <p className="text-xs mt-3 uppercase tracking-widest opacity-60">Ilustração em breve</p>
             </div>
           )}
           {/* Subtle overlay hint */}

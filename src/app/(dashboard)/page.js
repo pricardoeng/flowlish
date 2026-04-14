@@ -5,6 +5,10 @@ import StreakCard from '@/components/dashboard/StreakCard';
 import MasteryCard from '@/components/dashboard/MasteryCard';
 import WeeklyGoal from '@/components/dashboard/WeeklyGoal';
 import RecommendationCard from '@/components/dashboard/RecommendationCard';
+import AchievementsCard from '@/components/dashboard/AchievementsCard';
+import ShareButtons from '@/components/ui/ShareButtons';
+import LeaderboardCard from '@/components/dashboard/LeaderboardCard';
+import WeeklyEvolution from '@/components/dashboard/WeeklyEvolution';
 import Button from '@/components/ui/Button';
 import { LayoutGrid, TrendingUp, Sparkles, ArrowRight, Video } from 'lucide-react';
 import { getServerSession } from "next-auth/next";
@@ -81,6 +85,9 @@ export default async function Dashboard() {
     })
     .sort((a, b) => b.xpTotal - a.xpTotal);
   
+  const currentUserRank = leaderboard.findIndex(u => u.isCurrentUser) + 1;
+  const totalMasteredCount = user.progress.filter(p => p.status === 'mastered').length;
+
   // Calculate Weekly Evolution data (Mon-Sun)
   const weeklyChunks = [0, 0, 0, 0, 0, 0, 0];
   const weeklyXp = [0, 0, 0, 0, 0, 0, 0];
@@ -181,7 +188,7 @@ export default async function Dashboard() {
   const activityTypes = ['Flashcards', 'Praticar', 'Escrita', 'Rápido'];
 
   // Calculate mastered count within this fixed daily pool
-  const shuffledIds = shuffled.map(c => c.id);
+  const shuffledIds = shuffled.map(c => c?.id).filter(Boolean);
   const masteredInPool = user.progress.filter(p => shuffledIds.includes(p.chunkId) && p.status === 'mastered');
   const masteredCount = masteredInPool.length;
 
@@ -198,7 +205,7 @@ export default async function Dashboard() {
       masteredCount,
       totalCount: shuffled.length,
       isCompleted: masteredCount >= shuffled.length,
-      chunks: shuffled.map(chunk => ({
+      chunks: (shuffled || []).filter(Boolean).map(chunk => ({
         englishText: chunk.englishText,
         portugueseTranslation: chunk.portugueseTranslation,
         id: chunk.id
@@ -245,6 +252,16 @@ export default async function Dashboard() {
         <StreakCard streaks={streaks} />
         <WeeklyGoal userId={user.id} goalLimit={limit} />
       </div>
+
+      {/* Achievements Section / Badges */}
+      <section className="opacity-95 hover:opacity-100 transition-opacity">
+        <AchievementsCard 
+          masteredCount={totalMasteredCount} 
+          streaks={streaks} 
+          xp={xp} 
+          leaderboardRank={currentUserRank} 
+        />
+      </section>
 
       {/* Live Speaking Matchmaking CTA - Temporarily Hidden */}
       {/* 
@@ -314,8 +331,3 @@ export default async function Dashboard() {
     </div>
   );
 }
-
-import ShareButtons from '@/components/ui/ShareButtons';
-import LeaderboardCard from '@/components/dashboard/LeaderboardCard';
-import WeeklyEvolution from '@/components/dashboard/WeeklyEvolution';
-

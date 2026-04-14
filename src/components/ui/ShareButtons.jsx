@@ -4,7 +4,7 @@ import { Linkedin, Instagram, Share2 } from 'lucide-react';
 import Button from '@/components/ui/Button';
 
 const ShareButtons = ({ text = "Estou dominando o inglês com o Mango! 🥭" }) => {
-  const url = "https://flowlish.app";
+  const url = "https://mango.app";
   
   const shareLinkedIn = () => {
     window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
@@ -30,7 +30,7 @@ const ShareButtons = ({ text = "Estou dominando o inglês com o Mango! 🥭" }) 
           </div>
           <h3 className="text-xl font-bold text-white tracking-tight">Gostando do seu progresso?</h3>
           <p className="text-sm font-medium text-zinc-400 max-w-md">
-            Compartilhe sua jornada de aprendizado no Flowlish e inspire outros a dominarem o inglês também! 🚀
+            Compartilhe sua jornada de aprendizado no Mango e inspire outros a dominarem o inglês também! 🚀
           </p>
         </div>
 

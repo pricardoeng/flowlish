@@ -1,11 +1,12 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { Play, RotateCcw, CheckCircle2, Volume2, Sparkles, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { completePracticeSession } from '@/actions/learning';
 import { useModals } from '@/context/ModalContext';
+import { getLevelConfig } from '@/config/levels';
 
 const PracticeSession = ({ user, chunks, isSample = false }) => {
   const { openUpgrade } = useModals();
@@ -32,6 +33,11 @@ const PracticeSession = ({ user, chunks, isSample = false }) => {
     }
   };
 
+  const getLevelStyles = (levelId) => {
+    const cfg = getLevelConfig(levelId);
+    return `${cfg.bg} text-white`;
+  };
+
   // Sessão concluída
   if (!sessionActive && results.length > 0) {
     const mastered = results.filter(r => r.status === 'mastered').length;
@@ -46,7 +52,7 @@ const PracticeSession = ({ user, chunks, isSample = false }) => {
         </div>
         
         <div className="max-w-md space-y-4">
-          <h1 className="text-4xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight transition-colors transition-colors uppercase">
+          <h1 className="text-4xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight transition-colors uppercase">
             {isSample ? "Gostou da amostra?" : "Sessão concluída!"}
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400 font-medium transition-colors px-4">
@@ -161,59 +167,60 @@ const PracticeSession = ({ user, chunks, isSample = false }) => {
         </div>
       </div>
 
-      {/* Chunk Stage */}
-      <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-8">
-        <div className="relative group text-center space-y-6 p-10 rounded-[3rem] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-premium w-full transition-all hover:scale-[1.01]">
-          <div className="flex justify-center">
-            <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest transition-colors">
-              {currentChunk.cefrLevel}
+      {/* Chunk Stage - Pip Decks Style Physical Card */}
+      <div className="flex flex-col items-center justify-center min-h-[40vh] py-8">
+        <div className="neo-card w-full max-w-lg min-h-[400px] flex flex-col overflow-hidden bg-white dark:bg-zinc-900 mx-auto">
+          {/* Top Graphic Banner */}
+          <div className={cn(
+            "px-6 py-4 flex items-center justify-between border-b-[3px] border-zinc-900 dark:border-zinc-700 font-bold uppercase tracking-wider",
+            getLevelStyles(currentChunk.cefrLevel)
+          )}>
+            <span className="text-sm font-black uppercase tracking-[0.2em] opacity-90">
+              NÍVEL {currentChunk.cefrLevel}
+            </span>
+            <span className="text-xs font-black uppercase bg-white/20 px-3 py-1 rounded-full">
+              {currentChunk.pack || 'Geral'}
             </span>
           </div>
-          
-          <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-zinc-100 tracking-tighter leading-tight drop-shadow-sm transition-colors">
+
+          {/* Card Body */}
+          <div className="p-8 sm:p-12 flex flex-col items-center justify-center text-center flex-1 space-y-8">
+            <h2 className="text-4xl sm:text-5xl font-black text-zinc-900 dark:text-zinc-100 tracking-tighter leading-[1.1]">
               {currentChunk.englishText}
             </h2>
-            <p className="text-xl text-zinc-600 dark:text-zinc-400 font-medium italic transition-colors">
-              "{currentChunk.portugueseTranslation}"
+            <div className="w-16 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-full"></div>
+            <p className="text-xl sm:text-2xl text-zinc-500 dark:text-zinc-400 font-bold italic">
+              {currentChunk.portugueseTranslation}
             </p>
           </div>
-          
-          <div className="pt-6 flex flex-col items-center gap-8">
-             <div className="flex justify-center gap-4">
-               <button 
-                 onClick={() => {
-                   window.speechSynthesis.cancel();
-                   const utterance = new SpeechSynthesisUtterance(currentChunk.englishText);
-                   const voices = window.speechSynthesis.getVoices();
-                   const premiumVoice = voices.find(v => 
-                     (v.name.includes('Google') || v.name.includes('Premium') || v.name.includes('Samantha')) && 
-                     v.lang.startsWith('en')
-                   );
-                   if (premiumVoice) utterance.voice = premiumVoice;
-                   utterance.lang = 'en-US';
-                   utterance.rate = 0.8;
-                   utterance.onend = () => {
-                     setAudioCompleted(true);
-                     setTimeout(() => handleNext('mastered'), 1500);
-                   };
-                   window.speechSynthesis.speak(utterance);
-                 }}
-                 className={cn(
-                   "flex h-20 w-20 items-center justify-center rounded-full transition-all border shadow-sm",
-                   audioCompleted ? "bg-primary text-white border-primary" : "bg-white dark:bg-zinc-950 text-primary border-zinc-100 dark:border-zinc-800 ring-2 ring-primary/20"
-                 )}
-               >
-                  <Volume2 size={32} />
-               </button>
-             </div>
 
-             {/* Pack Tag - As requested in screenshot */}
-             <div className="w-full border-t border-zinc-100 dark:border-zinc-800 pt-6 mt-4 flex justify-start">
-                <span className="px-4 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 text-[10px] font-black uppercase tracking-widest">
-                  {currentChunk.pack || 'General'}
-                </span>
-             </div>
+          {/* Card Action / Footer */}
+          <div className="px-8 py-6 border-t-[3px] border-zinc-900 dark:border-zinc-700 mt-auto flex justify-center bg-zinc-50 dark:bg-zinc-950">
+             <button 
+               onClick={() => {
+                 window.speechSynthesis.cancel();
+                 const utterance = new SpeechSynthesisUtterance(currentChunk.englishText);
+                 const voices = window.speechSynthesis.getVoices();
+                 const premiumVoice = voices.find(v => 
+                   (v.name.includes('Google') || v.name.includes('Premium') || v.name.includes('Samantha')) && 
+                   v.lang.startsWith('en')
+                 );
+                 if (premiumVoice) utterance.voice = premiumVoice;
+                 utterance.lang = 'en-US';
+                 utterance.rate = 0.8;
+                 utterance.onend = () => {
+                   setAudioCompleted(true);
+                   setTimeout(() => handleNext('mastered'), 1500);
+                 };
+                 window.speechSynthesis.speak(utterance);
+               }}
+               className={cn(
+                 "flex h-16 w-16 items-center justify-center rounded-2xl border-[3px] border-zinc-900 dark:border-zinc-700 shadow-[4px_4px_0px_0px_#09090b] dark:shadow-[4px_4px_0px_0px_#3f3f46] transition-all hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none active:scale-95",
+                 audioCompleted ? "bg-primary text-white border-primary border-primary shadow-none translate-y-[2px] translate-x-[2px]" : "bg-white text-zinc-900 dark:bg-zinc-800 dark:text-white"
+               )}
+             >
+                <Volume2 size={28} strokeWidth={2.5} />
+             </button>
           </div>
         </div>
       </div>

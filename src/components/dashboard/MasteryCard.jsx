@@ -2,18 +2,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-const LEVEL_META = [
-  { id: 'A1', label: 'Iniciante',      color: 'bg-emerald-500' },
-  { id: 'A2', label: 'Básico',         color: 'bg-primary' },
-  { id: 'B1', label: 'Intermediário',  color: 'bg-blue-500' },
-  { id: 'B2', label: 'Avançado Base',  color: 'bg-purple-500' },
-  { id: 'C1', label: 'Avançado',       color: 'bg-pink-500' },
-  { id: 'C2', label: 'Proficiente',    color: 'bg-rose-600' },
-];
+import { LEVEL_CONFIG } from '@/config/levels';
 
 const MasteryCard = ({ masteryData = {} }) => {
-  // Only render levels that have at least 1 chunk in the DB
-  const levelsWithData = LEVEL_META.filter(l => masteryData[l.id]?.total > 0);
+  const levelsWithData = Object.values(LEVEL_CONFIG).filter(l => masteryData[l.id]?.total > 0);
 
   return (
     <div className="relative overflow-hidden rounded-[2.5rem] bg-zinc-950/50 dark:bg-zinc-950/50 p-8 shadow-2xl border border-zinc-800/60 transition-all hover:scale-[1.01] hover:shadow-primary/5 group">
@@ -31,7 +23,7 @@ const MasteryCard = ({ masteryData = {} }) => {
             return (
               <div key={lvl.id} className="space-y-2">
                 <div className="flex justify-between items-baseline text-xs font-black uppercase tracking-widest">
-                  <span className="text-zinc-500 dark:text-zinc-400">{lvl.id} • {lvl.label}</span>
+                  <span className="text-zinc-500 dark:text-zinc-400">{lvl.id} • {lvl.ptLabel}</span>
                   <div className="flex items-center gap-2">
                     <span className="text-zinc-400 dark:text-zinc-500 font-bold normal-case text-[10px] tracking-normal">
                       {data.mastered}/{data.total}
@@ -46,7 +38,7 @@ const MasteryCard = ({ masteryData = {} }) => {
                 </div>
                 <div className="h-2.5 w-full rounded-full bg-zinc-100 dark:bg-white/10 overflow-hidden">
                   <div
-                    className={cn("h-full rounded-full transition-all duration-1000", lvl.color)}
+                    className={cn("h-full rounded-full transition-all duration-1000", lvl.bg)}
                     style={{ width: `${data.percent}%` }}
                   />
                 </div>

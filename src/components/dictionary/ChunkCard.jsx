@@ -1,15 +1,17 @@
 "use client"
-import React, { useState } from 'react';
-import { Volume2, CheckCircle2, Bookmark, MoreVertical } from 'lucide-react';
+import React, { useState, useTransition } from 'react';
+import { Volume2, CheckCircle2, Bookmark } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toggleFavorite, markChunkAsMastered } from '@/actions/learning';
-import { useTransition } from 'react';
+import { getLevelConfig } from '@/config/levels';
 
 const ChunkCard = ({ chunk, userId }) => {
   const [isPending, startTransition] = useTransition();
   const [favorited, setFavorited] = useState(chunk.isFavorite);
   const [isMastered, setIsMastered] = useState(chunk.mastered || false);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const levelCfg = getLevelConfig(chunk.cefrLevel);
 
   const handleFavorite = () => {
     setFavorited(!favorited);
@@ -50,75 +52,72 @@ const ChunkCard = ({ chunk, userId }) => {
     window.speechSynthesis.speak(utterance);
   };
 
-  const levelColors = {
-    A1: 'bg-primary-light/30 dark:bg-orange-500/10 text-primary dark:text-orange-400 border-primary/20 dark:border-orange-500/20',
-    A2: 'bg-primary-light/30 dark:bg-orange-500/10 text-primary dark:text-orange-400 border-primary/20 dark:border-orange-500/20',
-    B1: 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-100 dark:border-blue-500/20',
-    B2: 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-100 dark:border-blue-500/20',
-    C1: 'bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-100 dark:border-purple-500/20',
-    C2: 'bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-100 dark:border-purple-500/20',
-  };
-
   return (
     <div className={cn(
-      "group relative flex flex-col justify-between rounded-3xl bg-white dark:bg-zinc-900 p-6 shadow-sm border transition-all hover:shadow-md",
-      isMastered ? "border-primary/40 dark:border-primary/60 ring-1 ring-primary/10" : "border-zinc-100 dark:border-zinc-800 hover:border-primary/20"
+      "group relative flex flex-col justify-between overflow-hidden rounded-[2.5rem] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-white/5 shadow-premium transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
     )}>
-      <div className="flex items-start justify-between">
-        <span className={cn(
-          "px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest border",
-          levelColors[chunk.cefrLevel] || 'bg-zinc-50 text-zinc-500 border-zinc-200'
-        )}>
-          {chunk.cefrLevel}
-        </span>
-        <div className="flex gap-1">
+      {/* Dynamic Background Accent (Very subtle) */}
+      <div 
+        className={cn("absolute top-0 right-0 h-32 w-32 -mr-16 -mt-16 rounded-full blur-3xl opacity-10 pointer-events-none", levelCfg.bg)}
+      />
+      
+      <div className="px-6 pt-6 pb-2 flex items-center justify-between relative z-10">
+        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-50 dark:bg-white/5 border border-zinc-100 dark:border-white/5">
+           <div className={cn("w-2 h-2 rounded-full", levelCfg.bg)} />
+           <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+             {levelCfg.label}
+           </span>
+        </div>
+        <div className="flex gap-2">
           <button 
             onClick={handleFavorite}
             disabled={isPending}
             className={cn(
-              "p-1.5 transition-colors",
-              favorited ? "text-yellow-500" : "text-zinc-300 hover:text-primary"
+              "p-2 rounded-xl transition-all hover:bg-zinc-50 dark:hover:bg-white/5",
+              favorited ? "text-primary bg-primary/5" : "text-zinc-300 dark:text-zinc-600 hover:text-zinc-500"
             )}
           >
-            <Bookmark size={18} fill={favorited ? "currentColor" : "none"} />
-          </button>
-          <button className="p-1.5 text-zinc-300 hover:text-zinc-500 transition-colors">
-            <MoreVertical size={18} />
+            <Bookmark size={18} fill={favorited ? "currentColor" : "none"} strokeWidth={2.5} />
           </button>
         </div>
       </div>
 
-      <div className="mt-4 space-y-1">
-        <h3 className="text-xl font-black text-zinc-900 dark:text-zinc-100 leading-tight group-hover:text-primary transition-colors tracking-tight">
-          {chunk.englishText}
-        </h3>
-        <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400 italic">
-          {chunk.portugueseTranslation}
-        </p>
-      </div>
-
-      <div className="mt-6 flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-800">
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-3 py-1 rounded-lg mt-1">
-            {chunk.pack || chunk.theme || 'GENERAL'}
-          </span>
-          {isMastered && (
-            <CheckCircle2 size={16} className="text-primary ml-1" />
-          )}
+      <div className="p-8 pt-4 flex flex-col flex-1 relative z-10">
+        <div className="space-y-4 flex-1 mb-8">
+          <div className="flex items-center gap-2 opacity-60">
+             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500">
+               {chunk.pack || chunk.theme || 'CHUNKS BÁSICOS'}
+             </span>
+          </div>
+          <h3 className="text-3xl sm:text-4xl font-serif font-black text-zinc-900 dark:text-zinc-50 leading-[0.95] tracking-tighter">
+            {chunk.englishText}
+          </h3>
+          <p className="text-[15px] font-bold text-zinc-500 dark:text-zinc-400 leading-snug">
+            {chunk.portugueseTranslation}
+          </p>
         </div>
-        <button 
-          onClick={playAudio}
-          className={cn(
-            "flex h-10 w-10 items-center justify-center rounded-full transition-all shadow-sm",
-            isPlaying 
-              ? "bg-primary text-white scale-110 animate-pulse" 
-              : isMastered 
-                ? "bg-white text-primary border-2 border-primary" 
-                : "bg-primary-light text-primary hover:bg-primary hover:text-white"
-          )}
-        >
-          <Volume2 size={20} />
-        </button>
+
+        <div className="flex items-center justify-between pt-6 border-t border-zinc-100 dark:border-white/5">
+          <div className="flex items-center gap-2">
+            {isMastered && (
+              <div className="flex items-center gap-1.5 bg-green-500/10 text-green-500 dark:text-green-400 px-3 py-1 rounded-full font-black text-[10px] uppercase tracking-widest">
+                <CheckCircle2 size={12} />
+                Dominado
+              </div>
+            )}
+          </div>
+          <button 
+            onClick={playAudio}
+            className={cn(
+              "flex h-12 w-12 items-center justify-center rounded-2xl transition-all",
+              "bg-zinc-50 dark:bg-white/5 border border-zinc-200 dark:border-white/5 text-zinc-900 dark:text-zinc-100",
+              "hover:bg-primary hover:text-white hover:border-primary hover:scale-110 active:scale-95 shadow-sm group/btn",
+              isPlaying && "bg-primary text-white border-primary animate-pulse"
+            )}
+          >
+            <Volume2 size={24} strokeWidth={2.5} className={cn("transition-transform", !isPlaying && "group-hover/btn:rotate-12")} />
+          </button>
+        </div>
       </div>
     </div>
   );

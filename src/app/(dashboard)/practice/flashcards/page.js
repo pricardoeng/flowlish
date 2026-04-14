@@ -11,12 +11,20 @@ export default async function FlashcardsPage() {
   
   const userId = session.user.id;
 
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { goal: true }
+  });
+
+  const goalLimits = { Casual: 4, Regular: 8, Intenso: 12 };
+  const limit = goalLimits[user?.goal] || 4;
+
   // Load just the chunks that have images for the demo
   const deck = await prisma.word.findMany({
     where: {
       imageUrl: { not: null }
     },
-    take: 10
+    take: limit
   });
 
   return (
