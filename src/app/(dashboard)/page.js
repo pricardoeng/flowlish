@@ -10,25 +10,46 @@ import ShareButtons from '@/components/ui/ShareButtons';
 import LeaderboardCard from '@/components/dashboard/LeaderboardCard';
 import WeeklyEvolution from '@/components/dashboard/WeeklyEvolution';
 import Button from '@/components/ui/Button';
-import { LayoutGrid, TrendingUp, Sparkles, ArrowRight, Video } from 'lucide-react';
+import { LayoutGrid, TrendingUp, Sparkles, ArrowRight, Video, LogOut } from 'lucide-react';
+import LogoutButton from '@/components/auth/LogoutButton';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import { checkUserAchievements } from "@/lib/achievements";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
   if (!session) redirect("/login");
+
+  // Check and grant any missing achievements automatically on dashboard load
+  await checkUserAchievements(session.user.id);
 
   // Fetch real user data
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
     include: {
       progress: true,
-      learningSessions: true
+      learningSessions: true,
+      userBadges: { include: { badge: true } }
     }
   });
 
-  if (!user) return <div>Usuário não encontrado. Por favor, execute o seed.</div>;
+  if (!user) {
+    return (
+      <div className="flex flex-col items-center justify-center p-20 text-center space-y-6">
+        <div className="h-20 w-20 flex items-center justify-center rounded-full bg-red-100 dark:bg-red-900/20 text-red-600">
+          <LogOut size={40} />
+        </div>
+        <div className="space-y-2">
+          <h1 className="text-2xl font-black text-zinc-900 dark:text-zinc-100">Sessão Inválida</h1>
+          <p className="text-zinc-500 max-w-sm">
+            Seu usuário não foi encontrado no novo banco de dados. Por favor, faça logout para sincronizar sua conta.
+          </p>
+        </div>
+        <LogoutButton variant="primary" className="h-14 sm:w-64 rounded-2xl font-black text-lg shadow-xl" />
+      </div>
+    );
+  }
 
   // Real XP: sum of all LearningSession scores (starts at 0, grows with each activity)
   const xp = user.learningSessions.reduce((sum, s) => sum + (s.score || 0), 0);
@@ -199,7 +220,7 @@ export default async function Dashboard() {
     return {
       id: `session-${tipo}`,
       tipo,
-      subtitulo: `${shuffled.length} chunks • Prática de ${tipo === 'Rápido' ? 'Quiz' : tipo}`,
+      subtitulo: `${shuffled.length} chunks • Prática de ${tipo === 'Rápido' ? 'Quiz' : tipo === 'Flashcards' ? 'Chunks' : tipo === 'Praticar' ? 'Fala' : tipo}`,
       recompensa_xp: Math.round(baseXP * (shuffled.length / 4)),
       status: 'Disponível',
       masteredCount,
@@ -214,119 +235,82 @@ export default async function Dashboard() {
   });
 
   return (
-    <div className="space-y-10 animate-fade-in">
-      {/* Header Section */}
-      <header className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between tracking-tight">
-        <div className="flex items-center gap-6">
-          <div className="relative h-24 w-24 shrink-0 rounded-3xl bg-primary/10 p-2 transition-transform hover:rotate-6">
-            <img 
-              src="/images/mascot.png" 
-              alt="Mango Mascot" 
-              className="h-full w-full object-contain"
-            />
+    <div className="space-y-12 animate-fade-in transition-all">
+      {/* 1. Header & Status Hub (Compact & Integrated) */}
+      <header className="relative overflow-hidden rounded-[2.5rem] bg-zinc-900 p-6 md:p-10 text-white shadow-2xl">
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 h-64 w-64 rounded-full bg-primary/20 blur-[80px]" />
+        
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex items-center gap-6">
+            <div className="h-20 w-20 shrink-0 animate-bounce-slow">
+              <img src="/images/mascot.png" alt="Mango" className="h-full w-full object-contain" />
+            </div>
+            <div>
+              <h1 className="text-3xl md:text-4xl font-black tracking-tight leading-tight">
+                Bom dia, <span className="text-primary italic">{user.name.split(' ')[0]}!</span>
+              </h1>
+              <p className="text-zinc-400 font-medium">Você já dominou <span className="text-white font-bold">{totalMasteredCount} chunks</span> no total. Vamos mais longe?</p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-4xl font-black text-zinc-900 dark:text-foreground tracking-tight transition-colors">Bom dia, {user.name.split(' ')[0]}!</h1>
-            {user.progress.length === 0 ? (
-              <p className="text-zinc-500 dark:text-zinc-400 font-medium my-2">
-                Você ainda não completou nenhum chunk hoje. <span className="text-primary font-bold">Comece agora</span> e construa seu hábito diário! 🚀
-              </p>
-            ) : (
-              <p className="text-zinc-500 dark:text-zinc-400 font-medium my-2">Você já dominou <span className="text-primary font-bold">{user.progress.length} chunks</span> hoje. Continue assim!</p>
-            )}
-          </div>
-        </div>
-        <div className="flex items-center gap-3 rounded-2xl bg-white dark:bg-zinc-900 px-4 py-2 shadow-sm border border-zinc-100 dark:border-zinc-800 transition-colors">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-400 text-white">
-            <TrendingUp size={18} />
-          </div>
-          <div>
-            <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 leading-none">Total XP</p>
-            <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100">{xp}</p>
+
+          <div className="flex items-center gap-4">
+             <div className="flex flex-col items-center px-4 py-2 border-r border-white/10">
+                <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Global Rank</span>
+                <span className="text-xl font-black text-primary">#{currentUserRank}</span>
+             </div>
+             <div className="flex flex-col items-center px-4 py-2">
+                <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Total XP</span>
+                <span className="text-xl font-black text-white">{xp}</span>
+             </div>
           </div>
         </div>
       </header>
 
-      {/* Main Progress Grid */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      {/* 2. Quick Status Row (Bento Style) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         <StreakCard streaks={streaks} />
         <WeeklyGoal userId={user.id} goalLimit={limit} />
       </div>
 
-      {/* Achievements Section / Badges */}
-      <section className="opacity-95 hover:opacity-100 transition-opacity">
-        <AchievementsCard 
-          masteredCount={totalMasteredCount} 
-          streaks={streaks} 
-          xp={xp} 
-          leaderboardRank={currentUserRank} 
-        />
-      </section>
-
-      {/* Live Speaking Matchmaking CTA - Temporarily Hidden */}
-      {/* 
-      <Link href="/practice/speaking" className="block group">
-        <section className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-orange-500 via-primary to-orange-700 p-8 md:p-12 shadow-2xl transition-transform hover:scale-[1.01] hover:shadow-primary/30">
-          <div className="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 h-96 w-96 rounded-full bg-white/10 blur-3xl pointer-events-none" />
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 font-bold text-white text-xs tracking-widest uppercase">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                </span>
-                Novo Recurso!
-              </div>
-              <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">Pratique Inglês Ao Vivo</h2>
-              <p className="text-orange-100 max-w-lg text-lg">
-                Esqueça o medo de falar. Entre no Speakeasy Room, conecte-se com outro estudante e pratique cara a cara agora mesmo.
-              </p>
-            </div>
-            
-            <div className="shrink-0 flex items-center justify-center p-6 bg-white rounded-3xl group-hover:bg-zinc-900 group-hover:text-primary transition-colors text-zinc-900">
-              <Video className="w-16 h-16" />
-            </div>
-          </div>
-        </section>
-      </Link>
-      */}
-
-      {/* Recommended Section */}
+      {/* 3. Primary Action Zone: Recommended (Higher Priority) */}
       <section className="space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Sparkles className="text-primary" size={24} />
-            <h2 className="text-2xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight">Recomendado para você</h2>
+            <h2 className="text-2xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight transition-colors">Seus treinos sugeridos</h2>
           </div>
-          <Button variant="ghost" size="sm" className="group">
-            Ver tudo <ArrowRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" />
-          </Button>
+          <Link href="/practice" className="text-sm font-black text-primary hover:underline">Ver Hub</Link>
         </div>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {recommendations.map(activity => (
             <RecommendationCard key={activity.id} activity={activity} userId={user.id} />
           ))}
         </div>
       </section>
 
-      {/* Secondary Stats Grid: Mastery and Weekly Evolution side-by-side */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <MasteryCard masteryData={masteryData} />
-        
-        {/* Weekly Chart */}
-        <WeeklyEvolution chunks={weeklyChunks} xp={weeklyXp} total={totalWeekChunks} />
-      </div>
+      {/* 4. Reward & Progress Zone */}
+      <div className="space-y-12 pt-6 border-t border-zinc-100 dark:border-zinc-800 transition-colors">
+        {/* Achievements (Now defaults to Summary mode) */}
+        <AchievementsCard 
+          earnedBadges={user.userBadges}
+          masteredCount={totalMasteredCount} 
+          streaks={streaks} 
+          xp={xp} 
+          leaderboardRank={currentUserRank}
+          userId={user.id}
+        />
 
-      {/* Share Section (Full width below) */}
-      <div className="mt-6">
-        <ShareButtons />
-      </div>
+        {/* Analytics Grid */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <MasteryCard masteryData={masteryData} />
+          <WeeklyEvolution chunks={weeklyChunks} xp={weeklyXp} total={totalWeekChunks} />
+        </div>
 
-      {/* Leaderboard Section (At the Bottom) */}
-
-      {/* Leaderboard Section (Moved to Bottom) */}
-      <div className="mt-8">
-        <LeaderboardCard leaderboard={leaderboard} />
+        {/* Global Community */}
+        <div className="space-y-6">
+          <LeaderboardCard leaderboard={leaderboard} />
+          <ShareButtons />
+        </div>
       </div>
     </div>
   );

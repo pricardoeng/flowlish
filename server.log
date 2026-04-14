@@ -1,0 +1,873 @@
+
+> flowlish@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.14
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.3.39:3000
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     · serverActions
+
+ ✓ Starting...
+ ✓ Ready in 1523ms
+ ✓ Compiled /middleware in 327ms (216 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 1783ms (1464 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ ⨯ Error [PrismaClientInitializationError]: 
+Invalid `prisma.user.findUnique()` invocation:
+
+
+Can't reach database server at `ep-crimson-resonance-amu88ltp-pooler.c-5.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-crimson-resonance-amu88ltp-pooler.c-5.us-east-1.aws.neon.tech:5432`.
+    at async Dashboard (src/app/(dashboard)/page.js:23:16)
+  21 |
+  22 |   // Fetch real user data
+> 23 |   const user = await prisma.user.findUnique({
+     |                ^
+  24 |     where: { id: session.user.id },
+  25 |     include: {
+  26 |       progress: true, {
+  clientVersion: '6.2.1',
+  errorCode: undefined,
+  digest: '3462168252'
+}
+ ⨯ Error [PrismaClientInitializationError]: 
+Invalid `prisma.user.findUnique()` invocation:
+
+
+Can't reach database server at `ep-crimson-resonance-amu88ltp-pooler.c-5.us-east-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-crimson-resonance-amu88ltp-pooler.c-5.us-east-1.aws.neon.tech:5432`.
+    at async Dashboard (src/app/(dashboard)/page.js:23:16)
+  21 |
+  22 |   // Fetch real user data
+> 23 |   const user = await prisma.user.findUnique({
+     |                ^
+  24 |     where: { id: session.user.id },
+  25 |     include: {
+  26 |       progress: true, {
+  clientVersion: '6.2.1',
+  errorCode: undefined,
+  digest: '3462168252'
+}
+ GET / 500 in 2098ms
+ GET / 200 in 644ms
+ GET / 200 in 231ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 1001ms (1485 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 467ms
+ GET /api/auth/session 200 in 1909ms
+ GET / 200 in 897ms
+ GET / 200 in 332ms
+ GET /api/auth/session 200 in 22ms
+ GET / 200 in 363ms
+ GET /api/auth/session 200 in 19ms
+ ○ Compiling /dictionary ...
+ ✓ Compiled /practice/tactics in 1784ms (1518 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/tactics 200 in 1667ms
+ GET /dictionary 200 in 3452ms
+ GET /practice/tactics 200 in 1523ms
+ GET /practice/tactics 200 in 1570ms
+ GET / 200 in 374ms
+ GET /api/auth/session 200 in 32ms
+ GET /dictionary 200 in 302ms
+ GET /api/auth/session 200 in 63ms
+ GET /dictionary 200 in 396ms
+ GET /api/auth/session 200 in 23ms
+ GET /api/auth/session 200 in 96ms
+ GET /dictionary 200 in 397ms
+ GET /api/auth/session 200 in 27ms
+ GET /api/auth/session 200 in 74ms
+ GET /dictionary 200 in 734ms
+ GET / 200 in 256ms
+ GET /api/auth/session 200 in 35ms
+ GET / 200 in 221ms
+ GET /api/auth/session 200 in 20ms
+ GET /api/auth/session 200 in 25ms
+ GET / 200 in 332ms
+ GET / 200 in 169ms
+ GET / 200 in 173ms
+ GET / 200 in 174ms
+ GET / 200 in 391ms
+ GET /api/auth/session 200 in 38ms
+ ⨯ ./src/app/(dashboard)/page.js:14:1
+Module not found: Can't resolve '@/components/auth/LogoutButton'
+  12 | import Button from '@/components/ui/Button';
+  13 | import { LayoutGrid, TrendingUp, Sparkles, ArrowRight, Video, LogOut } from 'lucide-react';
+> 14 | import LogoutButton from '@/components/auth/LogoutButton';
+     | ^
+  15 | import { getServerSession } from "next-auth/next";
+  16 | import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+  17 | import { redirect } from "next/navigation";
+
+https://nextjs.org/docs/messages/module-not-found
+ ○ Compiling /_error ...
+ ⨯ ./src/app/(dashboard)/page.js:14:1
+Module not found: Can't resolve '@/components/auth/LogoutButton'
+  12 | import Button from '@/components/ui/Button';
+  13 | import { LayoutGrid, TrendingUp, Sparkles, ArrowRight, Video, LogOut } from 'lucide-react';
+> 14 | import LogoutButton from '@/components/auth/LogoutButton';
+     | ^
+  15 | import { getServerSession } from "next-auth/next";
+  16 | import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+  17 | import { redirect } from "next/navigation";
+
+https://nextjs.org/docs/messages/module-not-found
+ GET / 500 in 3343ms
+ GET / 500 in 38ms
+ GET / 500 in 13ms
+ GET / 500 in 18ms
+ GET / 500 in 16ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled /_error in 1866ms (1871 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 2173ms
+ ✓ Compiled /api/auth/[...nextauth] in 423ms (1324 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 595ms
+ ✓ Compiled in 1520ms (1877 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 482ms
+ GET /api/auth/session 200 in 158ms
+ GET / 200 in 542ms
+ GET /api/auth/session 200 in 20ms
+ GET /api/auth/csrf 200 in 20ms
+ POST /api/auth/signout 200 in 14ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 885ms (1788 modules)
+ GET /login 200 in 1243ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 76ms
+ GET /api/auth/providers 200 in 30ms
+ GET /api/auth/csrf 200 in 15ms
+ POST /api/auth/callback/credentials 200 in 593ms
+ GET /api/auth/session 200 in 19ms
+ GET / 200 in 3604ms
+ GET / 200 in 4041ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 572ms (1779 modules)
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 928ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 926ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 921ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 923ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 924ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 766ms
+ ○ Compiling /practice/tactics ...
+ ✓ Compiled /practice/tactics in 756ms (1243 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/tactics 200 in 3181ms
+ GET /practice/tactics 200 in 1570ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ POST /practice/tactics 200 in 752ms
+ ○ Compiling /practice ...
+ ✓ Compiled /practice in 873ms (1798 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 2085ms
+ POST /practice 200 in 1597ms
+ GET /practice 200 in 2107ms
+ GET / 200 in 2921ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 597ms (1803 modules)
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 1007ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 895ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 897ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 898ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 900ms
+ GET / 200 in 1696ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 281ms
+ ✓ Compiled in 1594ms (1797 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 6013ms
+ ✓ Compiled in 671ms (1797 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 3736ms
+ ✓ Compiled in 292ms (559 modules)
+ GET / 200 in 2175ms
+ ✓ Compiled in 617ms (559 modules)
+ GET / 200 in 5832ms
+ ✓ Compiled in 1470ms (2013 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 4258ms
+ GET / 200 in 3317ms
+ ✓ Compiled in 1006ms (1798 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 3339ms
+ ✓ Compiled in 1079ms (1803 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 2182ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 600ms (1794 modules)
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 1045ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 927ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 1048ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 110ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 112ms
+ ✓ Compiled in 1109ms (1809 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 1723ms
+ ✓ Compiled in 472ms (1809 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 2045ms
+ ✓ Compiled /api/auth/[...nextauth] in 354ms (1248 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 511ms
+ GET /api/auth/session 200 in 476ms
+ GET /dictionary 200 in 4716ms
+ GET /practice 200 in 38ms
+ ○ Compiling /profile ...
+ ✓ Compiled /profile in 1396ms (1834 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /profile 200 in 2178ms
+ GET / 200 in 3124ms
+ ✓ Compiled /_not-found in 387ms (1825 modules)
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 865ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 856ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 864ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 864ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 865ms
+ ✓ Compiled in 1511ms (1813 modules)
+ ✓ Compiled in 921ms (1813 modules)
+ ⨯ ./src/app/(dashboard)/page.js
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/pauloricardodasilva/Desktop/Flowlish/src/app/(dashboard)/page.js[0m:314:1]
+ [2m311[0m |     </div>
+ [2m312[0m |   );
+ [2m313[0m | }
+ [2m314[0m |   );
+     : [35;1m  ^[0m
+ [2m315[0m | }
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(dashboard)/page.js
+ ✓ Compiled in 444ms (542 modules)
+ ○ Compiling /api/auth/[...nextauth] ...
+ ⨯ ./src/app/(dashboard)/page.js
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/pauloricardodasilva/Desktop/Flowlish/src/app/(dashboard)/page.js[0m:314:1]
+ [2m311[0m |     </div>
+ [2m312[0m |   );
+ [2m313[0m | }
+ [2m314[0m |   );
+     : [35;1m  ^[0m
+ [2m315[0m | }
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(dashboard)/page.js
+ ⨯ ./src/app/(dashboard)/page.js
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/pauloricardodasilva/Desktop/Flowlish/src/app/(dashboard)/page.js[0m:314:1]
+ [2m311[0m |     </div>
+ [2m312[0m |   );
+ [2m313[0m | }
+ [2m314[0m |   );
+     : [35;1m  ^[0m
+ [2m315[0m | }
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(dashboard)/page.js
+ ⨯ ./src/app/(dashboard)/page.js
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/pauloricardodasilva/Desktop/Flowlish/src/app/(dashboard)/page.js[0m:314:1]
+ [2m311[0m |     </div>
+ [2m312[0m |   );
+ [2m313[0m | }
+ [2m314[0m |   );
+     : [35;1m  ^[0m
+ [2m315[0m | }
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(dashboard)/page.js
+ ⨯ ./src/app/(dashboard)/page.js
+Error:   [31mx[0m Expression expected
+     ,-[[36;1;4m/Users/pauloricardodasilva/Desktop/Flowlish/src/app/(dashboard)/page.js[0m:314:1]
+ [2m311[0m |     </div>
+ [2m312[0m |   );
+ [2m313[0m | }
+ [2m314[0m |   );
+     : [35;1m  ^[0m
+ [2m315[0m | }
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(dashboard)/page.js
+ GET /api/auth/session 500 in 2578ms
+ GET / 500 in 653ms
+ POST /api/auth/_log 500 in 16ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled /_error in 2.1s (1918 modules)
+ GET / 200 in 89ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 29ms
+ GET / 200 in 6762ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 49ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 34ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 26ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 59ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 34ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 122ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 121ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 172ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 27ms
+ GET /api/auth/session 200 in 103ms
+ GET /api/auth/session 200 in 105ms
+ ✓ Compiled in 997ms (1909 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 7048ms
+ ✓ Compiled in 493ms (1910 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 5365ms
+ ✓ Compiled /api/auth/[...nextauth] in 271ms (1344 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 521ms
+ GET /api/auth/session 200 in 20ms
+ GET / 200 in 2791ms
+ ✓ Compiled /_not-found in 331ms (1919 modules)
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 628ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 631ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 631ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 632ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 633ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 2105ms
+ GET /practice 200 in 81ms
+ ○ Compiling /practice/flashcards ...
+ ✓ Compiled /practice/flashcards in 1147ms (1919 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/flashcards 200 in 2073ms
+ GET /practice/flashcards 200 in 345ms
+ GET /practice 200 in 34ms
+ ○ Compiling /practice/session ...
+ ✓ Compiled /practice/session in 753ms (1930 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/session 200 in 2244ms
+ GET /practice 200 in 53ms
+ ✓ Compiled /practice/tactics in 283ms (1371 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/tactics 200 in 947ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 35ms
+ POST /practice/tactics 200 in 829ms
+ GET / 200 in 2456ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 215ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 215ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 216ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 218ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 216ms
+ GET /practice 200 in 41ms
+ ○ Compiling /practice/speaking ...
+ ✓ Compiled /practice/speaking in 648ms (1928 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/speaking 200 in 1189ms
+ GET /practice 200 in 37ms
+ GET / 200 in 2208ms
+ GET /practice/speaking 200 in 371ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ POST /practice/speaking 200 in 1230ms
+ GET /practice 200 in 21ms
+ GET / 200 in 2313ms
+ GET /practice/session 200 in 1084ms
+ ⨯ ./src/components/practice/PracticeHub.jsx
+Module parse failed: Identifier 'TrendingUp' has already been declared (391:6)
+| };
+| _c = PracticeHub;
+> const TrendingUp = (param)=>{
+|     let { size } = param;
+|     return /*#__PURE__*/ _jsxDEV("svg", {
+
+Import trace for requested module:
+./src/components/practice/PracticeHub.jsx
+ ⨯ ./src/components/practice/PracticeHub.jsx
+Module parse failed: Identifier 'TrendingUp' has already been declared (424:6)
+| };
+| _c = PracticeHub;
+> const TrendingUp = (param)=>{
+|     let { size } = param;
+|     return /*#__PURE__*/ _jsxDEV("svg", {
+
+Import trace for requested module:
+./src/components/practice/PracticeHub.jsx
+ ⨯ ./src/components/practice/PracticeHub.jsx
+Module parse failed: Identifier 'TrendingUp' has already been declared (424:6)
+| };
+| _c = PracticeHub;
+> const TrendingUp = (param)=>{
+|     let { size } = param;
+|     return /*#__PURE__*/ _jsxDEV("svg", {
+
+Import trace for requested module:
+./src/components/practice/PracticeHub.jsx
+ GET /practice/session 500 in 914ms
+ GET /practice/session 500 in 12ms
+ GET /practice/session 500 in 9ms
+ GET /practice/session 500 in 9ms
+ ⨯ ./src/components/practice/PracticeHub.jsx
+Module parse failed: Identifier 'TrendingUp' has already been declared (424:6)
+| };
+| _c = PracticeHub;
+> const TrendingUp = (param)=>{
+|     let { size } = param;
+|     return /*#__PURE__*/ _jsxDEV("svg", {
+
+Import trace for requested module:
+./src/components/practice/PracticeHub.jsx
+ ⨯ ./src/components/practice/PracticeHub.jsx
+Module parse failed: Identifier 'TrendingUp' has already been declared (424:6)
+| };
+| _c = PracticeHub;
+> const TrendingUp = (param)=>{
+|     let { size } = param;
+|     return /*#__PURE__*/ _jsxDEV("svg", {
+
+Import trace for requested module:
+./src/components/practice/PracticeHub.jsx
+ ⨯ ./src/components/practice/PracticeHub.jsx
+Module parse failed: Identifier 'TrendingUp' has already been declared (424:6)
+| };
+| _c = PracticeHub;
+> const TrendingUp = (param)=>{
+|     let { size } = param;
+|     return /*#__PURE__*/ _jsxDEV("svg", {
+
+Import trace for requested module:
+./src/components/practice/PracticeHub.jsx
+ GET /practice/session 200 in 366ms
+ GET /practice/session 500 in 17ms
+ GET /practice/session 500 in 23ms
+ GET /practice/session 500 in 18ms
+ GET /practice/session 500 in 17ms
+ GET / 500 in 17ms
+ GET / 500 in 20ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 1820ms (1915 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ ✓ Compiled /api/auth/[...nextauth] in 285ms (1338 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 432ms
+ GET / 200 in 5864ms
+ ✓ Compiled /_not-found in 346ms (1924 modules)
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 710ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 679ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 709ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 710ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 712ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 37ms
+ GET / 200 in 3695ms
+ ✓ Compiled /practice/flashcards in 353ms (1348 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/flashcards 200 in 1189ms
+ GET / 200 in 2114ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 193ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 193ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 191ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 192ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 192ms
+ GET / 200 in 1977ms
+ GET /practice 200 in 29ms
+ ✓ Compiled in 850ms (1929 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 177ms
+ ✓ Compiled in 593ms (1929 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 87ms
+ GET /practice 200 in 262ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 635ms (1338 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 779ms
+ ✓ Compiled /practice/flashcards in 209ms (1347 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/flashcards 200 in 762ms
+ GET /api/auth/session 200 in 15ms
+Image with src "/words/cat.png?v=3" is using a query string which is not configured in images.localPatterns. This config will be required starting in Next.js 16.
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
+ GET /practice/flashcards 200 in 434ms
+ GET /api/auth/session 200 in 15ms
+ GET /practice/flashcards 200 in 439ms
+ GET /practice 200 in 36ms
+ GET /practice/flashcards 200 in 300ms
+ GET /practice 200 in 56ms
+ GET / 200 in 3695ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 899ms (1921 modules)
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 1311ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 1312ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 1312ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 1314ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 1315ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 2014ms
+ ✓ Compiled /api/auth/[...nextauth] in 337ms (1340 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 505ms
+ GET / 200 in 2312ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 180ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 181ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 181ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 182ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 26ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 122ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 123ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 122ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 122ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 123ms
+ GET /practice 200 in 34ms
+ GET /practice/flashcards 200 in 618ms
+ GET / 200 in 5189ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 128ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 133ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 133ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 134ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 133ms
+ GET /practice 200 in 44ms
+ ✓ Compiled in 651ms (580 modules)
+ ✓ Compiled in 501ms (1327 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 729ms
+ ✓ Compiled in 535ms (576 modules)
+ GET /practice 200 in 31ms
+ ✓ Compiled in 663ms (576 modules)
+ GET /practice 200 in 49ms
+ ✓ Compiled in 309ms (576 modules)
+ GET /practice 200 in 50ms
+ ○ Compiling /practice/flashcards ...
+ ✓ Compiled /practice/flashcards in 1428ms (1912 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/flashcards 200 in 2281ms
+ GET /practice/flashcards 200 in 740ms
+ GET /practice/flashcards 200 in 1665ms
+ GET /practice 200 in 55ms
+ GET / 200 in 2655ms
+ ✓ Compiled /_not-found in 355ms (1903 modules)
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 661ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 662ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 662ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 664ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 660ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 154ms
+ GET / 200 in 2208ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 136ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 136ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 136ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 136ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 137ms
+ GET /practice 200 in 47ms
+ GET /practice/flashcards 200 in 488ms
+ GET /practice 200 in 40ms
+ GET /practice/flashcards 200 in 325ms
+ GET /practice 200 in 35ms
+ ○ Compiling /dictionary ...
+ ✓ Compiled /dictionary in 722ms (1355 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /dictionary 200 in 3714ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ POST /dictionary 200 in 3105ms
+ GET / 200 in 4793ms
+ ✓ Compiled /_not-found in 325ms (1925 modules)
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 491ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 490ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 491ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 489ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 489ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ POST / 200 in 3583ms
+ POST / 200 in 2574ms
+ GET /practice 200 in 45ms
+ GET /practice/flashcards 200 in 789ms
+ GET /practice 200 in 32ms
+ GET /dictionary 200 in 1982ms
+ GET /practice 200 in 40ms
+ GET / 200 in 3799ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 140ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 135ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 135ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 137ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 138ms
+ GET /practice 200 in 51ms
+ GET /practice/flashcards 200 in 712ms
+ GET /practice 200 in 50ms
+ GET /practice/flashcards 200 in 324ms
+ POST /practice/flashcards 200 in 780ms
+ GET /practice 200 in 43ms
+ ✓ Compiled in 1427ms (1921 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 124ms
+ ✓ Compiled in 809ms (1921 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 119ms
+ ✓ Compiled in 1569ms (1921 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 75ms
+ ✓ Compiled in 755ms (1921 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 75ms
+ ✓ Compiled in 716ms (1921 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 105ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 1198ms (1346 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 1401ms
+ GET /practice/flashcards 200 in 1750ms
+ GET /practice 200 in 39ms
+ GET / 200 in 5484ms
+ GET / 200 in 4296ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 607ms (1930 modules)
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 853ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 853ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 854ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 855ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 857ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 2184ms
+ GET /practice/flashcards 200 in 581ms
+ ✓ Compiled in 1547ms (1921 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/flashcards 200 in 570ms
+ ✓ Compiled /api/auth/[...nextauth] in 428ms (1346 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 662ms
+ GET /practice 200 in 76ms
+ GET / 200 in 3739ms
+ ✓ Compiled /_not-found in 403ms (1930 modules)
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 659ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 660ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 657ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 658ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 658ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/flashcards 200 in 578ms
+ GET / 200 in 2137ms
+ GET /practice 200 in 70ms
+ ○ Compiling /practice/session ...
+ ✓ Compiled /practice/session in 1637ms (1355 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice/session 200 in 3005ms
+ ✓ Compiled /profile in 342ms (1372 modules)
+ GET / 200 in 3126ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 160ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 160ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 162ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 163ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 36ms
+ GET /profile 200 in 860ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ POST /profile 200 in 663ms
+ GET / 200 in 2003ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 162ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 163ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 163ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 164ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 163ms
+ GET /practice 200 in 31ms
+ GET / 200 in 2153ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 131ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 130ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 132ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 134ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 130ms
+ GET /practice 200 in 27ms
+ GET /practice/session 200 in 745ms
+ GET /profile 200 in 440ms
+ GET / 200 in 2118ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 162ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 158ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 158ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 160ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 159ms
+ GET /practice/flashcards 200 in 324ms
+ GET /practice 200 in 24ms
+ GET / 200 in 2018ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 150ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 147ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 146ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 147ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 148ms
+ GET /practice 200 in 33ms
+ GET / 200 in 5004ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 167ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 165ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 165ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 165ms
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 165ms
+ GET /practice 200 in 32ms
+ ✓ Compiled in 1800ms (1938 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 396ms
+ ✓ Compiled in 1343ms (1938 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 137ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 1773ms (1937 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ ⨯ ReferenceError: Play is not defined
+    at eval (src/components/practice/PracticeHub.jsx:132:20)
+    at Array.map (<anonymous>)
+    at PracticeHub (src/components/practice/PracticeHub.jsx:84:16)
+  130 |
+  131 |                <div className="h-14 w-14 rounded-full bg-orange-500 flex items-center justify-center text-white shadow-[0_0_30px_rgba(249,115,22,0.4)] transition-transform group-hover:scale-110">
+> 132 |                   <Play size={24} fill="currentColor" className="ml-1" />
+      |                    ^
+  133 |                </div>
+  134 |             </div>
+  135 | {
+  digest: '4288738548'
+}
+ GET /practice 200 in 1156ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 568ms (1362 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 691ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 882ms (1941 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /practice 200 in 737ms
+ GET /api/auth/session 200 in 24ms
+ ✓ Compiled in 577ms (579 modules)
+ GET /practice 200 in 47ms
+ ✓ Compiled in 455ms (579 modules)
+ GET /practice 200 in 38ms
+ GET /api/auth/session 200 in 142ms
+ GET /practice/flashcards 200 in 2377ms
+ GET /practice 200 in 39ms
+ GET /practice/flashcards 200 in 308ms
+ GET /practice 200 in 63ms
+ GET / 200 in 4811ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1623ms (1946 modules)
+ GET /uploads/cmnyvk0ac0000sgvr9dsquusl.jpg 404 in 2088ms
+ GET /uploads/cmneupxgz000esgbq5g1swmci.jpg 404 in 2090ms
+ GET /uploads/cmnc5al7z0000l704dr6sini4.jpg 404 in 2089ms
+ GET /uploads/cmnfy2vo40000jr04lu2jr68k.jpg 404 in 2090ms
+ GET /uploads/cmncdtn980000jv04ytthycvt.jpg 404 in 2092ms
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ ⨯ src/app/(dashboard)/practice/session/page.js
+You cannot have two parallel pages that resolve to the same path. Please check /(dashboard)/practice/session/page and /(practice)/practice/session/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups
+ ○ Compiling /practice/session ...
+ ⨯ src/app/(dashboard)/practice/session/page.js
+You cannot have two parallel pages that resolve to the same path. Please check /(dashboard)/practice/session/page and /(practice)/practice/session/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups
+ GET / 200 in 3904ms
+ GET /practice/session 500 in 606ms
+ GET /practice/session 500 in 10ms
+ GET / 500 in 35ms
+ GET /practice 500 in 15ms
+ GET /practice 500 in 21ms
+ GET /practice/flashcards 500 in 17ms
+ GET /practice 500 in 14ms
+ GET / 500 in 17ms
+ GET / 500 in 22ms
+ ✓ Compiled /practice/session in 1239ms (560 modules)
+ GET / 500 in 27ms
+ GET / 500 in 34ms
+ GET / 500 in 13ms
+ GET / 500 in 17ms
+ GET / 500 in 13ms
+ GET / 500 in 19ms
+ GET / 500 in 17ms
+ GET / 500 in 12ms
+ GET / 500 in 66ms
+ GET / 500 in 30ms
+ GET / 500 in 17ms

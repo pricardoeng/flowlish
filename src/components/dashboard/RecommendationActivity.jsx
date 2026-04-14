@@ -212,9 +212,9 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
   const label = ACTIVITY_LABELS[activity.tipo] || activity.tipo;
 
   const renderHeader = () => (
-    <div className="flex items-center justify-between px-8 pt-8 pb-5 border-b border-zinc-50 dark:border-zinc-800 transition-colors">
+    <div className="flex items-center justify-between px-8 pt-8 pb-5 border-b border-zinc-800">
       <div className="flex items-center gap-3">
-        <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+        <div className="h-10 w-10 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-500 flex items-center justify-center">
           <Icon size={20} />
         </div>
         <div>
@@ -236,9 +236,9 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
             </div>
           </div>
           {hidesAnswer ? (
-            <h2 className="text-lg font-black text-zinc-900 dark:text-zinc-100 leading-tight">Desafio de {label}</h2>
+            <h2 className="text-lg font-black text-white leading-tight">Desafio de {label}</h2>
           ) : (
-            <h2 className="text-lg font-black text-zinc-900 dark:text-zinc-100 leading-tight line-clamp-1">{chunk.englishText}</h2>
+            <h2 className="text-lg font-black text-white leading-tight line-clamp-1">{chunk.englishText}</h2>
           )}
         </div>
       </div>
@@ -254,16 +254,16 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
   // ── Success screen ───────────────────────────────────────────────────────────
   if (stage === 'success') {
     return (
-      <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-md animate-fade-in">
-        <div className="w-full max-w-sm rounded-[2.5rem] bg-white dark:bg-zinc-900 p-10 shadow-2xl text-center space-y-6 animate-scale-in transition-colors">
-          <div className="mx-auto h-20 w-20 rounded-3xl bg-primary/10 text-primary flex items-center justify-center text-4xl">
+      <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+        <div className="w-full max-w-sm rounded-[2.5rem] bg-[#1c1c1f] border border-zinc-800 p-10 shadow-2xl text-center space-y-6 animate-scale-in">
+          <div className="mx-auto h-20 w-20 rounded-3xl bg-orange-500/10 border border-orange-500/20 text-orange-500 flex items-center justify-center text-4xl">
             🏆
           </div>
           <div className="space-y-2">
-            <h2 className="text-3xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight">Sessão Concluída!</h2>
-            <p className="text-zinc-500 dark:text-zinc-400 font-medium">
+            <h2 className="text-3xl font-black text-white tracking-tight">Sessão Concluída!</h2>
+            <p className="text-zinc-400 font-medium">
               Você completou {chunks.length} chunks e ganhou{' '}
-              <span className="text-primary font-black">+{Math.round(activity.recompensa_xp)} XP</span>
+              <span className="text-orange-500 font-black">+{Math.round(activity.recompensa_xp)} XP</span>
             </p>
           </div>
           <Button 
@@ -576,10 +576,10 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
                 }
               }}
               className={cn(
-                'w-full p-4 rounded-2xl border text-left font-bold transition-all text-zinc-700 dark:text-zinc-200',
+                'w-full p-4 rounded-2xl border text-left font-bold transition-all text-zinc-200',
                 selectedWrong === i
-                  ? 'border-red-300 bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-400 scale-95'
-                  : 'border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800 hover:border-primary hover:bg-primary/5 dark:hover:bg-primary/10'
+                  ? 'border-red-500/50 bg-red-500/10 text-red-400 scale-95'
+                  : 'border-zinc-800 bg-zinc-800/50 hover:border-orange-500/50 hover:bg-orange-500/5 hover:text-white'
               )}
             >
               {opt.label}
@@ -602,8 +602,8 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
 
   // ── Main modal ───────────────────────────────────────────────────────────────
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-md animate-fade-in transition-colors">
-      <div className="relative w-full max-w-lg rounded-[2.5rem] bg-white dark:bg-zinc-900 shadow-2xl animate-scale-in overflow-hidden transition-colors">
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+      <div className="relative w-full max-w-lg rounded-[2.5rem] bg-[#1c1c1f] border border-zinc-800 shadow-2xl animate-scale-in overflow-hidden">
         {/* Header with Progress */}
         {renderHeader()}
 
@@ -612,10 +612,10 @@ const RecommendationActivity = ({ activity, onClose, userId }) => {
           {stage === 'intro' ? (
             <div className="space-y-6 pt-6 text-center">
               <div className="space-y-2">
-                <h3 className="text-2xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight leading-tight uppercase">
+                <h3 className="text-2xl font-black text-white tracking-tight leading-tight uppercase">
                   {activity.tipo === 'Rápido' ? '⚡ Desafio Rápido!' : 'Preparado?'}
                 </h3>
-                <p className="text-zinc-500 dark:text-zinc-400 font-medium">
+                <p className="text-zinc-400 font-medium">
                   {activity.tipo === 'Rápido'
                     ? `Você tem ${QUIZ_DURATION} segundos para responder. Pense rápido!`
                     : `Esta atividade contém ${chunks.length} chunks e reforça seu aprendizado.`}

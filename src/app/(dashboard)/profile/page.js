@@ -9,25 +9,37 @@ export default async function ProfilePage() {
   const session = await getServerSession(authOptions);
   if (!session) redirect("/login");
 
-  const user = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    include: {
-      purchases: {
-        where: { status: 'active' }
+  const [user, rawPacks] = await Promise.all([
+    prisma.user.findUnique({
+      where: { id: session.user.id },
+      include: {
+        purchases: {
+          where: { status: 'active' }
+        }
       }
-    }
-  });
+    }),
+    // Busca packs reais e distintos do banco de dados (exclui "Free")
+    prisma.chunk.findMany({
+      select: { pack: true },
+      distinct: ['pack'],
+      where: { pack: { not: 'Free' } },
+      orderBy: { pack: 'asc' }
+    })
+  ]);
 
   if (!user) return <div>Usuário não encontrado.</div>;
+
+  // Lista de packs reais no banco
+  const availablePacks = rawPacks.map(r => r.pack).filter(Boolean);
 
   return (
     <div className="space-y-10 animate-fade-in pb-20">
       <header className="space-y-2">
-        <h1 className="text-4xl font-black text-zinc-900 dark:text-foreground tracking-tight transition-colors">Configurações de Perfil</h1>
-        <p className="text-zinc-500 dark:text-zinc-400 font-medium transition-colors">Personalize sua jornada e ajuste suas preferências de aprendizado.</p>
+        <h1 className="text-4xl font-black text-white tracking-tight">Configurações de Perfil</h1>
+        <p className="text-zinc-500 font-medium">Personalize sua jornada e ajuste suas preferências de aprendizado.</p>
       </header>
       
-      <ProfileForm user={user} />
+      <ProfileForm user={user} availablePacks={availablePacks} />
     </div>
   );
 }

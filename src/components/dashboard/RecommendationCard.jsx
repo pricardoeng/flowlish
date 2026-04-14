@@ -4,9 +4,11 @@ import { PlayCircle, Zap, CheckCircle2, Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useModals } from '@/context/ModalContext';
 import { Mic, Edit3, Layers, HelpCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const RecommendationCard = ({ activity, userId }) => {
   const { openActivity } = useModals();
+  const router = useRouter();
 
   // Per-activity-type progress from localStorage (fixes shared-counter bug)
   const [localMastered, setLocalMastered] = useState(0);
@@ -52,12 +54,23 @@ const RecommendationCard = ({ activity, userId }) => {
 
   const Icon = icons[activity.tipo] || Zap;
 
+  const handleAction = (e) => {
+    e.stopPropagation();
+    if (activity.tipo === 'Flashcards') {
+      router.push('/practice/flashcards');
+    } else if (activity.tipo === 'Praticar') {
+      router.push('/practice/session');
+    } else {
+      openActivity(activity, userId);
+    }
+  };
+
   return (
     <div 
-      onClick={() => openActivity(activity, userId)}
+      onClick={handleAction}
       className={cn(
-        "group cursor-pointer relative overflow-hidden rounded-3xl bg-white dark:bg-zinc-900 p-6 shadow-sm border transition-all hover:scale-[1.01] hover:shadow-2xl",
-        isCompleted ? "border-emerald-500/30 bg-emerald-50/30 dark:bg-emerald-500/5 shadow-emerald-500/5" : "border-zinc-100 dark:border-zinc-800"
+        "group cursor-pointer relative overflow-hidden rounded-3xl bg-[#1c1c1f] p-6 shadow-2xl border transition-all hover:scale-[1.01] hover:shadow-orange-500/10",
+        isCompleted ? "border-emerald-500/30 shadow-emerald-500/5" : "border-zinc-800 hover:border-zinc-700"
       )}
     >
       <div className="flex items-start justify-between mb-4">
@@ -68,7 +81,7 @@ const RecommendationCard = ({ activity, userId }) => {
           {isCompleted ? <Trophy size={24} /> : <Icon size={24} />}
         </div>
         <div className="text-right">
-          <span className="block text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500">+{Math.round(activity.recompensa_xp)} XP</span>
+          <span className="block text-[10px] font-black uppercase tracking-widest text-zinc-500">+{Math.round(activity.recompensa_xp)} XP</span>
           {isCompleted && <span className="inline-flex items-center gap-1 text-[9px] font-bold text-emerald-500 uppercase tracking-tighter mt-1 bg-emerald-100 dark:bg-emerald-500/20 px-1.5 py-0.5 rounded-full">Meta Batida</span>}
         </div>
       </div>
@@ -83,7 +96,7 @@ const RecommendationCard = ({ activity, userId }) => {
             {localMastered} / {activity.totalCount} CHUNKS
           </span>
         </div>
-        <h3 className="text-lg font-black text-zinc-900 dark:text-white leading-tight">
+        <h3 className="text-lg font-black text-white leading-tight">
           {activity.tipo === 'Rápido' ? 'Desafio Rápido' : activity.subtitulo.split(' • ')[1]}
         </h3>
         <p className={cn(
@@ -105,7 +118,7 @@ const RecommendationCard = ({ activity, userId }) => {
             "flex h-10 w-10 items-center justify-center rounded-full transition-all hover:scale-110 shadow-lg",
             isCompleted ? "bg-zinc-200 text-zinc-400 dark:bg-zinc-800 cursor-not-allowed" : "bg-primary text-white shadow-primary/20"
           )}
-          onClick={(e) => { e.stopPropagation(); openActivity(activity, userId); }}
+          onClick={handleAction}
         >
           <PlayCircle size={20} />
         </button>

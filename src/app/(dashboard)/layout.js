@@ -12,9 +12,9 @@ export default function DashboardLayout({ children }) {
   const { openUpgrade } = useModals();
 
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row bg-zinc-50 dark:bg-zinc-950 transition-colors">
+    <div className="flex min-h-screen flex-col lg:flex-row bg-[#0d1117] transition-colors">
       {/* Mobile Top Header */}
-      <div className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 px-6 backdrop-blur-md lg:hidden transition-colors">
+      <div className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-zinc-800 bg-[#1c1c1f]/90 px-6 backdrop-blur-xl lg:hidden">
         <Link href="/" className="flex items-center">
           <Logo size="sm" />
         </Link>

@@ -9,7 +9,7 @@ import {
 import { getLevelConfig } from '@/config/levels';
 import { markChunkAsMastered, claimActivityReward } from '@/actions/learning';
 
-const SAVE_KEY = 'mango-tactics-chatter-v1';
+const SAVE_KEY = 'mango-quiz-chatter-v1';
 
 function speak(text) {
   if (typeof window === 'undefined') return;

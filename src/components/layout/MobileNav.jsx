@@ -13,13 +13,12 @@ const MobileNav = () => {
   const navItems = [
     { id: 'dashboard', label: 'Início', icon: Home, href: '/' },
     { id: 'dictionary', label: 'Explorar', icon: BookOpen, href: '/dictionary' },
-    { id: 'practice', label: 'Treinar', icon: Mic, href: '/practice' },
-    { id: 'tactics', label: 'Tactics', icon: Layers, href: '/practice/tactics' },
+    { id: 'practice', label: 'Praticar', icon: Mic, href: '/practice' },
     { id: 'profile', label: 'Perfil', icon: Settings, href: '/profile' },
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 z-50 flex w-full items-center justify-around border-t border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-950/95 p-2 pb-6 backdrop-blur-lg lg:hidden transition-colors">
+    <nav className="fixed bottom-0 left-0 z-50 flex w-full items-center justify-around border-t border-zinc-800 bg-[#1c1c1f]/90 backdrop-blur-xl p-2 pb-6 lg:hidden">
       {navItems.map((item) => {
         const isActive = pathname === item.href;
         return (
@@ -27,15 +26,17 @@ const MobileNav = () => {
             key={item.id}
             href={item.href}
             className={cn(
-              "relative flex flex-col items-center gap-1 p-2 transition-colors",
-              isActive ? "text-primary" : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300"
+              "relative flex flex-col items-center gap-1.5 px-5 py-2 rounded-2xl transition-all duration-200",
+              isActive 
+                ? "text-orange-500 bg-orange-500/10" 
+                : "text-zinc-500 hover:text-zinc-300"
             )}
           >
-            <item.icon size={24} />
-            <span className="text-[10px] font-bold uppercase tracking-wider">{item.label}</span>
-            {isActive && (
-              <div className="absolute -top-1 h-1 w-1 rounded-full bg-primary" />
-            )}
+            <item.icon size={22} strokeWidth={isActive ? 2.5 : 2} />
+            <span className={cn(
+              "text-[9px] font-black uppercase tracking-wider transition-all",
+              isActive ? "text-orange-500" : "text-zinc-600"
+            )}>{item.label}</span>
           </Link>
         );
       })}

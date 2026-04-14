@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import { checkUserAchievements } from "@/lib/achievements"
 
 
 export async function completePracticeSession(clientUserId, chunkResults) {
@@ -37,7 +38,10 @@ export async function completePracticeSession(clientUserId, chunkResults) {
     revalidatePath('/')
     revalidatePath('/dictionary')
     
-    return { success: true, count: results.length }
+    // Check for new achievements
+    const newBadges = await checkUserAchievements(userId);
+    
+    return { success: true, count: results.length, newAchievements: newBadges }
   } catch (error) {
     console.error("Failed to complete session:", error)
     return { success: false, error: error.message }

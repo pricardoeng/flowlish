@@ -54,7 +54,7 @@ const ChunkCard = ({ chunk, userId }) => {
 
   return (
     <div className={cn(
-      "group relative flex flex-col justify-between overflow-hidden rounded-[2.5rem] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-white/5 shadow-premium transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
+      "group relative flex flex-col justify-between overflow-hidden rounded-[2rem] bg-[#1c1c1f] border border-zinc-800 shadow-2xl transition-all duration-300 hover:shadow-orange-500/10 hover:-translate-y-1 hover:border-zinc-700"
     )}>
       {/* Dynamic Background Accent (Very subtle) */}
       <div 
@@ -62,9 +62,9 @@ const ChunkCard = ({ chunk, userId }) => {
       />
       
       <div className="px-6 pt-6 pb-2 flex items-center justify-between relative z-10">
-        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-50 dark:bg-white/5 border border-zinc-100 dark:border-white/5">
+        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-800/80 border border-zinc-700/50">
            <div className={cn("w-2 h-2 rounded-full", levelCfg.bg)} />
-           <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+           <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
              {levelCfg.label}
            </span>
         </div>
@@ -73,8 +73,8 @@ const ChunkCard = ({ chunk, userId }) => {
             onClick={handleFavorite}
             disabled={isPending}
             className={cn(
-              "p-2 rounded-xl transition-all hover:bg-zinc-50 dark:hover:bg-white/5",
-              favorited ? "text-primary bg-primary/5" : "text-zinc-300 dark:text-zinc-600 hover:text-zinc-500"
+              "p-2 rounded-xl transition-all hover:bg-zinc-800",
+              favorited ? "text-orange-500 bg-orange-500/10" : "text-zinc-600 hover:text-zinc-400"
             )}
           >
             <Bookmark size={18} fill={favorited ? "currentColor" : "none"} strokeWidth={2.5} />
@@ -85,22 +85,22 @@ const ChunkCard = ({ chunk, userId }) => {
       <div className="p-8 pt-4 flex flex-col flex-1 relative z-10">
         <div className="space-y-4 flex-1 mb-8">
           <div className="flex items-center gap-2 opacity-60">
-             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500">
+             <span className="text-[10px] font-black uppercase tracking-[0.25em] text-zinc-500">
                {chunk.pack || chunk.theme || 'CHUNKS BÁSICOS'}
              </span>
           </div>
-          <h3 className="text-3xl sm:text-4xl font-serif font-black text-zinc-900 dark:text-zinc-50 leading-[0.95] tracking-tighter">
+          <h3 className="text-xl font-black text-white leading-tight tracking-tight">
             {chunk.englishText}
           </h3>
-          <p className="text-[15px] font-bold text-zinc-500 dark:text-zinc-400 leading-snug">
+          <p className="text-sm font-medium text-zinc-400 leading-snug">
             {chunk.portugueseTranslation}
           </p>
         </div>
 
-        <div className="flex items-center justify-between pt-6 border-t border-zinc-100 dark:border-white/5">
+        <div className="flex items-center justify-between pt-5 border-t border-zinc-800">
           <div className="flex items-center gap-2">
             {isMastered && (
-              <div className="flex items-center gap-1.5 bg-green-500/10 text-green-500 dark:text-green-400 px-3 py-1 rounded-full font-black text-[10px] uppercase tracking-widest">
+              <div className="flex items-center gap-1.5 bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full font-black text-[10px] uppercase tracking-widest border border-emerald-500/20">
                 <CheckCircle2 size={12} />
                 Dominado
               </div>
@@ -109,10 +109,10 @@ const ChunkCard = ({ chunk, userId }) => {
           <button 
             onClick={playAudio}
             className={cn(
-              "flex h-12 w-12 items-center justify-center rounded-2xl transition-all",
-              "bg-zinc-50 dark:bg-white/5 border border-zinc-200 dark:border-white/5 text-zinc-900 dark:text-zinc-100",
-              "hover:bg-primary hover:text-white hover:border-primary hover:scale-110 active:scale-95 shadow-sm group/btn",
-              isPlaying && "bg-primary text-white border-primary animate-pulse"
+              "flex h-11 w-11 items-center justify-center rounded-2xl transition-all",
+              "bg-zinc-800 border border-zinc-700 text-zinc-400",
+              "hover:bg-orange-500 hover:text-white hover:border-orange-500 hover:scale-110 active:scale-95 shadow-sm group/btn",
+              isPlaying && "bg-orange-500 text-white border-orange-500 animate-pulse"
             )}
           >
             <Volume2 size={24} strokeWidth={2.5} className={cn("transition-transform", !isPlaying && "group-hover/btn:rotate-12")} />

@@ -17,7 +17,8 @@ export const Curator = {
 
     if (!user) throw new Error("User not found");
 
-    const isPremium = user.purchases.some(p => p.status === 'active' && !p.packId);
+    // ✅ ACESSO LIBERADO: todos os usuários têm acesso completo a todos os chunks
+    const isPremium = true;
     const unlockedPacks = user.unlockedPacks || [];
     const userLevel = user.currentLevel || 'A1';
     
@@ -28,12 +29,9 @@ export const Curator = {
 
     /**
      * Helper to check if a pack is owned or accessible
+     * ✅ Retorna sempre true — conteúdo 100% liberado para todos
      */
-    const hasAccessToPack = (packName) => {
-      if (isPremium) return true;
-      if (packName === 'Free') return true;
-      return unlockedPacks.includes(packName);
-    };
+    const hasAccessToPack = (_packName) => true;
 
     // 1. CHunk Retrieval & Access Logic
     const activePack = packs.length > 0 ? packs[0] : 'Free';

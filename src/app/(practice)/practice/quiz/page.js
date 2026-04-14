@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 import TacticsGame from '@/components/practice/TacticsGame';
 
 export const metadata = {
-  title: 'Chunk Tactics – Mango',
+  title: 'Desafio Quiz – Mango',
   description: 'Jogue o baralho tático de chunks em inglês. Domine frases reais com o Mango, uma carta por vez.',
 };
 
@@ -57,7 +57,7 @@ export default async function TacticsPage() {
         <div className="max-w-xl mx-auto flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-black text-zinc-900 dark:text-white tracking-tight">
-              🃏 Chunk Tactics
+              🃏 Desafio Quiz
             </h1>
             <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mt-0.5">
               {shuffled.length} cartas no deck de hoje

@@ -13,7 +13,7 @@ const MEDALS = [
     border: 'border-yellow-400/60',
     bg: 'bg-yellow-400/10 dark:bg-yellow-400/5',
     textColor: 'text-yellow-500',
-    height: 'h-24',
+    height: 'h-20',
   },
   {
     rank: 2,
@@ -24,7 +24,7 @@ const MEDALS = [
     border: 'border-zinc-300/60',
     bg: 'bg-zinc-200/30 dark:bg-zinc-500/10',
     textColor: 'text-zinc-400',
-    height: 'h-16',
+    height: 'h-12',
   },
   {
     rank: 3,
@@ -35,7 +35,7 @@ const MEDALS = [
     border: 'border-orange-700/50',
     bg: 'bg-orange-900/10 dark:bg-orange-800/5',
     textColor: 'text-orange-700',
-    height: 'h-12',
+    height: 'h-8',
   },
 ];
 
@@ -96,7 +96,7 @@ const LeaderboardCard = ({ leaderboard = [] }) => {
         </div>
 
         {/* Podium stage */}
-        <div className="relative flex items-end justify-center gap-4 pt-8 pb-2">
+        <div className="relative flex items-end justify-center gap-4 pt-4 pb-2">
           {PODIUM_ORDER.map((playerIdx, colIdx) => {
             const entry = entries[playerIdx];
             const medal = MEDALS[playerIdx];

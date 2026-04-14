@@ -28,7 +28,7 @@ const LevelButton = ({ lvl, isSelected, onClick }) => {
   );
 };
 
-const ProfileForm = ({ user }) => {
+const ProfileForm = ({ user, availablePacks = [] }) => {
   const { openUpgrade } = useModals();
   const [formData, setFormData] = useState({
     name: user.name,
@@ -46,20 +46,6 @@ const ProfileForm = ({ user }) => {
   const [isProcessingPurchase, setIsProcessingPurchase] = useState(false);
 
   const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-  const packCategories = [
-    { 
-      label: 'Temas Profissionais', 
-      packs: ['Tecnologia', 'Medicina', 'Jurídico', 'Financeiro', 'Projetos', 'Engenharia', 'Corporativo'] 
-    },
-    { 
-      label: 'Experiência de Vida', 
-      packs: ['Viajar', 'Viver', 'Estudar', 'Trabalhar'] 
-    },
-    { 
-      label: 'Especialidades', 
-      packs: ['Avançado', 'Acadêmico'] 
-    }
-  ];
   const goals = [
     { id: 'Casual', label: 'Casual', desc: '4 Chunks / dia' },
     { id: 'Regular', label: 'Regular', desc: '8 Chunks / dia' },
@@ -188,10 +174,10 @@ const ProfileForm = ({ user }) => {
       )}
 
       {/* Profile Form */}
-      <section className="rounded-[2.5rem] bg-white dark:bg-zinc-950 p-8 shadow-sm border border-zinc-100 dark:border-zinc-800 transition-colors">
+      <section className="rounded-[2.5rem] bg-[#1c1c1f] p-8 shadow-2xl border border-zinc-800">
         <div className="space-y-8">
           {/* Avatar Section */}
-          <div className="flex items-center gap-6 pb-8 border-b border-zinc-100 dark:border-zinc-800 relative">
+          <div className="flex items-center gap-6 pb-8 border-b border-zinc-800 relative">
             <div 
               className="group relative h-24 w-24 rounded-full border-4 border-zinc-50 dark:border-zinc-900 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center overflow-hidden shadow-sm cursor-pointer transition-transform hover:scale-105"
               onClick={() => document.getElementById('profilePhotoUpload').click()}
@@ -236,8 +222,8 @@ const ProfileForm = ({ user }) => {
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         {/* Basic Info */}
-        <div className="rounded-[2.5rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm space-y-6 transition-colors">
-          <div className="flex items-center gap-2 text-primary">
+        <div className="rounded-[2.5rem] bg-zinc-800/50 p-8 border border-zinc-800 shadow-sm space-y-6">
+          <div className="flex items-center gap-2 text-orange-500">
             <User size={20} />
             <h3 className="font-bold uppercase tracking-widest text-xs">Dados Pessoais</h3>
           </div>
@@ -264,8 +250,8 @@ const ProfileForm = ({ user }) => {
         </div>
 
         {/* Study Goal */}
-        <div className="rounded-[2.5rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm space-y-6 transition-colors">
-          <div className="flex items-center gap-2 text-primary">
+        <div className="rounded-[2.5rem] bg-zinc-800/50 p-8 border border-zinc-800 shadow-sm space-y-6">
+          <div className="flex items-center gap-2 text-orange-500">
             <Target size={20} />
             <h3 className="font-bold uppercase tracking-widest text-xs">Meta de Estudo</h3>
           </div>
@@ -291,8 +277,8 @@ const ProfileForm = ({ user }) => {
           </div>
         </div>
         {/* Level Selection */}
-        <div className="rounded-[2.5rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm space-y-6 lg:col-span-2 transition-colors">
-          <div className="flex items-center gap-2 text-primary">
+        <div className="rounded-[2.5rem] bg-zinc-800/50 p-8 border border-zinc-800 shadow-sm space-y-6 lg:col-span-2">
+          <div className="flex items-center gap-2 text-orange-500">
             <Award size={20} />
             <h3 className="font-bold uppercase tracking-widest text-xs">Nível CEFR Atual</h3>
           </div>
@@ -308,73 +294,50 @@ const ProfileForm = ({ user }) => {
           </div>
         </div>
 
-        {/* Specialized Packs */}
-        <div className="rounded-[2.5rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm space-y-8 lg:col-span-2 transition-colors">
-          <div className="flex items-center gap-2 text-primary">
+        <div className="rounded-[2.5rem] bg-zinc-800/50 p-8 border border-zinc-800 shadow-sm space-y-8 lg:col-span-2">
+          <div className="flex items-center gap-2 text-orange-500">
             <Sparkles size={20} />
             <h3 className="font-bold uppercase tracking-widest text-xs">Packs de Especialidades</h3>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {packCategories.map((cat) => (
-              <div key={cat.label} className="space-y-4">
-                <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400 px-1">{cat.label}</h4>
-                <div className="flex flex-col gap-3">
-                  {cat.packs.map(pack => {
-                    const isSelected = formData.interests.includes(pack);
-                    const isUnlocked = formData.unlockedPacks.includes(pack);
-                    
-                    return (
-                      <div key={pack} className="flex flex-col gap-2">
-                        <button
-                          onClick={() => {
-                            const newInterests = isSelected
-                              ? formData.interests.filter(i => i !== pack)
-                              : [...formData.interests, pack];
-                            setFormData({ ...formData, interests: newInterests });
-                          }}
-                          className={cn(
-                            "flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-bold transition-all border w-full relative overflow-hidden",
-                            isPro || isUnlocked
-                              ? "bg-emerald-500/5 border-emerald-500/40 text-emerald-600 dark:text-emerald-400"
-                              : isSelected
-                                ? "bg-primary/10 border-primary text-primary"
-                                : "bg-zinc-50 dark:bg-zinc-950 border-zinc-100 dark:border-zinc-800 text-zinc-500 hover:border-primary/30"
-                          )}
-                        >
-                          <div className="flex items-center gap-2">
-                             <span>{pack}</span>
-                             {(isPro || isUnlocked) && <span className="text-[8px] font-black uppercase bg-emerald-500 text-white px-1.5 py-0.5 rounded-md">ADQUIRIDO</span>}
-                          </div>
-                          {(isSelected || isPro || isUnlocked) && <Check size={14} strokeWidth={(isPro || isUnlocked) ? 4 : 2} />}
-                        </button>
-                        
-                        {!isPro && !isUnlocked && isSelected && (
-                          <button 
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleUnlockClick(pack);
-                            }}
-                            className="text-[9px] font-black uppercase tracking-widest text-primary bg-primary/10 py-2 rounded-xl border border-primary/20 hover:bg-primary/20 transition-colors"
-                          >
-                            🔓 Desbloquear Premium
-                          </button>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <p className="text-[10px] text-zinc-500 font-medium italic">
+
+          {availablePacks.length === 0 ? (
+            <p className="text-zinc-500 text-sm italic">Nenhum pack especializado encontrado no banco.</p>
+          ) : (
+            <div className="flex flex-wrap gap-3">
+              {availablePacks.map(pack => {
+                const isSelected = formData.interests.includes(pack);
+                return (
+                  <button
+                    key={pack}
+                    type="button"
+                    onClick={() => {
+                      const newInterests = isSelected
+                        ? formData.interests.filter(i => i !== pack)
+                        : [...formData.interests, pack];
+                      setFormData({ ...formData, interests: newInterests });
+                    }}
+                    className={cn(
+                      "flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-bold transition-all border",
+                      isSelected
+                        ? "bg-orange-500/15 border-orange-500/50 text-orange-400"
+                        : "bg-zinc-900 border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-white"
+                    )}
+                  >
+                    {pack}
+                    {isSelected && <Check size={14} strokeWidth={3} className="text-orange-500" />}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          <p className="text-[10px] text-zinc-600 font-medium italic">
             * Selecione seus interesses para que o Curador Inteligente priorize chunks relevantes para você.
           </p>
         </div>
       </div>
 
-      <div className="flex items-center justify-between border-t border-zinc-100 pt-10">
+      <div className="flex items-center justify-between border-t border-zinc-800 pt-10">
         <Button variant="ghost" className="text-zinc-400">
            <LogOut size={18} /> Sair da conta
         </Button>
@@ -393,7 +356,7 @@ const ProfileForm = ({ user }) => {
       {/* Purchase Modal Overlay */}
       {selectedPackForPurchase && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-sm animate-in fade-in duration-200">
-           <div className="relative w-full max-w-md overflow-hidden rounded-[3rem] bg-white dark:bg-zinc-900 p-8 shadow-2xl animate-in zoom-in-95 duration-200 border border-zinc-100 dark:border-zinc-800">
+           <div className="relative w-full max-w-md overflow-hidden rounded-[3rem] bg-[#1c1c1f] border border-zinc-800 p-8 shadow-2xl animate-in zoom-in-95 duration-200">
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">

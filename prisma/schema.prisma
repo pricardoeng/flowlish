@@ -25,6 +25,7 @@ model User {
   speechQueues     SpeechQueue[]
   interests        String[]            @default([])
   unlockedPacks    String[]            @default([])
+  userBadges       UserBadge[]
 }
 
 model Chunk {
@@ -115,11 +116,28 @@ model TestSession {
 }
 
 model Badge {
-  id       String @id @default(cuid())
-  name     String
-  category String
-  icon     String
-  rule     String
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  category    String   // 'milestone', 'skill', 'streak', 'rare'
+  icon        String
+  targetType  String   // 'mastered_chunks', 'xp', 'streak_days', 'pack_complete'
+  targetValue Int
+  tier        String   @default("BRONZE") // BRONZE, SILVER, GOLD, DIAMOND
+  rarity      Float?   // Cache of percent users who have this
+  nextTierId  String?
+  userBadges  UserBadge[]
+}
+
+model UserBadge {
+  id        String   @id @default(cuid())
+  userId    String
+  badgeId   String
+  earnedAt  DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  badge     Badge    @relation(fields: [badgeId], references: [id])
+
+  @@unique([userId, badgeId])
 }
 
 model Certificate {
