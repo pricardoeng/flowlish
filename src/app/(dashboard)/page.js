@@ -73,6 +73,23 @@ export default async function Dashboard() {
 
   const startOfMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
 
+  // ── Progresso Semanal (vem do banco, não do localStorage) ─────────────────
+  // Gera array de 7 datas (Seg → Dom) em formato YYYY-MM-DD
+  const weeklyDates = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(startOfWeek);
+    d.setDate(startOfWeek.getDate() + i);
+    return d.toISOString().split('T')[0];
+  });
+
+  // Para cada dia, verifica se há ao menos 1 LearningSession naquele dia
+  const completedDays = weeklyDates.map(dateStr =>
+    user.learningSessions.some(s => {
+      const sDate = new Date(s.date).toISOString().split('T')[0];
+      return sDate === dateStr;
+    })
+  );
+  const weeklyPercent = Math.round(completedDays.filter(Boolean).length / 7 * 100);
+
   // General leaderboard with all requested stats
   const allUsers = await prisma.user.findMany({
     include: { 
@@ -269,7 +286,7 @@ export default async function Dashboard() {
       {/* 2. Quick Status Row (Bento Style) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         <StreakCard streaks={streaks} />
-        <WeeklyGoal userId={user.id} goalLimit={limit} />
+        <WeeklyGoal completedDays={completedDays} percent={weeklyPercent} />
       </div>
 
       {/* 3. Primary Action Zone: Recommended (Higher Priority) */}
